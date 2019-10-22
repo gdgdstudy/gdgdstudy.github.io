@@ -7,19 +7,19 @@
   
   
   
-  <title>Hello World | Hexo</title>
+  <title>Vue文档再研-感悟 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Vue 响应式1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。 计算属性2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 JS操作真实DOM的代价！浏览器渲染引擎工作流程都差不多，大致分为5步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/08/04/hello-world/index.html">
+<meta property="og:title" content="Vue文档再研-感悟">
+<meta property="og:url" content="http://yoursite.com/2019/10/22/thinkvue/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Vue 响应式1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。 计算属性2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 JS操作真实DOM的代价！浏览器渲染引擎工作流程都差不多，大致分为5步">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-04T14:43:21.497Z">
+<meta property="og:updated_time" content="2019-10-22T14:33:17.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Vue文档再研-感悟">
+<meta name="twitter:description" content="Vue 响应式1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。 计算属性2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 JS操作真实DOM的代价！浏览器渲染引擎工作流程都差不多，大致分为5步">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -260,11 +260,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-thinkvue" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/08/04/hello-world/" class="article-date">
-      <time datetime="2019-08-04T14:43:21.496Z" itemprop="datePublished">2019-08-04</time>
+      <a  href="/2019/10/22/thinkvue/" class="article-date">
+      <time datetime="2019-10-22T14:20:59.241Z" itemprop="datePublished">2019-10-22</time>
 </a>
 
     </div>
@@ -278,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Vue文档再研-感悟
     </h1>
   
 
@@ -296,19 +296,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>Vue</p>
+<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。</p>
+<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+<h2 id="JS操作真实DOM的代价！"><a href="#JS操作真实DOM的代价！" class="headerlink" title="JS操作真实DOM的代价！"></a>JS操作真实DOM的代价！</h2><p>浏览器渲染引擎工作流程都差不多，大致分为5步，创建DOM树——创建StyleRules——创建Render树——布局Layout——绘制Painting  </p>
+<p>第一步，用HTML分析器，分析HTML元素，构建一颗DOM树(标记化和树构建)。</p>
+<p>第二步，用CSS分析器，分析CSS文件和元素上的inline样式，生成页面的样式表。</p>
+<p>第三步，将DOM树和样式表，关联起来，构建一颗Render树(这一过程又称为Attachment)。每个DOM节点都有attach方法，接受样式信息，返回一个render对象(又名renderer)。这些render对象最终会被构建成一颗Render树。</p>
+<p>第四步，有了Render树，浏览器开始布局，为每个Render树上的节点确定一个在显示屏上出现的精确坐标。</p>
+<p>第五步，Render树和节点显示坐标都有了，就调用每个节点paint方法，把它们绘制出来。</p>
+<p>用我们传统的开发模式，原生JS或JQ操作DOM时，浏览器会从构建DOM树开始从头到尾执行一遍流程。在一次操作中，我需要更新10个DOM节点，浏览器收到第一个DOM请求后并不知道还有9次更新操作，因此会马上执行流程，最终执行10次。例如，第一次计算完，紧接着下一个DOM更新请求，这个节点的坐标值就变了，前一次计算为无用功。计算DOM节点坐标值等都是白白浪费的性能。即使计算机硬件一直在迭代更新，操作DOM的代价仍旧是昂贵的，频繁操作还是会出现页面卡顿，影响用户体验。</p>
+<h2 id="浏览器主要组成与浏览器线程"><a href="#浏览器主要组成与浏览器线程" class="headerlink" title="浏览器主要组成与浏览器线程"></a>浏览器主要组成与浏览器线程</h2><p>界面控件 – 包括地址栏，前进后退，书签菜单等窗口上除了网页显示区域以外的部分</p>
+<p>浏览器引擎 – 查询与操作渲染引擎的接口</p>
+<p>渲染引擎 – 负责显示请求的内容。比如请求到HTML, 它会负责解析HTML、CSS并将结果显示到窗口中</p>
+<p>网络 – 用于网络请求, 如HTTP请求。它包括平台无关的接口和各平台独立的实现</p>
+<p>UI后端 – 绘制基础元件，如组合框与窗口。它提供平台无关的接口，内部使用操作系统的相应实现</p>
+<p>JS解释器 - 用于解析执行JavaScript代码</p>
+<p>数据存储持久层 - 浏览器需要把所有数据存到硬盘上，如cookies。新的HTML5规范规定了一个完整（虽然轻量级）的浏览器中的数据库webdatabase</p>
+<ol>
+<li><p>GUI渲染线程与JS引擎线程互斥的，是由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JavaScript线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致。当JavaScript引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到引擎线程空闲时立即被执行。由于GUI渲染线程与JS执行线程是互斥的关系，当浏览器在执行JS程序的时候，GUI渲染线程会被保存在一个队列中，直到JS程序执行完成，才会接着执行。因此如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞的感觉。</p>
+</li>
+<li><p>定时触发器线程</p>
+</li>
+</ol>
+<p>浏览器定时计数器并不是由JS引擎计数的, 因为JS引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确, 因此通过单独线程来计时并触发定时是更为合理的方案。</p>
+<ol start="3">
+<li>事件触发线程</li>
+</ol>
+<p>当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。</p>
+<ol start="4">
+<li>异步http请求线程</li>
+</ol>
+<p>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求，将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件放到JS引擎的处理队列中等待处理。</p>
 
       
     </div>
@@ -317,13 +336,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/08/04/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a  href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Kevin Yan 的个人博客">Kevin Yan</a></p>
-        <p><span>发布时间:</span>2019年08月04日 - 22时43分</p>
-        <p><span>最后更新:</span>2019年08月04日 - 22时43分</p>
+        <p><span>发布时间:</span>2019年10月22日 - 22时20分</p>
+        <p><span>最后更新:</span>2019年10月22日 - 22时33分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/08/04/hello-world/" title="Hello World">http://yoursite.com/2019/08/04/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/08/04/hello-world/　　作者: Kevin Yan" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/10/22/thinkvue/" title="Vue文档再研-感悟">http://yoursite.com/2019/10/22/thinkvue/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/10/22/thinkvue/　　作者: Kevin Yan" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -334,15 +353,11 @@
 
 <nav id="article-nav">
   
-    <a  href="/2019/10/22/ssr/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          服务端渲染
-        
-      </div>
-    </a>
   
+    <a  href="/2019/10/22/bowser/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浏览器机制</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -352,7 +367,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式"><span class="toc-number">1.</span> <span class="toc-text">响应式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算属性"><span class="toc-number">2.</span> <span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS操作真实DOM的代价！"><span class="toc-number">3.</span> <span class="toc-text">JS操作真实DOM的代价！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器主要组成与浏览器线程"><span class="toc-number">4.</span> <span class="toc-text">浏览器主要组成与浏览器线程</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -425,13 +440,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/10/22/ssr/" title="上一篇: 服务端渲染">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2019/10/22/bowser/" title="下一篇: 浏览器机制">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/22/bowser/">浏览器机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/22/ssr/">服务端渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/04/hello-world/">Hello World</a></li></ul>
