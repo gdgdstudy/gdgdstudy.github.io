@@ -1,548 +1,310 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
-  
-  
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/favicon.png">
-  
-  
-  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-    
-    
-  
-  
-      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  
-  <!-- 加载特效 -->
-    <script src="/js/pace.js"></script>
-    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
-  <script>
-      var yiliaConfig = {
-          fancybox: true,
-          animate: true,
-          isHome: true,
-          isPost: false,
-          isArchive: false,
-          isTag: false,
-          isCategory: false,
-          open_in_new: false
-      }
-  </script>
-</head></html>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <meta charset="UTF-8">
 
-        <a href="/" class="profilepic">
-            
-            <img lazy-src="/img/avatar.png" class="js-avatar">
-            
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">Kevin Yan</a></h1>
-        </hgroup>
+    
+
+    
+
+    <title>Hexo</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
         
+            <a class="nav-item active" href="/">
+                <span class="nav-text">首页</span>
+            </a>
         
-            <form>
-                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
-            </form>
-            <div id="local-search-result"></div>
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
         
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
         
-            <script type="text/javascript">
-                (function() {
-                    'use strict';
-                    function getMatchData(keyword, data) {
-                        var matchData = [];
-                        for(var i =0;i<data.length;i++){
-                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
-                                matchData.push(data[i])
-                        }
-                        return matchData;
-                    }
-                    var $input = $('#local-search-input');
-                    var $resultContent = $('#local-search-result');
-                    $input.keyup(function(){
-                        $.ajax({
-                            url: '/search.json',
-                            dataType: "json",
-                            success: function( json ) {
-                                var str='<ul class=\"search-result-list\">';                
-                                var keyword = $input.val().trim().toLowerCase();
-                                $resultContent.innerHTML = "";
-                                if ($input.val().trim().length <= 0) {
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                }
-                                var results = getMatchData(keyword, json);
-                                if(results.length === 0){
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                } 
-                                for(var i =0; i<results.length; i++){
-                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
-                                }
-                                str += "</ul>";
-                                $resultContent.empty();
-                                $resultContent.append(str);
-                                $('#switch-area').hide();
-                            }
-                        });
-                    });
-                })();
-            </script>
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
         
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
         
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
         
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a  href="/archives/">所有文章</a></li>
-                        
-                            <li><a  href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
-                            
-                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
-                            
-                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        
-                    </div>
-                </section>
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
-                    
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
 </div>
 
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kevin Yan</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                
-                    <img lazy-src="/img/avatar.png" class="js-avatar">
-                
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">Kevin Yan</a></h1>
-            </hgroup>
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+
+        
+        <div class="author-meta">
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                <div class="social">
+            <div class="author-avatar">
+                <a href="/">
+                    <img src="/images/avatar.jpg" title="Sanonz">
+                </a>
+            </div>
+            
+            <div class="author-name">Sanonz</div>
+            <div class="author-work">Web Developer &amp; Designer</div>
+            <div class="author-location">
+                <i class="icon-location vm"></i>
+                <span class="vm">Shenzhen, China</span>
+            </div>
+            
+            <div class="author-thread-wrap">
+                <div class="author-threads clearfix">
                     
-                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                        <a class="thread-item" href="https://github.com/sanonz" target="_blank" rel="noopener">
+                            <!-- Generated by IcoMoon.io -->
+<svg viewbox="0 0 1024 1024" width="38" height="38" fill="currentColor">
+<path d="M512 32.12c-265.004 0-479.88 220.23-479.88 492.090 0 217.446 137.536 401.684 328.202 466.81 23.994 4.498 32.778-10.712 32.778-23.78 0-11.782-0.428-42.632-0.642-83.764-133.466 29.778-161.744-65.984-161.744-65.984-21.852-56.772-53.344-71.982-53.344-71.982-43.49-30.636 3.214-29.992 3.214-29.992 48.202 3.428 73.482 50.772 73.482 50.772 42.846 75.196 112.258 53.558 139.68 40.918 4.284-31.706 16.71-53.558 30.42-65.77-106.474-12.426-218.516-54.63-218.516-243.152 0-53.772 18.638-97.69 49.274-131.966-4.928-12.426-21.424-62.556 4.714-130.252 0 0 40.276-13.282 131.966 50.344 38.348-10.926 79.266-16.282 120.184-16.496 40.704 0.214 81.836 5.57 120.184 16.496 91.692-63.626 131.752-50.344 131.752-50.344 26.136 67.698 9.64 117.828 4.714 130.252 30.636 34.492 49.274 78.408 49.274 131.966 0 188.952-112.258 230.514-219.16 242.724 17.138 15.21 32.564 45.202 32.564 91.048 0 65.77-0.642 118.898-0.642 134.966 0 13.068 8.57 28.492 32.992 23.566 191.094-64.912 328.418-249.152 328.418-466.382 0-271.86-214.874-492.090-479.88-492.090z"/>
+</svg>
+
+                        </a>
                     
-                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                        <a class="thread-item" href="http://weibo.com/sanonz" target="_blank" rel="noopener">
+                            <!-- Generated by IcoMoon.io -->
+<svg viewbox="0 0 1024 1024" width="38" height="38" fill="currentColor">
+<path d="M21.332 512c0-270.988 219.68-490.666 490.668-490.666s490.666 219.68 490.666 490.666c0 270.988-219.678 490.666-490.666 490.666s-490.666-219.678-490.666-490.666zM960 512c0-247.424-200.576-448-448-448s-448 200.576-448 448c0 247.424 200.576 448 448 448s448-200.576 448-448zM768 597.332c47.128 0 85.332-38.206 85.332-85.332s-38.206-85.332-85.332-85.332c-47.128 0-85.332 38.204-85.332 85.332s38.206 85.332 85.332 85.332zM512 597.332c47.128 0 85.332-38.206 85.332-85.332s-38.206-85.332-85.332-85.332c-47.128 0-85.332 38.204-85.332 85.332s38.204 85.332 85.332 85.332zM255.998 597.332c47.128 0 85.332-38.206 85.332-85.332s-38.204-85.332-85.332-85.332c-47.128 0-85.332 38.204-85.332 85.332s38.204 85.332 85.332 85.332z"/>
+</svg>
+
+                        </a>
                     
-                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                        <a class="thread-item" href="https://twitter.com/sanonze" target="_blank" rel="noopener">
+                            <!-- Generated by IcoMoon.io -->
+<svg viewbox="0 0 1024 1024" width="38" height="38" fill="currentColor">
+<path d="M512.029 31.011c-263.32 0-476.784 213.502-476.784 476.784 0 263.32 213.464 476.743 476.784 476.743s476.743-213.424 476.743-476.743c0-263.282-213.444-476.784-476.743-476.784zM752.193 411.663c0.251 5.151 0.349 10.319 0.349 15.548 0 158.786-120.856 341.85-341.85 341.85-67.844 0-131.021-19.884-184.188-53.961 9.41 1.104 18.955 1.665 28.656 1.665 56.305 0 108.115-19.208 149.221-51.425-52.567-0.987-96.925-35.741-112.22-83.468 7.32 1.433 14.85 2.149 22.595 2.149 10.959 0 21.569-1.433 31.656-4.201-54.987-11.035-96.402-59.634-96.402-117.796 0-0.524 0-1.025 0.020-1.549 16.186 9.003 34.716 14.404 54.427 15.044-32.258-21.587-53.458-58.317-53.458-100.023 0-22.015 5.925-42.673 16.264-60.408 59.266 72.683 147.807 120.527 247.676 125.521-2.053-8.77-3.118-17.968-3.118-27.378 0-66.333 53.787-120.14 120.158-120.14 34.561 0 65.771 14.599 87.69 37.93 27.378-5.363 53.091-15.393 76.305-29.16-9.003 28.074-28.036 51.618-52.858 66.47 24.338-2.903 47.495-9.37 69.024-18.917-16.070 24.144-36.459 45.306-59.945 62.248z"/>
+</svg>
+
+                        </a>
                     
                 </div>
-            </nav>
-        </header>
+            </div>
+            
+        </div>
+        
     </div>
-</nav>
-      <div class="body-wrap">
-  
-    <article id="post-thinkvue" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/10/22/thinkvue/" class="article-date">
-      <time datetime="2019-10-22T14:20:59.241Z" itemprop="datePublished">2019-10-22</time>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-22T14:20:59.241Z" itemprop="datePublished">2019-10-22</time>
 </a>
 
-    </div>
-  
-  <div class="article-inner">
+            
+
+        </div>
+    </header>
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <section class="article-body markdown-body">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
         <p>Vue</p>
-<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。</p>
+<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是<strong>响应式</strong>的。</p>
 <h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
-<h2 id="JS操作真实DOM的代价！"><a href="#JS操作真实DOM的代价！" class="headerlink" title="JS操作真实DOM的代价！"></a>JS操作真实DOM的代价！</h2><p>浏览器渲染引擎工作流程都差不多，大致分为5步，创建DOM树——创建StyleRules——创建Render树——布局Layout——绘制Painting  </p>
-<p>第一步，用HTML分析器，分析HTML元素，构建一颗DOM树(标记化和树构建)。</p>
-<p>第二步，用CSS分析器，分析CSS文件和元素上的inline样式，生成页面的样式表。</p>
-<p>第三步，将DOM树和样式表，关联起来，构建一颗Render树(这一过程又称为Attachment)。每个DOM节点都有attach方法，接受样式信息，返回一个render对象(又名renderer)。这些render对象最终会被构建成一颗Render树。</p>
-<p>第四步，有了Render树，浏览器开始布局，为每个Render树上的节点确定一个在显示屏上出现的精确坐标。</p>
-<p>第五步，Render树和节点显示坐标都有了，就调用每个节点paint方法，把它们绘制出来。</p>
-<p>用我们传统的开发模式，原生JS或JQ操作DOM时，浏览器会从构建DOM树开始从头到尾执行一遍流程。在一次操作中，我需要更新10个DOM节点，浏览器收到第一个DOM请求后并不知道还有9次更新操作，因此会马上执行流程，最终执行10次。例如，第一次计算完，紧接着下一个DOM更新请求，这个节点的坐标值就变了，前一次计算为无用功。计算DOM节点坐标值等都是白白浪费的性能。即使计算机硬件一直在迭代更新，操作DOM的代价仍旧是昂贵的，频繁操作还是会出现页面卡顿，影响用户体验。</p>
-<h2 id="浏览器主要组成与浏览器线程"><a href="#浏览器主要组成与浏览器线程" class="headerlink" title="浏览器主要组成与浏览器线程"></a>浏览器主要组成与浏览器线程</h2><p>界面控件 – 包括地址栏，前进后退，书签菜单等窗口上除了网页显示区域以外的部分</p>
-<p>浏览器引擎 – 查询与操作渲染引擎的接口</p>
-<p>渲染引擎 – 负责显示请求的内容。比如请求到HTML, 它会负责解析HTML、CSS并将结果显示到窗口中</p>
-<p>网络 – 用于网络请求, 如HTTP请求。它包括平台无关的接口和各平台独立的实现</p>
-<p>UI后端 – 绘制基础元件，如组合框与窗口。它提供平台无关的接口，内部使用操作系统的相应实现</p>
-<p>JS解释器 - 用于解析执行JavaScript代码</p>
-<p>数据存储持久层 - 浏览器需要把所有数据存到硬盘上，如cookies。新的HTML5规范规定了一个完整（虽然轻量级）的浏览器中的数据库webdatabase</p>
-<ol>
-<li><p>GUI渲染线程与JS引擎线程互斥的，是由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JavaScript线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致。当JavaScript引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到引擎线程空闲时立即被执行。由于GUI渲染线程与JS执行线程是互斥的关系，当浏览器在执行JS程序的时候，GUI渲染线程会被保存在一个队列中，直到JS程序执行完成，才会接着执行。因此如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞的感觉。</p>
-</li>
-<li><p>定时触发器线程</p>
-</li>
-</ol>
-<p>浏览器定时计数器并不是由JS引擎计数的, 因为JS引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确, 因此通过单独线程来计时并触发定时是更为合理的方案。</p>
-<ol start="3">
-<li>事件触发线程</li>
-</ol>
-<p>当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。</p>
-<ol start="4">
-<li>异步http请求线程</li>
-</ol>
-<p>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求，将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件放到JS引擎的处理队列中等待处理。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
+        
+        <p class="article-more-link">
+            <a href="/2019/10/22/thinkvue/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
 </article>
 
 
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-bowser" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/10/22/bowser/" class="article-date">
-      <time datetime="2019-10-22T11:02:04.259Z" itemprop="datePublished">2019-10-22</time>
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/22/bowser/">浏览器机制</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-22T11:02:04.259Z" itemprop="datePublished">2019-10-22</time>
 </a>
 
-    </div>
-  
-  <div class="article-inner">
+            
+
+        </div>
+    </header>
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <section class="article-body markdown-body">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/22/bowser/">浏览器机制</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
         <p>目前最为流行的浏览器为：Chrome，IE，Safari，FireFox，Opera。浏览器的内核是多线程的。</p>
 <p>一个浏览器通常由以下几个常驻的线程：</p>
 <p>渲染引擎线程：顾名思义，该线程负责页面的渲染<br>JS引擎线程：负责JS的解析和执行<br>定时触发器线程：处理定时事件，比如setTimeout, setInterval<br>事件触发线程：处理DOM事件<br>异步http请求线程：处理http请求<br>需要注意的是，渲染线程和JS引擎线程是不能同时进行的。渲染线程在执行任务的时候，JS引擎线程会被挂起。因为JS可以操作DOM，若在渲染中JS处理了DOM，浏览器可能就不知所措了。</p>
-<h2 id="JS引擎"><a href="#JS引擎" class="headerlink" title="JS引擎"></a>JS引擎</h2><p>通常讲到浏览器的时候，我们会说到两个引擎：渲染引擎和JS引擎。渲染引擎就是如何渲染页面，Chrome／Safari／Opera用的是Webkit引擎，IE用的是Trident引擎，FireFox用的是Gecko引擎。不同的引擎对同一个样式的实现不一致，就导致了经常被人诟病的浏览器样式兼容性问题。这里我们不做具体讨论。</p>
-<p>JS引擎可以说是JS虚拟机，负责JS代码的解析和执行。通常包括以下几个步骤：</p>
-<p>词法分析：将源代码分解为有意义的分词<br>语法分析：用语法分析器将分词解析成语法树<br>代码生成：生成机器能运行的代码<br>代码执行<br>不同浏览器的JS引擎也各不相同，Chrome用的是V8，FireFox用的是SpiderMonkey，Safari用的是JavaScriptCore，IE用的是Chakra。</p>
-<p>之所以说JavaScript是单线程，就是因为浏览器在运行时只开启了一个JS引擎线程来解析和执行JS。那为什么只有一个引擎呢？如果同时有两个线程去操作DOM，浏览器是不是又要不知所措了。</p>
-<p>所以，虽然JavaScript是单线程的，可是浏览器内部不是单线程的。一些I/O操作、定时器的计时和事件监听（click, keydown…）等都是由浏览器提供的其他线程来完成的。</p>
-<p>栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。</p>
-<p>堆用来存储声明的变量、对象。</p>
-<p>队列（消息队列），一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。</p>
-<p>JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。</p>
-<p>JS引擎线程从消息队列中读取任务是不断循环的，每次栈被清空后，都会在消息队列中读取新的任务，如果没有新的任务，就会等待，直到有新的任务，这就叫事件循环。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
+        
+        <p class="article-more-link">
+            <a href="/2019/10/22/bowser/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
 </article>
 
 
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-ssr" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/10/22/ssr/" class="article-date">
-      <time datetime="2019-10-22T08:56:12.614Z" itemprop="datePublished">2019-10-22</time>
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/22/ssr/">服务端渲染</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-22T08:56:12.614Z" itemprop="datePublished">2019-10-22</time>
 </a>
 
-    </div>
-  
-  <div class="article-inner">
+            
+
+        </div>
+    </header>
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <section class="article-body markdown-body">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/22/ssr/">服务端渲染</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
         <p>SSR的优势</p>
 <ol>
 <li>更利于SEO。</li>
 </ol>
 <p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
-<ol start="2">
-<li>更利于首屏渲染</li>
-</ol>
-<p>首屏的渲染是node发送过来的html字符串，并不依赖于js文件了，这就会使用户更快的看到页面的内容。尤其是针对大型单页应用，打包后文件体积比较大，普通客户端渲染加载所有所需文件时间较长，首页就会有一个很长的白屏等待时间。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
+        
+        <p class="article-more-link">
+            <a href="/2019/10/22/ssr/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
 </article>
 
 
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/04/hello-world/" class="article-date">
-      <time datetime="2019-08-04T14:43:21.496Z" itemprop="datePublished">2019-08-04</time>
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/08/04/hello-world/">Hello World</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-08-04T14:43:21.496Z" itemprop="datePublished">2019-08-04</time>
 </a>
 
-    </div>
-  
-  <div class="article-inner">
+            
+
+        </div>
+    </header>
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <section class="article-body markdown-body">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
+        
+        <p class="article-more-link">
+            <a href="/2019/08/04/hello-world/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
 </article>
 
 
@@ -550,134 +312,68 @@
 
 
 
-
-
-
-
-
-  
-  
-
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                &copy; 2019 Kevin Yan
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
             </div>
         </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >极客到访数: 
-                            <span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>, </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
-                            <span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
-    </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
 </footer>
 
-    </div>
-    
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    </main>
 
-<script src="/js/main.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var backgroundnum = 1;
-            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-        })
-    </script>
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'xxxxx', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    $(document).ready(function() {
-        if ($("#comments").length < 1) {
-            $("#scroll > a:nth-child(2)").hide();
-        };
-    })
-</script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-  <script language="javascript">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
     $(function() {
-        $("a[title]").each(function() {
-            var a = $(this);
-            var title = a.attr('title');
-            if (title == undefined || title == "") return;
-            a.data('title', title).removeAttr('title').hover(
-            function() {
-                var offset = a.offset();
-                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
-                    top: offset.top - a.outerHeight() - 15,
-                    left: offset.left + a.outerWidth()/2 + 1
-                }).fadeIn(function() {
-                    var pop = $(this);
-                    setTimeout(function() {
-                        pop.remove();
-                    }, pop.text().length * 800);
-                });
-            }, function() {
-                $("#anchortitlecontainer").remove();
-            });
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
         });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
     });
-</script>
+    </script>
+    
 
-
-  </div>
 </body>
 </html>
