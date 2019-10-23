@@ -7,10 +7,10 @@
 
     
 
-    <title>Hello World | Hexo</title>
+    <title>csrf、xss | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.Quick StartCreate a new post1$ hexo new &#34;My New Pos...">
+    <meta name="description" content="一、xss跨站脚本攻击(Cross Site Scripting)如果网站带有评论功能并将评论内容直接存到服务器中，那么显示评论的时候就可能遭到之前恶意用户恶意评论的攻击原理主要是通过在评论中输入html标签，如标签，就相当于往你的网页中嵌入了一段脚本理论上，所有可输入的地方没有对输入数据进行处理的话，都会存在xss漏洞例如在评论框中输入：12345// &amp;lt;script&amp;gt;  while(true) &amp;#123;    alert(&#39;Welcome!&#39;);  &amp;#125;...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -99,7 +99,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、xss跨站脚本攻击-Cross-Site-Scripting"><span class="toc-number">1.</span> <span class="toc-text">一、xss跨站脚本攻击(Cross Site Scripting)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、csrf跨站请求伪造-Cross-site-Request-Forgery"><span class="toc-number">2.</span> <span class="toc-text">二、csrf跨站请求伪造(Cross-site Request Forgery)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、点击劫持-Click-Jacking"><span class="toc-number">3.</span> <span class="toc-text">三、点击劫持(Click Jacking)</span></a></li></ol>
         
     </div>
 </aside>
@@ -113,15 +113,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            Hello World
+            csrf、xss
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/2019/08/04/hello-world/index.html">
+            <a class="article-date" href="http://yoursite.com/2019/10/23/csrf/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-08-04T14:43:21.496Z" itemprop="datePublished">2019-08-04</time>
+    <time datetime="2019-10-23T08:42:03.998Z" itemprop="datePublished">2019-10-23</time>
 </a>
 
             
@@ -131,20 +131,39 @@
     
     <section class="article-body markdown-body">
         
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <h2 id="一、xss跨站脚本攻击-Cross-Site-Scripting"><a href="#一、xss跨站脚本攻击-Cross-Site-Scripting" class="headerlink" title="一、xss跨站脚本攻击(Cross Site Scripting)"></a>一、xss跨站脚本攻击(Cross Site Scripting)</h2><p>如果网站带有评论功能并将评论内容直接存到服务器中，那么显示评论的时候就可能遭到之前恶意用户恶意评论的攻击<br>原理主要是通过在评论中输入html标签，如标签，就相当于往你的网页中嵌入了一段脚本<br>理论上，所有可输入的地方没有对输入数据进行处理的话，都会存在xss漏洞</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>例如在评论框中输入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;script&gt;</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    alert(<span class="string">'Welcome!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// &lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>如此一来，当再次刷新页面的时候，你的网站就会一直显示”Welcome”</p>
+<p>或者：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;script&gt;</span></span><br><span class="line">  alert(<span class="built_in">document</span>.cookie);</span><br><span class="line"><span class="comment">// &lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>这段脚本将恶意读取你的cookie信息</p>
+<p>防御方法：</p>
+<p>要坚持一个原则：永远不要相信用户的输入，对每一条输入都进行验证<br>可以用正则表达式验证输入内容的合法性</p>
+<h2 id="二、csrf跨站请求伪造-Cross-site-Request-Forgery"><a href="#二、csrf跨站请求伪造-Cross-site-Request-Forgery" class="headerlink" title="二、csrf跨站请求伪造(Cross-site Request Forgery)"></a>二、csrf跨站请求伪造(Cross-site Request Forgery)</h2><p>攻击者盗用你的身份，发送恶意请求<br>要完成一次csrf攻击，被攻击者需要完成两个操作： </p>
+<ol>
+<li>登录收信任网站A，并在本地生成cookie </li>
+<li>在与A的会话结束前，访问危险网站B（危险网站B甚至可能是一个存在漏洞的受人信任的网站）</li>
+</ol>
+<p>防御方法：</p>
+<p>在客户端表单增加伪随机数（但不能防止对方再利用xss攻击手段获得你的cookie）<br>在每次做类似提交表单的操作时都通过验证码进行验证<br>为每个表单设置不同的伪随机数（但会有并行会话兼容问题）</p>
+<h2 id="三、点击劫持-Click-Jacking"><a href="#三、点击劫持-Click-Jacking" class="headerlink" title="三、点击劫持(Click Jacking)"></a>三、点击劫持(Click Jacking)</h2><p>在我们浏览网页时经常会出现一些令人讨厌的信息，比如一些中奖通知或者色情信息，但在网页中散布这些内容却是不法分子用来诱惑被攻击者点击的常用手段，</p>
+<p>点击劫持就是利用透明的iframe或者被覆盖的iframe，通过诱骗用户在该网页上点击某些按钮，触发iframe页面上的点击操作</p>
+<p>防御方法：</p>
+<ol>
+<li>既然点击劫持的核心是iframe的嵌套，那么完全可以通过写一段javascript代码来禁止iframe的嵌套：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">   <span class="keyword">if</span> (<span class="built_in">window</span>!=top) <span class="comment">// 判断当前的window对象是否是top对象</span></span><br><span class="line">   top.location.href =<span class="built_in">window</span>.location.href; <span class="comment">// 如果不是，将top对象的网址自动导向被嵌入网页的网址</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<ol start="2">
+<li>X-FRAME-OPTIONS是目前最可靠的方法。</li>
+</ol>
+<p>X-FRAME-OPTIONS是微软提出的一个http头，专门用来防御利用iframe嵌套的点击劫持攻击。</p>
+<p>并且在IE8、Firefox3.6、Chrome4以上的版本均能很好的支持。</p>
 
         
     </section>
@@ -152,8 +171,10 @@
 
 
 
+<a id="pagenext" href="/2019/10/23/crossSite/" class="article-next" title="跨域"><i class="icon-arrow-right"></i></a>
 
-<a id="pageprev" href="/2019/10/22/ssr/" class="article-prev" title="服务端渲染"><i class="icon-arrow-left"></i></a>
+
+<a id="pageprev" href="/2019/10/23/study/" class="article-prev" title="《前端工程师进阶》 "><i class="icon-arrow-left"></i></a>
 
 
 
@@ -167,10 +188,10 @@
         repo: "sanonz.github.io",
         owner: "sanonz",
         admin: ["sanonz"],
-        id: "2019/08/04/hello-world",
+        id: "2019/10/23/csrf",
         distractionFreeMode: true,
-        title: "Hello World",
-        body: "http://yoursite.com/2019/08/04/hello-world/",
+        title: "csrf、xss",
+        body: "http://yoursite.com/2019/10/23/csrf/",
         labels: []
     }).render('comments');
     </script>

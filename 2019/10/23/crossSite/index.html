@@ -7,10 +7,10 @@
 
     
 
-    <title>Archives | Hexo</title>
+    <title>跨域 | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content>
+    <meta name="description" content="1.为什么src可以不受浏览器同源影响在浏览器中，对于标签 、、、 等标签都可以跨域加载资源，而不受同源策略的限制。这些带有“src”属性的标签每次加载的时候，实际上是由浏览器发起一个get请求。不同于XMLHttpRequest的是，通过src属性加载的资源，浏览器是限制了javascript的权限，使其不能够读写返回的内容。2跨域的方法2.1CORS整个CORS通信过程，都是浏览器自动完成，不需要用户参与。分为 简单请求（HEAD  GET POST）和非简单请求（简单理解：...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -73,7 +73,7 @@
                 <span class="nav-text">标签</span>
             </a>
         
-            <a class="nav-item active" href="/archives">
+            <a class="nav-item" href="/archives">
                 <span class="nav-text">归档</span>
             </a>
         
@@ -93,6 +93,8 @@
     <div id="aside-inner" class="aside-inner">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
+        
+        
         
         
 
@@ -151,238 +153,75 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                
-
-
+                <article class="article" itemscope itemprop="blogPost">
     
-    
-    
-    
-    
-    <section class="archives-wrap">
-    <div class="archive-year-wrap">
-    <a href="/archives/2019" class="page-hd">
-        2019
-    </a>
-    </div>
-    <ol class="archives">
-    
-
-    <li class="archive-section-item">
+    <header class="article-header">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.5/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:19.651Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <h1 itemprop="name">
+            跨域
+        </h1>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.4/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/10/23/crossSite/index.html">
     
-    <time datetime="2019-10-23T09:27:19.401Z" itemprop="datePublished">10/23</time>
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:03.744Z" itemprop="datePublished">2019-10-23</time>
 </a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
 
-    
-    
+            
 
-    <li class="archive-section-item">
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.3/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:19.190Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <p>1.为什么src可以不受浏览器同源影响</p>
+<p>在浏览器中，对于标签 <script>、<img>、<iframe>、<link> 等标签都可以跨域加载资源，而不受同源策略的限制。这些带有“src”属性的标签每次加载的时候，实际上是由浏览器发起一个get请求。<br>不同于XMLHttpRequest的是，通过src属性加载的资源，浏览器是限制了javascript的权限，使其不能够读写返回的内容。</p>
+<p>2跨域的方法</p>
+<p>2.1CORS</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。</p>
+<p>分为 简单请求（HEAD  GET POST）和非简单请求（简单理解：除普通请求的三种）两种；</p>
+<p>简单请求：</p>
+<p>浏览器发现这次跨源AJAX请求是简单请求，就自动在头信息之中，添加一个Origin字段。</p>
+<p>Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p>
+<p>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。</p>
+<p>非简单请求：</p>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</p>
+<p>非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。</p>
+<p>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+</script></p>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.2/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:18.987Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
+    </section>
 </article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.1/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:18.743Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.690Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/property/">原型、原型链</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.474Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/study/">《前端工程师进阶》 </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.253Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/csrf/">csrf、xss</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.998Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/crossSite/">跨域</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.744Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-
-</ol></section>
 
 
 
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-</nav>
+<a id="pagenext" href="/2019/10/23/jenkins/" class="article-next" title="Vue、GitLab、Jenkins、Nginx实现自动打包发布上线"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/10/23/csrf/" class="article-prev" title="csrf、xss"><i class="icon-arrow-left"></i></a>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "2019/10/23/crossSite",
+        distractionFreeMode: true,
+        title: "跨域",
+        body: "http://yoursite.com/2019/10/23/crossSite/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
 
 
             </div>
@@ -446,6 +285,31 @@
         }
     });
     </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
     
 
 </body>

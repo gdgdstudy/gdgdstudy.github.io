@@ -101,15 +101,15 @@
             
             <div class="author-avatar">
                 <a href="/">
-                    <img src="/images/avatar.jpg" title="Sanonz">
+                    <img src="/images/avatar.jpg" title="Kevin Yan">
                 </a>
             </div>
             
-            <div class="author-name">Sanonz</div>
-            <div class="author-work">Web Developer &amp; Designer</div>
+            <div class="author-name">Kevin Yan</div>
+            <div class="author-work">Web Developer & Breaking Bad</div>
             <div class="author-location">
                 <i class="icon-location vm"></i>
-                <span class="vm">Shenzhen, China</span>
+                <span class="vm">Shanghai, China</span>
             </div>
             
             <div class="author-thread-wrap">
@@ -157,7 +157,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a>
+            <a href="/2019/10/23/amd.5/">AMD/CMD/CommonJs </a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -165,7 +165,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-10-22T14:20:59.241Z" itemprop="datePublished">2019-10-22</time>
+    <time datetime="2019-10-23T09:27:19.651Z" itemprop="datePublished">2019-10-23</time>
 </a>
 
             
@@ -175,12 +175,13 @@
     
     <section class="article-body markdown-body">
         
-        <p>Vue</p>
-<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是<strong>响应式</strong>的。</p>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
         
         <p class="article-more-link">
-            <a href="/2019/10/22/thinkvue/#more">
+            <a href="/2019/10/23/amd.5/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -196,7 +197,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/10/22/bowser/">浏览器机制</a>
+            <a href="/2019/10/23/amd.4/">AMD/CMD/CommonJs </a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -204,7 +205,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-10-22T11:02:04.259Z" itemprop="datePublished">2019-10-22</time>
+    <time datetime="2019-10-23T09:27:19.401Z" itemprop="datePublished">2019-10-23</time>
 </a>
 
             
@@ -214,12 +215,13 @@
     
     <section class="article-body markdown-body">
         
-        <p>目前最为流行的浏览器为：Chrome，IE，Safari，FireFox，Opera。浏览器的内核是多线程的。</p>
-<p>一个浏览器通常由以下几个常驻的线程：</p>
-<p>渲染引擎线程：顾名思义，该线程负责页面的渲染<br>JS引擎线程：负责JS的解析和执行<br>定时触发器线程：处理定时事件，比如setTimeout, setInterval<br>事件触发线程：处理DOM事件<br>异步http请求线程：处理http请求<br>需要注意的是，渲染线程和JS引擎线程是不能同时进行的。渲染线程在执行任务的时候，JS引擎线程会被挂起。因为JS可以操作DOM，若在渲染中JS处理了DOM，浏览器可能就不知所措了。</p>
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
         
         <p class="article-more-link">
-            <a href="/2019/10/22/bowser/#more">
+            <a href="/2019/10/23/amd.4/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -235,7 +237,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/10/22/ssr/">服务端渲染</a>
+            <a href="/2019/10/23/amd.3/">AMD/CMD/CommonJs </a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -243,7 +245,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-10-22T08:56:12.614Z" itemprop="datePublished">2019-10-22</time>
+    <time datetime="2019-10-23T09:27:19.190Z" itemprop="datePublished">2019-10-23</time>
 </a>
 
             
@@ -253,14 +255,13 @@
     
     <section class="article-body markdown-body">
         
-        <p>SSR的优势</p>
-<ol>
-<li>更利于SEO。</li>
-</ol>
-<p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
         
         <p class="article-more-link">
-            <a href="/2019/10/22/ssr/#more">
+            <a href="/2019/10/23/amd.3/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -276,7 +277,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/08/04/hello-world/">Hello World</a>
+            <a href="/2019/10/23/amd.2/">AMD/CMD/CommonJs </a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -284,7 +285,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-08-04T14:43:21.496Z" itemprop="datePublished">2019-08-04</time>
+    <time datetime="2019-10-23T09:27:18.987Z" itemprop="datePublished">2019-10-23</time>
 </a>
 
             
@@ -294,10 +295,13 @@
     
     <section class="article-body markdown-body">
         
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
         
         <p class="article-more-link">
-            <a href="/2019/08/04/hello-world/#more">
+            <a href="/2019/10/23/amd.2/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -308,7 +312,247 @@
 </article>
 
 
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/amd.1/">AMD/CMD/CommonJs </a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T09:27:18.743Z" itemprop="datePublished">2019-10-23</time>
+</a>
 
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/23/amd.1/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/amd/">AMD/CMD/CommonJs </a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:04.690Z" itemprop="datePublished">2019-10-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知道JS有模块化开发的说法，也偶尔听过requireJs,AMD,CMD等等名字，甚至使用node的时候，还用过require之类的方法，但是对这些一直没有一个明确的认识和概念。想必这就是许多新手刚接触这方面知识时的一个普遍状态。</p>
+<p>其实仅仅做一些基础的活儿的时候，并不需要对它们有太多的了解，知道怎么用就行了，管他是什么理念，是什么实现呢。于是人就懒下来了。</p>
+<p>终于有一天，下定决心，一定要把这一块知识搞清楚，至少对此有个鲜明的认知，不再那么朦朦胧胧，A/C不分。</p>
+<p>查了一些文章博客和知乎回答，发现大部分文章在某一部分上都会讲的很详细，太详细了，却又没有一个连贯，我觉得这不太适合我这样状况的新手，至少我因此多花了不少时间，而我写这篇文章就是希望和我一样有此困惑的新手能快速了解这几个标准，做到如果不是想深入，读完我总结的几个知识点，各位应该是可以不用再查找其他文章了的。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/23/amd/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/property/">原型、原型链</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:04.474Z" itemprop="datePublished">2019-10-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="工厂模式和构造函数的区别"><a href="#工厂模式和构造函数的区别" class="headerlink" title="工厂模式和构造函数的区别"></a>工厂模式和构造函数的区别</h2><p>学习JavaScript有一段时间了，但是随着工作的进展，我发现，javascript绝对不是写一下简单效果那么肤浅，是时候完全，透彻地理解他的精髓了。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/23/property/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/study/">《前端工程师进阶》 </a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:04.253Z" itemprop="datePublished">2019-10-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>HTML先看《HTML &amp; CSS: Design and Build Websites》1-9章，然后《HTML5: The Missing Manual》1-4章。 </p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>CSS先看《CSS: The Missing Manual》，然后《CSS权威指南》 </p>
+<p>需掌握：<br>选择器<br>浏览器兼容性及常见的hack处理<br>CSS布局的方式和原理（盒子模型、BFC、IFC等等）<br>CSS 3，如animation、gradient、等等 </p>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/23/study/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/csrf/">csrf、xss</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:03.998Z" itemprop="datePublished">2019-10-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="一、xss跨站脚本攻击-Cross-Site-Scripting"><a href="#一、xss跨站脚本攻击-Cross-Site-Scripting" class="headerlink" title="一、xss跨站脚本攻击(Cross Site Scripting)"></a>一、xss跨站脚本攻击(Cross Site Scripting)</h2><p>如果网站带有评论功能并将评论内容直接存到服务器中，那么显示评论的时候就可能遭到之前恶意用户恶意评论的攻击<br>原理主要是通过在评论中输入html标签，如标签，就相当于往你的网页中嵌入了一段脚本<br>理论上，所有可输入的地方没有对输入数据进行处理的话，都会存在xss漏洞</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/10/23/csrf/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/10/23/crossSite/">跨域</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:03.744Z" itemprop="datePublished">2019-10-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>1.为什么src可以不受浏览器同源影响</p>
+<p>在浏览器中，对于标签 <script>、<img>、<iframe>、<link> 等标签都可以跨域加载资源，而不受同源策略的限制。这些带有“src”属性的标签每次加载的时候，实际上是由浏览器发起一个get请求。<br>不同于XMLHttpRequest的是，通过src属性加载的资源，浏览器是限制了javascript的权限，使其不能够读写返回的内容。</p>
+<p>2跨域的方法</p>
+<p>2.1CORS</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。</p>
+<p>分为 简单请求（HEAD  GET POST）和非简单请求（简单理解：除普通请求的三种）两种；</p>
+<p>简单请求：</p>
+<p>浏览器发现这次跨源AJAX请求是简单请求，就自动在头信息之中，添加一个Origin字段。</p>
+<p>Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p>
+<p>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。</p>
+<p>非简单请求：</p>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</p>
+<p>非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。</p>
+<p>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+</script></p>
+        
+    </section>
+</article>
+
+
+
+
+<nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+</nav>
 
 
 

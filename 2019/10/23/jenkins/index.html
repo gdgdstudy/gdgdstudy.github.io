@@ -7,10 +7,10 @@
 
     
 
-    <title>Archives | Hexo</title>
+    <title>Vue、GitLab、Jenkins、Nginx实现自动打包发布上线 | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content>
+    <meta name="description" content="将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。具体步骤如下：1.Vue+GitLab：（研发阶段）用vue编码实现业务迭代使用webpack进行前端构建将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab2.GitLab与Jenkins：（构建阶段）获取gitlab仓库上最新的完整项目下载到本地电脑将下载...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -73,7 +73,7 @@
                 <span class="nav-text">标签</span>
             </a>
         
-            <a class="nav-item active" href="/archives">
+            <a class="nav-item" href="/archives">
                 <span class="nav-text">归档</span>
             </a>
         
@@ -93,6 +93,8 @@
     <div id="aside-inner" class="aside-inner">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
+        
+        
         
         
 
@@ -151,238 +153,69 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                
-
-
+                <article class="article" itemscope itemprop="blogPost">
     
-    
-    
-    
-    
-    <section class="archives-wrap">
-    <div class="archive-year-wrap">
-    <a href="/archives/2019" class="page-hd">
-        2019
-    </a>
-    </div>
-    <ol class="archives">
-    
-
-    <li class="archive-section-item">
+    <header class="article-header">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.5/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:19.651Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <h1 itemprop="name">
+            Vue、GitLab、Jenkins、Nginx实现自动打包发布上线
+        </h1>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.4/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/10/23/jenkins/index.html">
     
-    <time datetime="2019-10-23T09:27:19.401Z" itemprop="datePublished">10/23</time>
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-23T08:42:03.470Z" itemprop="datePublished">2019-10-23</time>
 </a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
 
-    
-    
+            
 
-    <li class="archive-section-item">
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.3/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:19.190Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
+        <p>将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。</p>
+<a id="more"></a>
+<p>具体步骤如下：</p>
+<p>1.Vue+GitLab：（研发阶段）</p>
+<p>用vue编码实现业务迭代<br>使用webpack进行前端构建<br>将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab<br>2.GitLab与Jenkins：（构建阶段）</p>
+<p>获取gitlab仓库上最新的完整项目下载到本地电脑<br>将下载好的完整项目中构建好的dist目录进行压缩<br>3.Jenkins与阿里服务器：（构建阶段）</p>
+<p>压缩成功后将自动连接阿里服务器进行上传<br>上传阿里服务器成功后开始解压gz包到指定好的nginx目录下<br>4.Nginx：（发布阶段，可提前做好）</p>
+<p>通过nginx将域名反向代理到服务器指定目录</p>
 
-    
-    
-
-    <li class="archive-section-item">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.2/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:18.987Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
+    </section>
 </article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd.1/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T09:27:18.743Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd/">AMD/CMD/CommonJs </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.690Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/property/">原型、原型链</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.474Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/study/">《前端工程师进阶》 </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.253Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/csrf/">csrf、xss</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.998Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/crossSite/">跨域</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.744Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-
-</ol></section>
 
 
 
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-</nav>
+<a id="pagenext" href="/2019/10/23/task/" class="article-next" title="什么是宏任务、微任务"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/10/23/crossSite/" class="article-prev" title="跨域"><i class="icon-arrow-left"></i></a>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "2019/10/23/jenkins",
+        distractionFreeMode: true,
+        title: "Vue、GitLab、Jenkins、Nginx实现自动打包发布上线",
+        body: "http://yoursite.com/2019/10/23/jenkins/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
 
 
             </div>
@@ -446,6 +279,31 @@
         }
     });
     </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
     
 
 </body>
