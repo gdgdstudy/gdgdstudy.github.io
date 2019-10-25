@@ -133,10 +133,18 @@
         
         <p>先来了通俗易懂的例子：<br>去银行办理业务的人就是一个个宏任务，当宏任务P1在柜台办理业务时，其它任务都需等待，当一个宏任务P1办理业务结束时，柜台职员会询问他还有没有其它微任务，如果他还有其他业务，则其他宏任务都需等待。就是微任务是在宏任务之前执行。</p>
 <a id="more"></a>
-<h2 id="宏任务、微任务有哪些"><a href="#宏任务、微任务有哪些" class="headerlink" title="宏任务、微任务有哪些"></a>宏任务、微任务有哪些</h2><p>宏任务包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。</p>
-<p>微任务包括： Promises, Object.observe, MutationObserver</p>
-<h2 id="宏任务、微任务的执行顺序"><a href="#宏任务、微任务的执行顺序" class="headerlink" title="宏任务、微任务的执行顺序"></a>宏任务、微任务的执行顺序</h2><p>执行顺序：先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，遇到异步微任务则将异步微任务放入微任务队列中，当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，微任务执行完毕后再将异步宏任务从队列中调入主线程执行，一直循环直至所有任务执行完毕。<br> setTimeout(function(){<br>    console.log(‘1’);<br>});<br>new Promise(function(resolve){<br>    console.log(‘2’);<br>    resolve();<br>}).then(function(){<br>    console.log(‘3’);<br>});<br>console.log(‘4’);</p>
-<p>遇到setTimout，异步宏任务，放入宏任务队列中；<br>遇到new Promise，new Promise在实例化的过程中所执行的代码都是同步进行的，所以输出2；<br>而Promise.then中注册的回调才是异步执行的，将其放入微任务队列中<br>遇到同步任务console.log(‘4’);输出4；主线程中同步任务执行完<br>从微任务队列中取出任务到主线程中，输出3，微任务队列为空<br>从宏任务队列中取出任务到主线程中，输出1，宏任务队列为空，结束 </p>
+<h2 id="宏任务、微任务有哪些"><a href="#宏任务、微任务有哪些" class="headerlink" title="宏任务、微任务有哪些"></a>宏任务、微任务有哪些</h2><p>宏任务包括：<strong>script(整体代码), setTimeout, setInterval, setImmediate, I/O</strong>, UI rendering。</p>
+<p>微任务包括： <strong>Promises</strong>, Object.observe, MutationObserver</p>
+<h2 id="宏任务、微任务的执行顺序"><a href="#宏任务、微任务的执行顺序" class="headerlink" title="宏任务、微任务的执行顺序"></a>宏任务、微任务的执行顺序</h2><p>执行顺序：</p>
+<p>先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，遇到异步微任务则将异步微任务放入微任务队列中，<strong>当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，微任务执行完毕后再将异步宏任务从队列中调入主线程执行</strong>，一直循环直至所有任务执行完毕。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;1&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">new Promise(function(resolve)&#123;            </span><br><span class="line">    console.log(&apos;2&apos;);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(function()&#123;            </span><br><span class="line">    console.log(&apos;3&apos;);</span><br><span class="line">&#125;);         </span><br><span class="line">console.log(&apos;4&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>遇到setTimout，异步宏任务，放入宏任务队列中；</p>
+<p>遇到new Promise，new Promise在实例化的过程中所执行的代码都是同步进行的，所以输出2；</p>
+<p>而Promise.then中注册的回调才是异步执行的，将其放入微任务队列中</p>
+<p>遇到同步任务console.log(‘4’);输出4；主线程中同步任务执行完</p>
+<p>从微任务队列中取出任务到主线程中，输出3，微任务队列为空 </p>
+<p>从宏任务队列中取出任务到主线程中，输出1，宏任务队列为空，结束 </p>
 
         
     </section>
