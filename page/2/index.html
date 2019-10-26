@@ -7,7 +7,7 @@
 
     
 
-    <title>Archives | Hexo</title>
+    <title>Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
     <meta name="description" content>
@@ -57,7 +57,7 @@
 
     <nav id="nav-inner" class="nav-inner">
         
-            <a class="nav-item" href="/">
+            <a class="nav-item active" href="/">
                 <span class="nav-text">首页</span>
             </a>
         
@@ -73,7 +73,7 @@
                 <span class="nav-text">标签</span>
             </a>
         
-            <a class="nav-item active" href="/archives">
+            <a class="nav-item" href="/archives">
                 <span class="nav-text">归档</span>
             </a>
         
@@ -152,237 +152,50 @@
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
                 
-
-
+    <article class="article" itemscope itemprop="blogPost">
     
-    
-    
-    
-    
-    <section class="archives-wrap">
-    <div class="archive-year-wrap">
-    <a href="/archives/2019" class="page-hd">
-        2019
-    </a>
-    </div>
-    <ol class="archives">
-    
-
-    <li class="archive-section-item">
+    <header class="article-header">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/26/charles/">Charle</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-26T05:56:23.500Z" itemprop="datePublished">10/26</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <h1 itemprop="name">
+            <a href="/2019/10/22/ssr/">服务端渲染</a>
+        </h1>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/amd/">CommonJs/AMD/CMD/ES6</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/2/index.html">
     
-    <time datetime="2019-10-23T08:42:04.690Z" itemprop="datePublished">10/23</time>
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-10-22T08:56:12.614Z" itemprop="datePublished">2019-10-22</time>
 </a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
 
-    
-    
+            
 
-    <li class="archive-section-item">
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/property/">原型、原型链</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.474Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <p>SSR的优势</p>
+<h2 id="1-更利于SEO。"><a href="#1-更利于SEO。" class="headerlink" title="1. 更利于SEO。"></a>1. 更利于SEO。</h2><p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/study/">《前端工程师进阶》 </a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:04.253Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
+        <p class="article-more-link">
+            <a href="/2019/10/22/ssr/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/csrf/">csrf、xss</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.998Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
         
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/crossSite/">跨域</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.744Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
+    </section>
 </article>
-    </li>
 
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/jenkins/">Vue、GitLab、Jenkins、Nginx实现自动打包发布上线</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:42:03.470Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/23/task/">什么是宏任务、微任务</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-23T08:40:17.871Z" itemprop="datePublished">10/23</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/22/thinkvue/">Vue文档再研-感悟</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-22T14:20:59.241Z" itemprop="datePublished">10/22</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        
-<article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a class="archive-article-link" href="/2019/10/22/bowser/">浏览器机制</a>
-            <span class="archive-article-date">
-                (<a class="article-date" href="/archives/2019/10">
-    
-    <time datetime="2019-10-22T11:02:04.259Z" itemprop="datePublished">10/22</time>
-</a>
-)
-            </span>
-        </header>
-    </div>
-</article>
-    </li>
-
-
-</ol></section>
 
 
 
 <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
 </nav>
+
 
 
             </div>
