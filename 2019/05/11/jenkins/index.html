@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Vue、GitLab、Jenkins、Nginx实现自动打包发布上线 | Hexo</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。具体步骤如下：1.Vue+GitLab：（研发阶段）用vue编码实现业务迭代使用webpack进行前端构建将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab2.GitLab与Jenkins：（构建阶段）获取gitlab仓库上最新的完整项目下载到本地电脑将下载...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vue-GitLab：（研发阶段）"><span class="toc-number">1.</span> <span class="toc-text">1.Vue+GitLab：（研发阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-GitLab与Jenkins：（构建阶段）"><span class="toc-number">2.</span> <span class="toc-text">2.GitLab与Jenkins：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Jenkins与阿里服务器：（构建阶段）"><span class="toc-number">3.</span> <span class="toc-text">3.Jenkins与阿里服务器：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx：（发布阶段，可提前做好）"><span class="toc-number">4.</span> <span class="toc-text">4.Nginx：（发布阶段，可提前做好）</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Vue、GitLab、Jenkins、Nginx实现自动打包发布上线
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/05/11/jenkins/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-05-11T04:47:00.000Z" itemprop="datePublished">2019-05-11</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Jenkins/">Jenkins</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。</p>
+<p>具体步骤如下：</p>
+<h2 id="1-Vue-GitLab：（研发阶段）"><a href="#1-Vue-GitLab：（研发阶段）" class="headerlink" title="1.Vue+GitLab：（研发阶段）"></a>1.Vue+GitLab：（研发阶段）</h2><p>用vue编码实现业务迭代<br>使用webpack进行前端构建<br>将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab</p>
+<a id="more"></a>
+
+<h2 id="2-GitLab与Jenkins：（构建阶段）"><a href="#2-GitLab与Jenkins：（构建阶段）" class="headerlink" title="2.GitLab与Jenkins：（构建阶段）"></a>2.GitLab与Jenkins：（构建阶段）</h2><p>获取gitlab仓库上最新的完整项目下载到本地电脑<br>将下载好的完整项目中构建好的dist目录进行压缩</p>
+<h2 id="3-Jenkins与阿里服务器：（构建阶段）"><a href="#3-Jenkins与阿里服务器：（构建阶段）" class="headerlink" title="3.Jenkins与阿里服务器：（构建阶段）"></a>3.Jenkins与阿里服务器：（构建阶段）</h2><p>压缩成功后将自动连接阿里服务器进行上传<br>上传阿里服务器成功后开始解压gz包到指定好的nginx目录下</p>
+<h2 id="4-Nginx：（发布阶段，可提前做好）"><a href="#4-Nginx：（发布阶段，可提前做好）" class="headerlink" title="4.Nginx：（发布阶段，可提前做好）"></a>4.Nginx：（发布阶段，可提前做好）</h2><p>通过nginx将域名反向代理到服务器指定目录</p>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/03/02/task/" class="article-next" title="什么是宏任务、微任务"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/09/22/thinkvue/" class="article-prev" title="Vue文档再研-感悟"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
