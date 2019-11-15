@@ -7,10 +7,10 @@
 
     
 
-    <title>Vue、GitLab、Jenkins、Nginx实现自动打包发布上线 | Hexo</title>
+    <title>Webpck职能 | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。具体步骤如下：1.Vue+GitLab：（研发阶段）用vue编码实现业务迭代使用webpack进行前端构建将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab2.GitLab与Jenkins：（构建阶段）获取gitlab仓库上最新的完整项目下载到本地电脑将下载...">
+    <meta name="description" content="Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。用 es6，typescript 编写的脚本文件需要编译成浏览器认识的 javascript用 scss，less 编写的样式文件需要编译成浏览器认识的 css检查代码是否符合书写规范，跑单元测试和集成测试开发环境如果有 sourcemaps 的话调试起来就方便多了，修改完代码浏览器能自...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -95,7 +95,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vue-GitLab：（研发阶段）"><span class="toc-number">1.</span> <span class="toc-text">1.Vue+GitLab：（研发阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-GitLab与Jenkins：（构建阶段）"><span class="toc-number">2.</span> <span class="toc-text">2.GitLab与Jenkins：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Jenkins与阿里服务器：（构建阶段）"><span class="toc-number">3.</span> <span class="toc-text">3.Jenkins与阿里服务器：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx：（发布阶段，可提前做好）"><span class="toc-number">4.</span> <span class="toc-text">4.Nginx：（发布阶段，可提前做好）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack-是当下最热门的前端资源模块化-管理和打包-工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。"><span class="toc-number">1.</span> <span class="toc-text">Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。</span></a></li></ol>
         
     </div>
 </aside>
@@ -109,21 +109,21 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            Vue、GitLab、Jenkins、Nginx实现自动打包发布上线
+            Webpck职能
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/2019/05/11/jenkins/index.html">
+            <a class="article-date" href="http://yoursite.com/2019/05/13/webpack/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-05-11T04:47:00.000Z" itemprop="datePublished">2019-05-11</time>
+    <time datetime="2019-05-13T14:15:00.000Z" itemprop="datePublished">2019-05-13</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Jenkins/">Jenkins</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
 </div>
 
 
@@ -132,14 +132,16 @@
     
     <section class="article-body markdown-body">
         
-        <p>将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。</p>
-<p>具体步骤如下：</p>
-<h2 id="1-Vue-GitLab：（研发阶段）"><a href="#1-Vue-GitLab：（研发阶段）" class="headerlink" title="1.Vue+GitLab：（研发阶段）"></a>1.Vue+GitLab：（研发阶段）</h2><p>用vue编码实现业务迭代<br>使用webpack进行前端构建<br>将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab</p>
+        <h2 id="Webpack-是当下最热门的前端资源模块化-管理和打包-工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。"><a href="#Webpack-是当下最热门的前端资源模块化-管理和打包-工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。" class="headerlink" title="Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。"></a>Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。</h2><p>用 es6，typescript 编写的脚本文件需要编译成浏览器认识的 javascript</p>
+<p>用 scss，less 编写的样式文件需要编译成浏览器认识的 css</p>
+<p>检查代码是否符合书写规范，跑单元测试和集成测试</p>
+<p>开发环境如果有 sourcemaps 的话调试起来就方便多了，修改完代码浏览器能自动刷新立即看到效果就更好了</p>
+<p>生产环境部署代码需要压缩合并静态文件，添加文件指纹控制缓存。</p>
+<p>……</p>
+<p>gulp 走的是流式处理路线，自动化和优化开发工作流，为通用 website 开发而生;</p>
+<p>webpack 走的是模块处理路线，为移动端大型 SPA 应用而生，但是两者所要达成的目标却是一样的，那就是促进前端领域的自动化和工程化管理。</p>
 <a id="more"></a>
 
-<h2 id="2-GitLab与Jenkins：（构建阶段）"><a href="#2-GitLab与Jenkins：（构建阶段）" class="headerlink" title="2.GitLab与Jenkins：（构建阶段）"></a>2.GitLab与Jenkins：（构建阶段）</h2><p>获取gitlab仓库上最新的完整项目下载到本地电脑<br>将下载好的完整项目中构建好的dist目录进行压缩</p>
-<h2 id="3-Jenkins与阿里服务器：（构建阶段）"><a href="#3-Jenkins与阿里服务器：（构建阶段）" class="headerlink" title="3.Jenkins与阿里服务器：（构建阶段）"></a>3.Jenkins与阿里服务器：（构建阶段）</h2><p>压缩成功后将自动连接阿里服务器进行上传<br>上传阿里服务器成功后开始解压gz包到指定好的nginx目录下</p>
-<h2 id="4-Nginx：（发布阶段，可提前做好）"><a href="#4-Nginx：（发布阶段，可提前做好）" class="headerlink" title="4.Nginx：（发布阶段，可提前做好）"></a>4.Nginx：（发布阶段，可提前做好）</h2><p>通过nginx将域名反向代理到服务器指定目录</p>
 
         
     </section>
@@ -147,10 +149,10 @@
 
 
 
-<a id="pagenext" href="/2019/03/02/task/" class="article-next" title="什么是宏任务、微任务"><i class="icon-arrow-right"></i></a>
+<a id="pagenext" href="/2019/05/13/HTTP2.0/" class="article-next" title="HTTP2.0"><i class="icon-arrow-right"></i></a>
 
 
-<a id="pageprev" href="/2019/05/13/HTTP2.0/" class="article-prev" title="HTTP2.0"><i class="icon-arrow-left"></i></a>
+<a id="pageprev" href="/2019/09/22/thinkvue/" class="article-prev" title="Vue文档再研-感悟"><i class="icon-arrow-left"></i></a>
 
 
 

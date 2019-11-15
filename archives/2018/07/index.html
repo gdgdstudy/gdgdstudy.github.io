@@ -7,7 +7,7 @@
 
     
 
-    <title>Hexo</title>
+    <title>Archives: 2018/7 | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
     <meta name="description" content>
@@ -57,7 +57,7 @@
 
     <nav id="nav-inner" class="nav-inner">
         
-            <a class="nav-item active" href="/">
+            <a class="nav-item" href="/">
                 <span class="nav-text">首页</span>
             </a>
         
@@ -73,7 +73,7 @@
                 <span class="nav-text">标签</span>
             </a>
         
-            <a class="nav-item" href="/archives">
+            <a class="nav-item active" href="/archives">
                 <span class="nav-text">归档</span>
             </a>
         
@@ -148,189 +148,43 @@
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
                 
-    <article class="article" itemscope itemprop="blogPost">
+
+
     
-    <header class="article-header">
+    
+    
+    
+    
+    <section class="archives-wrap">
+    <div class="archive-year-wrap">
+    <a href="/archives/2018/07" class="page-hd">
+        2018/07
+    </a>
+    </div>
+    <ol class="archives">
+    
+
+    <li class="archive-section-item">
         
-        <h1 itemprop="name">
-            <a href="/2018/01/23/bowser/">浏览器机制</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
+<article class="archive-article archive-type-post">
+    <div class="archive-article-inner">
+        <header class="archive-article-header">
+            <a class="archive-article-link" href="/2018/07/23/promise/">Promises</a>
+            <span class="archive-article-date">
+                (<a class="article-date" href="/archives/2018/07">
     
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-23T06:20:00.000Z" itemprop="datePublished">2018-01-23</time>
+    <time datetime="2018-07-23T11:57:00.000Z" itemprop="datePublished">7/23</time>
 </a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>目前最为流行的浏览器为：Chrome，IE，Safari，FireFox，Opera。浏览器的内核是多线程的。</p>
-<p>一个浏览器通常由以下几个常驻的线程：</p>
-<p><strong>渲染引擎线程</strong>：顾名思义，该线程负责页面的渲染</p>
-<p><strong>JS引擎线程</strong>：负责JS的解析和执行</p>
-<p><strong>定时触发器线程</strong>：处理定时事件，比如setTimeout, setInterval</p>
-<p><strong>事件触发线程</strong>：处理DOM事件</p>
-<p><strong>异步http请求线程</strong>：处理http请求</p>
-<p>需要注意的是，<strong>渲染线程和JS引擎线程是不能同时进行的。渲染线程在执行任务的时候，JS引擎线程会被挂起</strong>。因为JS可以操作DOM，若在渲染中JS处理了DOM，浏览器可能就不知所措了。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/23/bowser/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
+)
+            </span>
+        </header>
+    </div>
 </article>
+    </li>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/11/ssr/">服务端渲染</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-11T02:41:00.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
+</ol></section>
 
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>SSR的优势</p>
-<h2 id="1-更利于SEO。"><a href="#1-更利于SEO。" class="headerlink" title="1. 更利于SEO。"></a>1. 更利于SEO。</h2><p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/11/ssr/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/02/property/">原型、原型链</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-02T01:11:00.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="工厂模式和构造函数的区别"><a href="#工厂模式和构造函数的区别" class="headerlink" title="工厂模式和构造函数的区别"></a>工厂模式和构造函数的区别</h2><p>学习JavaScript有一段时间了，但是随着工作的进展，我发现，javascript绝对不是写一下简单效果那么肤浅，是时候完全，透彻地理解他的精髓了。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/02/property/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2017/12/13/crossSite/">跨域</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2017-12-13T13:21:00.000Z" itemprop="datePublished">2017-12-13</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="1-为什么出现跨域"><a href="#1-为什么出现跨域" class="headerlink" title="1.为什么出现跨域"></a>1.为什么出现跨域</h2><p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p>
-<p>假设有两个网站，A网站部署在：<a href="http://localhost:80" target="_blank" rel="noopener">http://localhost:80</a> 即本地ip端口80上；B网站部署在：<a href="http://localhost:81" target="_blank" rel="noopener">http://localhost:81</a> 即本地ip端口81上。现在A网站的页面想去访问B网站的信息</p>
-<p><code>$.get(&quot;http://localhost:81/api/values&quot;,function (result) {</code><br><code>$(&quot;#show&quot;).html(result);</code><br><code>})</code></p>
-        
-        <p class="article-more-link">
-            <a href="/2017/12/13/crossSite/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-
-
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-</nav>
 
 
 

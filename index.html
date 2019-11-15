@@ -197,6 +197,110 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/05/13/webpack/">Webpck职能</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-05-13T14:15:00.000Z" itemprop="datePublished">2019-05-13</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Webpack-是当下最热门的前端资源模块化-管理和打包-工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。"><a href="#Webpack-是当下最热门的前端资源模块化-管理和打包-工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。" class="headerlink" title="Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。"></a>Webpack 是当下最热门的前端资源模块化 管理和打包 工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分割，等到实际需要的时候再异步加载。</h2><p>用 es6，typescript 编写的脚本文件需要编译成浏览器认识的 javascript</p>
+<p>用 scss，less 编写的样式文件需要编译成浏览器认识的 css</p>
+<p>检查代码是否符合书写规范，跑单元测试和集成测试</p>
+<p>开发环境如果有 sourcemaps 的话调试起来就方便多了，修改完代码浏览器能自动刷新立即看到效果就更好了</p>
+<p>生产环境部署代码需要压缩合并静态文件，添加文件指纹控制缓存。</p>
+<p>……</p>
+<p>gulp 走的是流式处理路线，自动化和优化开发工作流，为通用 website 开发而生;</p>
+<p>webpack 走的是模块处理路线，为移动端大型 SPA 应用而生，但是两者所要达成的目标却是一样的，那就是促进前端领域的自动化和工程化管理。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/05/13/webpack/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/05/13/HTTP2.0/">HTTP2.0</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-05-13T14:15:00.000Z" itemprop="datePublished">2019-05-13</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="HTTP-2-协议的主要目的是提高网页性能。"><a href="#HTTP-2-协议的主要目的是提高网页性能。" class="headerlink" title="HTTP/2 协议的主要目的是提高网页性能。"></a>HTTP/2 协议的主要目的是提高网页性能。</h2><p>二进制传输：将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
+<p>Header 压缩：头信息（header）原来是直接传输文本，现在是压缩后传输。</p>
+<pre><code>在 HTTP/1.x 中，我们使用文本的形式传输 header，在 header 携带 cookie 的情况下，可能每次都需要重复传输几百到几千的字节。
+
+为了减少这块的资源消耗并提升性能， HTTP/2对这些首部采取了压缩策略
+
+    1. HTTP/2在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，对于相同的数据，不再通过每次请求和响应发送；
+
+    2.首部表在HTTP/2的连接存续期内始终存在，由客户端和服务器共同渐进地更新;
+
+    3.每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值。</code></pre><p>多路复用：很好的解决了浏览器限制同一个域名下的请求数量的问题，同时也接更容易实现全速传输，毕竟新开一个 TCP 连接都需要慢慢提升传输速度。</p>
+<p>原来是同一个 TCP 连接里面，上一个回应（response）发送完了，服务器才能发送下一个，现在可以多个回应一起发送。</p>
+<p>服务器推送（server push）：是 HTTP/2 协议里面，唯一一个需要开发者自己配置的功能。其他功能都是服务器和浏览器自动实现，不需要开发者关心。</p>
+<p>……</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/05/13/HTTP2.0/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/05/11/jenkins/">Vue、GitLab、Jenkins、Nginx实现自动打包发布上线</a>
         </h1>
         
@@ -419,6 +523,50 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/07/23/promise/">Promises</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-23T11:57:00.000Z" itemprop="datePublished">2018-07-23</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了<strong>层层嵌套的回调函数</strong>。</p>
+<p>Promise对象代表一个异步操作，有三种状态：<strong>pending（进行中）、fulfilled（已成功）和rejected（已失败）</strong>。</p>
+<p>Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/07/23/promise/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/06/03/csrf/">csrf、xss</a>
         </h1>
         
@@ -446,140 +594,6 @@
         
         <p class="article-more-link">
             <a href="/2018/06/03/csrf/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/23/bowser/">浏览器机制</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-23T06:20:00.000Z" itemprop="datePublished">2018-01-23</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>目前最为流行的浏览器为：Chrome，IE，Safari，FireFox，Opera。浏览器的内核是多线程的。</p>
-<p>一个浏览器通常由以下几个常驻的线程：</p>
-<p><strong>渲染引擎线程</strong>：顾名思义，该线程负责页面的渲染</p>
-<p><strong>JS引擎线程</strong>：负责JS的解析和执行</p>
-<p><strong>定时触发器线程</strong>：处理定时事件，比如setTimeout, setInterval</p>
-<p><strong>事件触发线程</strong>：处理DOM事件</p>
-<p><strong>异步http请求线程</strong>：处理http请求</p>
-<p>需要注意的是，<strong>渲染线程和JS引擎线程是不能同时进行的。渲染线程在执行任务的时候，JS引擎线程会被挂起</strong>。因为JS可以操作DOM，若在渲染中JS处理了DOM，浏览器可能就不知所措了。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/23/bowser/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/11/ssr/">服务端渲染</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-11T02:41:00.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>SSR的优势</p>
-<h2 id="1-更利于SEO。"><a href="#1-更利于SEO。" class="headerlink" title="1. 更利于SEO。"></a>1. 更利于SEO。</h2><p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/11/ssr/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/02/property/">原型、原型链</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-02T01:11:00.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="工厂模式和构造函数的区别"><a href="#工厂模式和构造函数的区别" class="headerlink" title="工厂模式和构造函数的区别"></a>工厂模式和构造函数的区别</h2><p>学习JavaScript有一段时间了，但是随着工作的进展，我发现，javascript绝对不是写一下简单效果那么肤浅，是时候完全，透彻地理解他的精髓了。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/02/property/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>

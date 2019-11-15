@@ -7,10 +7,10 @@
 
     
 
-    <title>Vue、GitLab、Jenkins、Nginx实现自动打包发布上线 | Hexo</title>
+    <title>HTTP2.0 | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。具体步骤如下：1.Vue+GitLab：（研发阶段）用vue编码实现业务迭代使用webpack进行前端构建将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab2.GitLab与Jenkins：（构建阶段）获取gitlab仓库上最新的完整项目下载到本地电脑将下载...">
+    <meta name="description" content="HTTP/2 协议的主要目的是提高网页性能。二进制传输：将请求和响应数据分割为更小的帧，并且它们采用二进制编码。Header 压缩：头信息（header）原来是直接传输文本，现在是压缩后传输。在 HTTP/1.x 中，我们使用文本的形式传输 header，在 header 携带 cookie 的情况下，可能每次都需要重复传输几百到几千的字节。为了减少这块的资源消耗并提升性能， HTTP/2对这些首部采取了压缩策略    1. HTTP/2在客户端和服务器端使用“首部表”来跟踪和...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -95,7 +95,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vue-GitLab：（研发阶段）"><span class="toc-number">1.</span> <span class="toc-text">1.Vue+GitLab：（研发阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-GitLab与Jenkins：（构建阶段）"><span class="toc-number">2.</span> <span class="toc-text">2.GitLab与Jenkins：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Jenkins与阿里服务器：（构建阶段）"><span class="toc-number">3.</span> <span class="toc-text">3.Jenkins与阿里服务器：（构建阶段）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx：（发布阶段，可提前做好）"><span class="toc-number">4.</span> <span class="toc-text">4.Nginx：（发布阶段，可提前做好）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-2-协议的主要目的是提高网页性能。"><span class="toc-number">1.</span> <span class="toc-text">HTTP/2 协议的主要目的是提高网页性能。</span></a></li></ol>
         
     </div>
 </aside>
@@ -109,21 +109,21 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            Vue、GitLab、Jenkins、Nginx实现自动打包发布上线
+            HTTP2.0
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/2019/05/11/jenkins/index.html">
+            <a class="article-date" href="http://yoursite.com/2019/05/13/HTTP2.0/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-05-11T04:47:00.000Z" itemprop="datePublished">2019-05-11</time>
+    <time datetime="2019-05-13T14:15:00.000Z" itemprop="datePublished">2019-05-13</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Jenkins/">Jenkins</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
 </div>
 
 
@@ -132,25 +132,53 @@
     
     <section class="article-body markdown-body">
         
-        <p>将gitlab上的代码下载到了本地电脑上，且进行了代码压缩，压缩完成后发布压缩包到自己的阿里服务器上，阿里服务器成功接收到压缩包后，解压放到了服务器指定目录，最后通过nginx反向代理实现了自动化部署。</p>
-<p>具体步骤如下：</p>
-<h2 id="1-Vue-GitLab：（研发阶段）"><a href="#1-Vue-GitLab：（研发阶段）" class="headerlink" title="1.Vue+GitLab：（研发阶段）"></a>1.Vue+GitLab：（研发阶段）</h2><p>用vue编码实现业务迭代<br>使用webpack进行前端构建<br>将最新的代码和构建后的dist目录共同组成的项目推送到远程仓库gitlab</p>
+        <h2 id="HTTP-2-协议的主要目的是提高网页性能。"><a href="#HTTP-2-协议的主要目的是提高网页性能。" class="headerlink" title="HTTP/2 协议的主要目的是提高网页性能。"></a>HTTP/2 协议的主要目的是提高网页性能。</h2><p>二进制传输：将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
+<p>Header 压缩：头信息（header）原来是直接传输文本，现在是压缩后传输。</p>
+<pre><code>在 HTTP/1.x 中，我们使用文本的形式传输 header，在 header 携带 cookie 的情况下，可能每次都需要重复传输几百到几千的字节。
+
+为了减少这块的资源消耗并提升性能， HTTP/2对这些首部采取了压缩策略
+
+    1. HTTP/2在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，对于相同的数据，不再通过每次请求和响应发送；
+
+    2.首部表在HTTP/2的连接存续期内始终存在，由客户端和服务器共同渐进地更新;
+
+    3.每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值。</code></pre><p>多路复用：很好的解决了浏览器限制同一个域名下的请求数量的问题，同时也接更容易实现全速传输，毕竟新开一个 TCP 连接都需要慢慢提升传输速度。</p>
+<p>原来是同一个 TCP 连接里面，上一个回应（response）发送完了，服务器才能发送下一个，现在可以多个回应一起发送。</p>
+<p>服务器推送（server push）：是 HTTP/2 协议里面，唯一一个需要开发者自己配置的功能。其他功能都是服务器和浏览器自动实现，不需要开发者关心。</p>
+<p>……</p>
 <a id="more"></a>
 
-<h2 id="2-GitLab与Jenkins：（构建阶段）"><a href="#2-GitLab与Jenkins：（构建阶段）" class="headerlink" title="2.GitLab与Jenkins：（构建阶段）"></a>2.GitLab与Jenkins：（构建阶段）</h2><p>获取gitlab仓库上最新的完整项目下载到本地电脑<br>将下载好的完整项目中构建好的dist目录进行压缩</p>
-<h2 id="3-Jenkins与阿里服务器：（构建阶段）"><a href="#3-Jenkins与阿里服务器：（构建阶段）" class="headerlink" title="3.Jenkins与阿里服务器：（构建阶段）"></a>3.Jenkins与阿里服务器：（构建阶段）</h2><p>压缩成功后将自动连接阿里服务器进行上传<br>上传阿里服务器成功后开始解压gz包到指定好的nginx目录下</p>
-<h2 id="4-Nginx：（发布阶段，可提前做好）"><a href="#4-Nginx：（发布阶段，可提前做好）" class="headerlink" title="4.Nginx：（发布阶段，可提前做好）"></a>4.Nginx：（发布阶段，可提前做好）</h2><p>通过nginx将域名反向代理到服务器指定目录</p>
+<p>减少http请求  加快响应速度：</p>
+<p>一种解决办法就是把外部资源合并在网页文件里面，减少 HTTP 请求。比如，把样式表的内容写在<style>标签之中，把图片改成 Base64 编码的 Data URL。</p>
+<p>另一种方法就是资源的预加载（preload）。网页预先告诉浏览器，立即下载某些资源。比如，上例可以写成下面这样。</p>
+<link rel="preload" href="/styles.css" as="style">
 
+<link rel="preload" href="/example.png" as="image">
+
+
+<p>preload命令并没有什么帮助。但是，如果前一个网页就使用这个命令，预加载后一个网页需要的资源，那么用户打开后一个网页时，就会感觉速度飞快。</p>
+<p>这两种方法都有缺点。第一种方法虽然减少了 HTTP 请求，但是把不同类型的代码合并在一个文件里，违反了分工原则。第二种方法只是提前了下载时间，并没有减少HTTP</p>
+<p>请求。</p>
+<p>服务器推送（server push）指的是，还没有收到浏览器的请求，服务器就把各种资源推送给浏览器。</p>
+<p>比如，浏览器只请求了index.html，但是服务器把index.html、style.css、example.png全部发送给浏览器。这样的话，只需要一轮 HTTP 通信，浏览器就得到了全部资</p>
+<p>源，提高了性能。</p>
+<p>nginx</p>
+<p>location / {<br>    root   /usr/share/nginx/html;<br>    index  index.html index.htm;<br>    http2_push /style.css;<br>    http2_push /example.png;<br>}</p>
+<p>虽然 HTTP/2 解决了很多之前旧版本的问题，但是它还是存在一个巨大的问题，主要是底层支撑的 TCP 协议造成的。</p>
+<p>上文提到 HTTP/2 使用了多路复用，一般来说同一域名下只需要使用一个 TCP 连接。但当这个连接中出现了丢包的情况，那就会导致 HTTP/2 的表现情况反倒不如 HTTP/1 了。</p>
+<p>因为在出现丢包的情况下，整个 TCP 都要开始等待重传，也就导致了后面的所有数据都被阻塞了。但是对于 HTTP/1.1 来说，可以开启多个 TCP 连接，出现这种情况反到只会影响其中一个连接，剩余的 TCP 连接还可以正常传输数据。</p>
+<p>那么可能就会有人考虑到去修改 TCP 协议，其实这已经是一件不可能完成的任务了。因为 TCP 存在的时间实在太长，已经充斥在各种设备中，并且这个协议是由操作系统实现的，更新起来不大现实。 </p>
+</style></p>
         
     </section>
 </article>
 
 
 
-<a id="pagenext" href="/2019/03/02/task/" class="article-next" title="什么是宏任务、微任务"><i class="icon-arrow-right"></i></a>
+<a id="pagenext" href="/2019/05/11/jenkins/" class="article-next" title="Vue、GitLab、Jenkins、Nginx实现自动打包发布上线"><i class="icon-arrow-right"></i></a>
 
 
-<a id="pageprev" href="/2019/05/13/HTTP2.0/" class="article-prev" title="HTTP2.0"><i class="icon-arrow-left"></i></a>
+<a id="pageprev" href="/2019/05/13/webpack/" class="article-prev" title="Webpck职能"><i class="icon-arrow-left"></i></a>
 
 
 

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Promises | Hexo</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="优点有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了。缺点首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，P...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-number">1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new-Promise，then-catch"><span class="toc-number">3.</span> <span class="toc-text">new Promise，then, catch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#finally-all-race-any"><span class="toc-number">4.</span> <span class="toc-text">finally all race any</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Promises
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2018/07/23/promise/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-23T11:57:00.000Z" itemprop="datePublished">2018-07-23</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了<strong>层层嵌套的回调函数</strong>。</p>
+<p>Promise对象代表一个异步操作，有三种状态：<strong>pending（进行中）、fulfilled（已成功）和rejected（已失败）</strong>。</p>
+<p>Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了。</p>
+<a id="more"></a>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消。</p>
+<p>其次，如果不设置回调函数，Promise内部抛出的错误，不会反应到外部。</p>
+<p>第三，当处于pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<h2 id="new-Promise，then-catch"><a href="#new-Promise，then-catch" class="headerlink" title="new Promise，then, catch"></a>new Promise，then, catch</h2><p>Promise对象是一个构造函数，用来生成Promise实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">  // ... some code</span><br><span class="line"></span><br><span class="line">  if (/* 异步操作成功 */)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.then(function(value) &#123;</span><br><span class="line">  // success</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  // failure</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>then方法与catch方法均会返回一个Promise对象</strong>, catch为then的语法糖，它是<strong>then(null, rejection)</strong>的别名。</p>
+<p>也就是说，catch也是then，它用于捕获错误，它的参数也就是是then的第二个参数。</p>
+<p><strong>所以，假设catch中如果return 值的话，新的Promise对象也会是接受状态。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var example = new Promise((fulfill, reject)=&gt;&#123;</span><br><span class="line">    let i = 1;</span><br><span class="line">    reject(i);</span><br><span class="line">&#125;)</span><br><span class="line">example</span><br><span class="line">.catch(()=&gt;&#123;console.log(&apos;我是第一个catch的回调函数&apos;); return 1;&#125;)</span><br><span class="line">.then(() =&gt;&#123;console.log(&apos;我是第一个then的回调函数&apos;);    throw Error;&#125;)</span><br><span class="line">.catch(()=&gt;&#123;console.log(&apos;我是第二个catch的回调函数&apos;)&#125;)</span><br><span class="line">.then(() =&gt; &#123;console.log(&apos;我是第二个then的回调函数&apos;)&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>调用reject函数后，promise变为rejected状态，故执行第一个catch的回调函数</p>
+<p>第一个catch的回调函数return 1，故执行第一个then的回调函数</p>
+<p>第一个then的回调函数throw Error，故执行第二个catch的回调函数</p>
+<p>第二个catch的回调函数ruturn undefined（如上文所言），故执行第二个then的回调函数</p>
+<h2 id="finally-all-race-any"><a href="#finally-all-race-any" class="headerlink" title="finally all race any"></a>finally all race any</h2><p><strong>finally</strong>方法用于指定不管 Promise 对象最后状态如何，都会执行的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">.then(result =&gt; &#123;···&#125;)</span><br><span class="line">.catch(error =&gt; &#123;···&#125;)</span><br><span class="line">.finally(() =&gt; &#123;···&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise.all()</strong></p>
+<p>(1)只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。</p>
+<p>(2)只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const promises = [p1,p2,p3];</span><br><span class="line"></span><br><span class="line">Promise.all(promises).then(function (posts) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;).catch(function(reason)&#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise.race()</strong>只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。</p>
+<p>那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。</p>
+<p><strong>Promise.any()</strong>只要参数实例有一个变成fulfilled状态，包装实例就会变成fulfilled状态；</p>
+<p>如果所有参数实例都变成rejected状态，包装实例就会变成rejected状态。</p>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2018/06/03/csrf/" class="article-next" title="csrf、xss"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2018/09/01/study/" class="article-prev" title="《前端工程师进阶》 "><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
