@@ -7,10 +7,10 @@
 
     
 
-    <title>Vue文档再研-感悟 | Hexo</title>
+    <title>call Apply Bind | Hexo</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="Vue响应式1.只有当实例被创建时就已经存在于 data 中的属性才是响应式的。计算属性2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。JS操作真实DOM的代价！浏览器渲染引擎工作流程都差不多，大致分为5步，创建DOM树——创建StyleRules——创建Render树——布局Layout——绘...">
+    <meta name="description" content="1234567891011121314var xw = &amp;#123;        name : &amp;quot;小王&amp;quot;,        gender : &amp;quot;男&amp;quot;,        age : 24,        say : function() &amp;#123;                alert(this.name + &amp;quot; , &amp;quot; + this.gender + &amp;quot; ,今年&amp;quot; + this.age);         ...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -95,7 +95,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式"><span class="toc-number">1.</span> <span class="toc-text">响应式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算属性"><span class="toc-number">2.</span> <span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS操作真实DOM的代价！"><span class="toc-number">3.</span> <span class="toc-text">JS操作真实DOM的代价！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器主要组成与浏览器线程"><span class="toc-number">4.</span> <span class="toc-text">浏览器主要组成与浏览器线程</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对于apply可以这样："><span class="toc-number">1.</span> <span class="toc-text">对于apply可以这样：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于bind可以这样："><span class="toc-number">2.</span> <span class="toc-text">对于bind可以这样：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于call来说是这样的"><span class="toc-number">3.</span> <span class="toc-text">对于call来说是这样的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#而对于apply来说是这样的"><span class="toc-number">4.</span> <span class="toc-text">而对于apply来说是这样的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那么bind怎么传参呢？它可以像call那样传参。"><span class="toc-number">5.</span> <span class="toc-text">那么bind怎么传参呢？它可以像call那样传参。</span></a></li></ol>
         
     </div>
 </aside>
@@ -109,15 +109,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            Vue文档再研-感悟
+            call Apply Bind
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/2019/09/22/thinkReact/index.html">
+            <a class="article-date" href="http://yoursite.com/2019/11/21/callApplyBind/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
+    <time datetime="2019-11-21T05:55:19.406Z" itemprop="datePublished">2019-11-21</time>
 </a>
 
             
@@ -132,40 +132,23 @@
     
     <section class="article-body markdown-body">
         
-        <p>Vue</p>
-<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是<strong>响应式</strong>的。</p>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
-<a id="more"></a>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function() &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br><span class="line">xw.say();</span><br></pre></td></tr></table></figure>
 
-<h2 id="JS操作真实DOM的代价！"><a href="#JS操作真实DOM的代价！" class="headerlink" title="JS操作真实DOM的代价！"></a>JS操作真实DOM的代价！</h2><p>浏览器渲染引擎工作流程都差不多，大致分为5步，创建DOM树——创建StyleRules——创建Render树——布局Layout——绘制Painting  </p>
-<p>第一步，用HTML分析器，分析HTML元素，构建一颗DOM树(标记化和树构建)。</p>
-<p>第二步，用CSS分析器，分析CSS文件和元素上的inline样式，生成页面的样式表。</p>
-<p>第三步，将DOM树和样式表，关联起来，构建一颗Render树(这一过程又称为Attachment)。每个DOM节点都有attach方法，接受样式信息，返回一个render对象(又名renderer)。这些render对象最终会被构建成一颗Render树。</p>
-<p>第四步，有了Render树，浏览器开始布局，为每个Render树上的节点确定一个在显示屏上出现的精确坐标。</p>
-<p>第五步，Render树和节点显示坐标都有了，就调用每个节点paint方法，把它们绘制出来。</p>
-<p>用我们传统的开发模式，原生JS或JQ操作DOM时，浏览器会从构建DOM树开始从头到尾执行一遍流程。在一次操作中，我需要更新10个DOM节点，浏览器收到第一个DOM请求后并不知道还有9次更新操作，因此会马上执行流程，最终执行10次。例如，第一次计算完，紧接着下一个DOM更新请求，这个节点的坐标值就变了，前一次计算为无用功。计算DOM节点坐标值等都是白白浪费的性能。即使计算机硬件一直在迭代更新，操作DOM的代价仍旧是昂贵的，频繁操作还是会出现页面卡顿，影响用户体验。</p>
-<h2 id="浏览器主要组成与浏览器线程"><a href="#浏览器主要组成与浏览器线程" class="headerlink" title="浏览器主要组成与浏览器线程"></a>浏览器主要组成与浏览器线程</h2><p><u>界面控件 – 包括地址栏，前进后退，书签菜单等窗口上除了网页显示区域以外的部分</u></p>
-<p><u>浏览器引擎 – 查询与操作渲染引擎的接口</u></p>
-<p><u>渲染引擎 – 负责显示请求的内容。比如请求到HTML, 它会负责解析HTML、CSS并将结果显示到窗口中</u></p>
-<p><u>网络 – 用于网络请求, 如HTTP请求。它包括平台无关的接口和各平台独立的实现</u></p>
-<p><u>UI后端 – 绘制基础元件，如组合框与窗口。它提供平台无关的接口，内部使用操作系统的相应实现</u></p>
-<p><u>JS解释器 - 用于解析执行JavaScript代码</u></p>
-<p><u>数据存储持久层 - 浏览器需要把所有数据存到硬盘上，如cookies。新的HTML5规范规定了一个完整（虽然轻量级）的浏览器中的数据库webdatabase</u></p>
-<ol>
-<li><p>GUI渲染线程与JS引擎线程互斥的，是由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JavaScript线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致。当JavaScript引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到引擎线程空闲时立即被执行。由于GUI渲染线程与JS执行线程是互斥的关系，当浏览器在执行JS程序的时候，GUI渲染线程会被保存在一个队列中，直到JS程序执行完成，才会接着执行。因此如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞的感觉。</p>
-</li>
-<li><p>定时触发器线程</p>
-</li>
-</ol>
-<p>浏览器定时计数器并不是由JS引擎计数的, 因为JS引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确, 因此通过单独线程来计时并触发定时是更为合理的方案。</p>
-<ol start="3">
-<li>事件触发线程</li>
-</ol>
-<p>当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。</p>
-<ol start="4">
-<li>异步http请求线程</li>
-</ol>
-<p>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求，将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件放到JS引擎的处理队列中等待处理。</p>
+<p>本身没什么好说的，显示的肯定是小王 ， 男 ， 今年24。</p>
+<p>如何用xw的say方法来显示xh的数据呢。</p>
+<p>##对于call可以这样：</p>
+<p>xw.say.call(xh);</p>
+<h2 id="对于apply可以这样："><a href="#对于apply可以这样：" class="headerlink" title="对于apply可以这样："></a>对于apply可以这样：</h2><p>xw.say.apply(xh);</p>
+<h2 id="对于bind可以这样："><a href="#对于bind可以这样：" class="headerlink" title="对于bind可以这样："></a>对于bind可以这样：</h2><p>xw.say.bind(xh)();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function(school,grade) &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age + &quot; ,在&quot; + school + &quot;上&quot; + grade);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到say方法多了两个参数，我们通过call/apply的参数进行传参。</p>
+<h2 id="对于call来说是这样的"><a href="#对于call来说是这样的" class="headerlink" title="对于call来说是这样的"></a>对于call来说是这样的</h2><p>xw.say.call(xh,”实验小学”,”六年级”);       </p>
+<h2 id="而对于apply来说是这样的"><a href="#而对于apply来说是这样的" class="headerlink" title="而对于apply来说是这样的"></a>而对于apply来说是这样的</h2><p>xw.say.apply(xh,[“实验小学”,”六年级郑州牛皮癣医院”]);</p>
+<p>看到区别了吗，call后面的参数与say方法中是一一对应的，而apply的第二个参数是一个数组，数组中的元素是和say方法中一一对应的，这就是两者最大的区别。</p>
+<h2 id="那么bind怎么传参呢？它可以像call那样传参。"><a href="#那么bind怎么传参呢？它可以像call那样传参。" class="headerlink" title="那么bind怎么传参呢？它可以像call那样传参。"></a>那么bind怎么传参呢？它可以像call那样传参。</h2><p>xw.say.bind(xh,”实验小学”,”六年级”)();</p>
+<p>但是由于bind返回的仍然是一个函数，所以我们还可以在调用的时候再进行传参。</p>
+<p>xw.say.bind(xh)(“实验小学”,”六年级”);</p>
 
         
     </section>
@@ -173,10 +156,10 @@
 
 
 
-<a id="pagenext" href="/2019/05/13/gulpWebpack/" class="article-next" title="Webpck职能"><i class="icon-arrow-right"></i></a>
+<a id="pagenext" href="/2019/11/21/nodeJS/" class="article-next" title="nodeJS"><i class="icon-arrow-right"></i></a>
 
 
-<a id="pageprev" href="/2019/09/22/debounce/" class="article-prev" title="节流防抖"><i class="icon-arrow-left"></i></a>
+<a id="pageprev" href="/2019/11/21/appProject/" class="article-prev" title="APP项目总结"><i class="icon-arrow-left"></i></a>
 
 
 
