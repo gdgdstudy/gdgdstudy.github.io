@@ -452,6 +452,56 @@
   box-sizing: content-box;
   background-color: #fff;
 }
+.markdown-body .project_img {
+  max-width: 70%;
+  text-align: center;
+  display: block;
+  border-radius: 10px;
+}
+.markdown-body .me_img1,
+.markdown-body .me_img2,
+.markdown-body .me_img3,
+.markdown-body .me_img4,
+.markdown-body .me_img5,
+.markdown-body .me_img6,
+.markdown-body .me_img7,
+.markdown-body .me_img8 {
+  width: auto;
+  height: 300px;
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline;
+  border-radius: 10px;
+}
+.markdown-body .me_img2 {
+  width: auto;
+  height: 360px;
+}
+.markdown-body .me_img3,
+.markdown-body .me_img4 {
+  width: auto;
+  height: 250px;
+}
+.markdown-body .me_img5 {
+  width: auto;
+  height: 250px;
+}
+.markdown-body .me_img6,
+.markdown-body .me_img7 {
+  width: auto;
+  height: 350px;
+  margin: 0 70px;
+}
+.markdown-body .project_imgInline {
+  width: auto;
+  height: 250px;
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline;
+  border-radius: 10px;
+}
 .markdown-body img[align=right] {
   padding-left: 20px;
 }

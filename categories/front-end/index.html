@@ -7,7 +7,7 @@
 
     
 
-    <title>front-end | Hexo</title>
+    <title>Category: front-end | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
     <meta name="description" content>
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
     
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/images/favicon.ico">
@@ -51,7 +51,7 @@
     <div id="nav" class="nav">
     <div class="nav-mobile">
         <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
-        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
         <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
     </div>
 
@@ -61,11 +61,11 @@
                 <span class="nav-text">首页</span>
             </a>
         
-            <a class="nav-item active" href="/categories/front-end">
+            <a class="nav-item active" href="/categories/front-end/">
                 <span class="nav-text">前端</span>
             </a>
         
-            <a class="nav-item" href="/categories/back-end">
+            <a class="nav-item" href="/categories/back-end/">
                 <span class="nav-text">后端</span>
             </a>
         
@@ -147,12 +147,13 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                <article class="article" itemscope itemprop="blogPost">
+                
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            front-end
+            <a href="/2019/11/21/callApplyBind/">call Apply Bind</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -160,20 +161,447 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-09-02T10:55:21.000Z" itemprop="datePublished">2019-09-02</time>
+    <time datetime="2019-11-21T05:55:19.406Z" itemprop="datePublished">2019-11-21</time>
 </a>
 
             
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function() &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br><span class="line">xw.say();</span><br></pre></td></tr></table></figure>
+
+<p>本身没什么好说的，显示的肯定是小王 ， 男 ， 今年24。</p>
+<p>如何用xw的say方法来显示xh的数据呢。</p>
+<p>##对于call可以这样：</p>
+<p>xw.say.call(xh);</p>
+<h2 id="对于apply可以这样："><a href="#对于apply可以这样：" class="headerlink" title="对于apply可以这样："></a>对于apply可以这样：</h2><p>xw.say.apply(xh);</p>
+<h2 id="对于bind可以这样："><a href="#对于bind可以这样：" class="headerlink" title="对于bind可以这样："></a>对于bind可以这样：</h2><p>xw.say.bind(xh)();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function(school,grade) &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age + &quot; ,在&quot; + school + &quot;上&quot; + grade);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到say方法多了两个参数，我们通过call/apply的参数进行传参。</p>
+<h2 id="对于call来说是这样的"><a href="#对于call来说是这样的" class="headerlink" title="对于call来说是这样的"></a>对于call来说是这样的</h2><p>xw.say.call(xh,”实验小学”,”六年级”);       </p>
+<h2 id="而对于apply来说是这样的"><a href="#而对于apply来说是这样的" class="headerlink" title="而对于apply来说是这样的"></a>而对于apply来说是这样的</h2><p>xw.say.apply(xh,[“实验小学”,”六年级郑州牛皮癣医院”]);</p>
+<p>看到区别了吗，call后面的参数与say方法中是一一对应的，而apply的第二个参数是一个数组，数组中的元素是和say方法中一一对应的，这就是两者最大的区别。</p>
+<h2 id="那么bind怎么传参呢？它可以像call那样传参。"><a href="#那么bind怎么传参呢？它可以像call那样传参。" class="headerlink" title="那么bind怎么传参呢？它可以像call那样传参。"></a>那么bind怎么传参呢？它可以像call那样传参。</h2><p>xw.say.bind(xh,”实验小学”,”六年级”)();</p>
+<p>但是由于bind返回的仍然是一个函数，所以我们还可以在调用的时候再进行传参。</p>
+<p>xw.say.bind(xh)(“实验小学”,”六年级”);</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/20/hash/">webpack 3中hash、chunkhash和contenthash三者的区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-20T08:56:29.178Z" itemprop="datePublished">2019-11-20</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-hash"><a href="#1-hash" class="headerlink" title="1.hash"></a>1.hash</h2><p>如果都使用hash的话，所有文件的hash都是一样的，而且每次修改任何一个文件，所有文件名的hash值都将改变。所以一旦修改了任何一个文件，整个项目的文件缓存都将失</p>
+<p>效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">    path:path.resolve(__dirname,&apos;./dist&apos;),</span><br><span class="line">    publicPath: &apos;/dist/&apos;,</span><br><span class="line">    filename: &apos;[name]-[hash].js&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-chunkhash"><a href="#2-chunkhash" class="headerlink" title="2.chunkhash"></a>2.chunkhash</h2><p>既然hash的用法有这种缺陷，那是否有更好的办法，使只有被修改了的文件的文件名hash值修改呢？答案就是使用chunkhash。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">    path:path.resolve(__dirname,&apos;./dist&apos;),</span><br><span class="line">    publicPath: &apos;/dist/&apos;,</span><br><span class="line">    filename: &apos;[name]-[chunkhash].js&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/20/hash/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
         
         
     </section>
 </article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/20/scoped/">scoped</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-20T08:44:14.781Z" itemprop="datePublished">2019-11-20</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>vue中的scoped属性的效果主要通过PostCSS转译实现，如下是转译前的vue代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">.example &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"> </span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;example&quot;&gt;hello world&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>转译后</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/20/scoped/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:08:54.434Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
+<p>模块化</p>
+<p>箭头函数</p>
+<p>函数参数默认值</p>
+<p>模板字符串</p>
+<p>解构赋值</p>
+<p>延展操作符</p>
+<p>对象属性简写</p>
+<p>Promise</p>
+<p>Let与Const</p>
+<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
+<p>指数操作符</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/es/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/observal/">观察者模式 - 发布订阅</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:08:35.913Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。而观察者模式属于行为型模式，行为型模式关注的</p>
+<p>是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯。</p>
+<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><p>在“发布者-订阅者”模式中，称为发布者的消息发送者不会将消息编程为直接发送给称为订阅者的特定接收者。这意味着发布者和订阅者不知道彼此的存在。存在第三个组件，</p>
+<p>称为代理或消息代理或事件总线，它由发布者和订阅者都知道，它过滤所有传入的消息并相应地分发它们。换句话说，pub-sub是用于在不同系统组件之间传递消息的模式，而</p>
+<p>这些组件不知道关于彼此身份的任何信息。经纪人如何过滤所有消息？实际上，有几个消息过滤过程。最常用的方法有：基于主题和基于内容的。</p>
+<p>在Observer模式中，Observers知道Subject，同时Subject还保留了Observers的记录。然而，在发布者/订阅者中，发布者和订阅者不需要彼此了解。他们只是在消息队列或代理的帮助下进行通信。</p>
+<p>在Publisher / Subscriber模式中，组件是松散耦合的，而不是Observer模式。</p>
+<p>观察者模式主要以同步方式实现，即当某些事件发生时，Subject调用其所有观察者的适当方法。发布者/订阅者在大多情况下是异步方式（使用消息队列）。</p>
+<p>观察者模式需要在单个应用程序地址空间中实现。另一方面，发布者/订阅者模式更像是跨应用程序模式。</p>
+<p>尽管这些模式之间存在差异，但有些人可能会说发布者 - 订阅者模式是观察者模式的变体，因为它们之间存在概念上的相似性，但并不是一样的。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/vueReact/">Vue-React 区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:06:38.592Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。</p>
+<p>下面咱们开始react，</p>
+<p>React呢，是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
+<p>都是用虚拟DOM;</p>
+<p>都提供了响应式和组件化的视图组件；</p>
+<p>注意力都集中保持在核心库；</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/vueReact/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/taro/">taro</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:04:58.304Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="taro"><a href="#taro" class="headerlink" title="taro"></a>taro</h2>
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/webView/">WebView</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:04:23.792Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>WebView是我们熟悉的”网络视图”,能加载并显示网页,可以将其视为一个浏览器。主要用于展示网络请求后的内容,就是将网络地址请求的内容展示在里面</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>1.1显示、渲染请求的Web页面;</p>
+<p>1.2对展示的html文件进行布局;</p>
+<p>1.3与JavaScript相互调用。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/webView/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/RN/">React-Native</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:03:59.850Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React-Native"></a>React-Native</h2><p>RN主要是提供了一种多平台同时运行的语言环境。RN的口号是:Learn Once，Write AnyWhere。恩，很熟悉的口号，记得当初在大学里面学Java的时候似乎也是差不多:Write Once，Run AnyWhere。确实很像，但是实际上他们是完全不一样的！对于Java来说，他拥有强大的虚拟机，使得他能够在任何平台上都可以通过JVM跑起来，减低的是开发成本。毕竟只要Write Once！但是RN的口号是Learn Once。说的通俗点，就是学起来炒鸡简单。至于各个品台的适配等工作，就慢慢自己折腾吧！当然这个也和移动端设备的千奇百怪有关，不同设备从硬件到软件的环境都可能不同。比如Android有返回等物理按键，但是iPhone就没有这样的按钮。等等类似的这种情况都使得我们不得不单独做适配。 </p>
+<p>##优势</p>
+<p>RN在跳过了原生平台繁琐API学习成本的同时。其高效和跨平台的优势也很明显。<br>在各大厂商和全球开发者的监督下，稳定性与性能和原生平台的近似。<br>对于线上的Bug和紧急需求，其具备快速发布的能力。</p>
+<h2 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h2><p>1.作为一个由Facebook维护的三方库。其更新完全依赖于Facebook，如果哪一天不更新了。事实上很多火爆一时的第三方库，最后因为无人维护，被开发者丢弃。但是有一点是不会变的！一门具备跨平台的高性能是被市场所需求的。不过就目前的发展情况而言，RN社区的活跃度及市场对于RN开发的需求还是很大的。</p>
+<p>2.不成熟性。RN目前最新版本是0.51。这就意味着，尚未稳定，很多原生的功能尚未很好的实现。是一个依然处于开发阶段的库，这也意味着，能多深层次的优化和兼容操作，RN目前是无法像原生一样的。同时针对不同的设备。RN开发需要更多的逻辑开销去思考不同设备之间的兼容问题。</p>
+<p>3.调试成本。RN是一个相对比较重的库。会增加代码库的复杂度，其调试与原生相比有着一定的困难。 </p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/mpvue/">mpvue</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:03:46.096Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="mpvue"><a href="#mpvue" class="headerlink" title="mpvue"></a>mpvue</h2>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/mpvue/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+
+
+<nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/categories/front-end/page/2/">2</a><a class="page-number" href="/categories/front-end/page/3/">3</a><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="extend next" rel="next" href="/categories/front-end/page/2/">Next &raquo;</a>
+</nav>
+
 
 
             </div>
