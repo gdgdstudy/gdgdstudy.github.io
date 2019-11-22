@@ -754,7 +754,8 @@ body {
 .markdown-body .me_img5,
 .markdown-body .me_img6,
 .markdown-body .me_img7,
-.markdown-body .me_img8 {
+.markdown-body .me_img8,
+.markdown-body .me_weixin {
   width: auto;
   height: 300px;
   text-align: center;
@@ -781,6 +782,10 @@ body {
   width: auto;
   height: 350px;
   margin: 0 70px;
+}
+.markdown-body .me_weixin {
+  width: auto;
+  height: 300px;
 }
 .markdown-body .project_imgInline {
   width: 350px;
