@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>js数据结构预算法 | Yan Lian&#39;s Blog</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="js实现一个队列123456789101112131415161718192021222324252627282930313233function Queue()&amp;#123;    this.items = [];    Queue.prototype.push = function(data)&amp;#123;        this.items.push(data);    &amp;#125;;    Queue.prototype.shift = function()&amp;#123;        ...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end/">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end/">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js实现一个队列"><span class="toc-number">1.</span> <span class="toc-text">js实现一个队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js实现一个栈"><span class="toc-number">2.</span> <span class="toc-text">js实现一个栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js实现一个链表"><span class="toc-number">3.</span> <span class="toc-text">js实现一个链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快排"><span class="toc-number">4.</span> <span class="toc-text">快排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡"><span class="toc-number">5.</span> <span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入"><span class="toc-number">6.</span> <span class="toc-text">插入</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            js数据结构预算法
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/11/19/dataStructure/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:04:58.304Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="js实现一个队列"><a href="#js实现一个队列" class="headerlink" title="js实现一个队列"></a>js实现一个队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function Queue()&#123;</span><br><span class="line">    this.items = [];</span><br><span class="line">    Queue.prototype.push = function(data)&#123;</span><br><span class="line">        this.items.push(data);</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.shift = function()&#123;</span><br><span class="line">        this.items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.size = function()&#123;</span><br><span class="line">        return this.items.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;; </span><br><span class="line">    Queue.prototype.toString = function()&#123;</span><br><span class="line">        let stringData = &apos;&apos;;</span><br><span class="line">        for(const item of this.items)&#123;</span><br><span class="line">            stringData += item+&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringData;</span><br><span class="line">    &#125;; </span><br><span class="line">&#125;</span><br><span class="line">var queue = new Queue();</span><br><span class="line">queue.push(2121);</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2); </span><br><span class="line">alert(queue.toString());</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="js实现一个栈"><a href="#js实现一个栈" class="headerlink" title="js实现一个栈"></a>js实现一个栈</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function Stack()&#123;</span><br><span class="line">    this.items = [];</span><br><span class="line">    Stack.prototype.push = function(data)&#123;</span><br><span class="line">        this.items.push(data);</span><br><span class="line">    &#125;;</span><br><span class="line">    Stack.prototype.pop = function()&#123;</span><br><span class="line">        this.items.pop();</span><br><span class="line">    &#125;;</span><br><span class="line">    Stack.prototype.size = function()&#123;</span><br><span class="line">        return this.items.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    Stack.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    Stack.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;; </span><br><span class="line">    Stack.prototype.toString = function()&#123;</span><br><span class="line">        let stringData = &apos;&apos;;</span><br><span class="line">        while(this.items.length&gt;0)&#123;</span><br><span class="line">            stringData += this.items.pop()+&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringData;</span><br><span class="line">    &#125;; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var stack = new Stack();</span><br><span class="line">stack.push(2121);</span><br><span class="line">stack.push(1);</span><br><span class="line">stack.push(2);</span><br><span class="line">stack.push(2);</span><br><span class="line">stack.push(2);</span><br><span class="line">stack.push(2); </span><br><span class="line">alert(stack.toString());</span><br></pre></td></tr></table></figure>
+
+<h2 id="js实现一个链表"><a href="#js实现一个链表" class="headerlink" title="js实现一个链表"></a>js实现一个链表</h2><p>append(element):向列表尾部添加一个新的项；<br>insert(position, element):向列表特定位置插入一个新的项；</p>
+<p>removeAt(position):从列表中移除某一项；<br>remove(element):从列表移除某一项；</p>
+<p>update(position, element):修改某个位置的元素；</p>
+<p>get(position):向列表尾部添加一个新的项；<br>indexOf(element):返回元素在列表中的索引，如果列表中没有该元素则返回-1；</p>
+<p>size():返回链表包含的元素个数，与数组的length属性类似；<br>inEmpty():链表是否为空；<br>toString():输出元素值；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line">function linkList()&#123;</span><br><span class="line">    function Node (element)&#123;</span><br><span class="line">        this.data = element;</span><br><span class="line">        this.next = null;</span><br><span class="line">    &#125; </span><br><span class="line">    this.length = 0;</span><br><span class="line">    this.head = null;</span><br><span class="line">    </span><br><span class="line">    //增</span><br><span class="line">    linkList.prototype.append = function(element)&#123;</span><br><span class="line">        // 先new 一个节点</span><br><span class="line">        let newNode = new Node(element);</span><br><span class="line">        if(this.length === 0)&#123;</span><br><span class="line">            this.head = newNode;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            // 找到最后一个节点 最后一个节点的 next  指向newNode</span><br><span class="line">            let current = this.head;</span><br><span class="line">            while(current.next)&#123;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = newNode</span><br><span class="line">        &#125;</span><br><span class="line">        // length +1</span><br><span class="line">        this.length += 1;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    //插入</span><br><span class="line">    linkList.prototype.insert = function(position,element)&#123;</span><br><span class="line">        if(position&lt;0|| position&gt;this.length)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        let newNode = new Node(element);</span><br><span class="line">        if(position === 0)&#123;</span><br><span class="line">            newNode.next = this.head;</span><br><span class="line">            this.head = newNode;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            let positionIndex = 0;</span><br><span class="line">            let current = this.head;</span><br><span class="line">            let previous = null;</span><br><span class="line">            while(positionIndex++ &lt; position)&#123;</span><br><span class="line">                previous = current;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            previous.next = newNode;</span><br><span class="line">            newNode.next  = current;</span><br><span class="line">            //nextNode = current.next;</span><br><span class="line">            //current.next = newNode;</span><br><span class="line">            //newNode.next = nextNode; </span><br><span class="line">        &#125;</span><br><span class="line">        this.length += 1;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">     //获取</span><br><span class="line">    linkList.prototype.get = function(position)&#123;</span><br><span class="line">        if(position === 0)&#123;</span><br><span class="line">            return this.head;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            let positionIndex = 0;</span><br><span class="line">            let current = this.head;</span><br><span class="line">            let previous = null;</span><br><span class="line">            while(positionIndex++ &lt; position)&#123;</span><br><span class="line">                previous = current;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            return current;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;; </span><br><span class="line">    //获取</span><br><span class="line">    linkList.prototype.update = function(position, newData)&#123;</span><br><span class="line">        let positionIndex = 0;</span><br><span class="line">        let current = this.head;</span><br><span class="line">        while(positionIndex++ &lt; position)&#123;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125; </span><br><span class="line">        current.data = newData;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    //indexOf</span><br><span class="line">    linkList.prototype.indexOf = function(element)&#123;</span><br><span class="line">        </span><br><span class="line">        let current = this.head; </span><br><span class="line">        let positionIndex = -1;</span><br><span class="line">        if(element === this.head)&#123;</span><br><span class="line">            positionIndex = 0;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            while(current !== element)&#123;</span><br><span class="line">                positionIndex += 1;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return positionIndex;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    //删除指定位置</span><br><span class="line">    linkList.prototype.removeAt = function(position)&#123;</span><br><span class="line">        if(position&lt;0|| position&gt;this.length)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(position === 0)&#123;</span><br><span class="line">            this.head = this.head.next;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            let positionIndex = 0;</span><br><span class="line">            let current = this.head;</span><br><span class="line">            let previous = null;</span><br><span class="line">            while(positionIndex++ &lt; position)&#123;</span><br><span class="line">                previous = current;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            previous.next = current.next; </span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        this.length -= 1;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    //删除element</span><br><span class="line">    linkList.prototype.remove = function(element)&#123;</span><br><span class="line">        this.removeAt(this.indexOf(element));</span><br><span class="line">        this.length -= 1;</span><br><span class="line">        </span><br><span class="line">        // let current = this.head;</span><br><span class="line">        // let previous = null;</span><br><span class="line">        // let positionIndex = 0;</span><br><span class="line">        // while(current !== element)&#123;</span><br><span class="line">        //    positionIndex +=1;</span><br><span class="line">        //    current = current.next;</span><br><span class="line">        // &#125;</span><br><span class="line"></span><br><span class="line">        // this.removeAt(positionIndex); </span><br><span class="line">        // this.length -= 1;</span><br><span class="line">        // return true;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    // 字符串化</span><br><span class="line">    linkList.prototype.toString = function()&#123;</span><br><span class="line">        let listString = &apos;&apos;; </span><br><span class="line">        if(this.length !== 0)&#123; </span><br><span class="line">            let current = this.head;</span><br><span class="line">            while(current)&#123;</span><br><span class="line">                listString += current.data + &apos; &apos;;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        return listString;</span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let links = new linkList();</span><br><span class="line">links.append(&apos;1q&apos;);</span><br><span class="line">links.append(&apos;2q&apos;);</span><br><span class="line">links.append(&apos;3q&apos;);</span><br><span class="line">links.append(&apos;4q&apos;);</span><br><span class="line">links.append(&apos;5q&apos;); </span><br><span class="line">links.removeAt( 2);</span><br><span class="line">alert(links.toString());</span><br></pre></td></tr></table></figure>
+
+<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr)&#123;</span><br><span class="line">    if(arr.length&lt;=1)&#123;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line">    let temp = arr[0];</span><br><span class="line">    let left = [];</span><br><span class="line">    let right = [];</span><br><span class="line">    for (let i = 1; i &lt; arr.length; i++)&#123;</span><br><span class="line">       if(temp&gt;arr[i])&#123;</span><br><span class="line">           left.push(arr[i]);</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">            right.push(arr[i]);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return   quickSort(left).concat([temp], quickSort(right));  </span><br><span class="line">&#125;</span><br><span class="line">quickSort([2121,434,221,434,676,88,9])</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function  bubble(arr)&#123;</span><br><span class="line">    let temp;</span><br><span class="line">    for(let i=0; i&lt;arr.length-1;i++)&#123;</span><br><span class="line">        for(let j=i+1; j&lt;arr.length; j++)&#123;</span><br><span class="line">            if(arr[i]&gt;arr[j])&#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[i];</span><br><span class="line">                arr[i] = temp;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">bubble([2121,434,221,434,676,88,9])</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function  insert(arr)&#123;</span><br><span class="line">    let temp;</span><br><span class="line">    for(let i=1; i&lt;arr.length;i++)&#123;</span><br><span class="line">        temp = arr[i];       // 从第一张开始  和前面的（都是排好序的）比    把这一张记录下来  </span><br><span class="line">        for(let j=i-1; j&gt;=0; j--)&#123;     // 和前面的循环 遍历  比他大的 全部往后移一位   直到和它相等 或者小</span><br><span class="line">            if(temp&lt;arr[j])&#123;</span><br><span class="line">                arr[j+1] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">insert([2121,434,221,1,2,5,6666,4,43])</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/11/19/webView/" class="article-next" title="WebView"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/11/19/vueReact/" class="article-prev" title="Vue-React 区别"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
