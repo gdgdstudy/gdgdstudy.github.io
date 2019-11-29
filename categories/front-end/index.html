@@ -164,7 +164,10 @@
     
     <section class="article-body markdown-body">
         
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function() &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br><span class="line">xw.say();</span><br></pre></td></tr></table></figure>
+        <p>1.普通或匿名函数内的this，就是调用函数的那个对象，且绝大多数匿名函数均被实现为this指向window。</p>
+<p>2.箭头函数内的this，就是箭头函数被定义时所在作用域的this。</p>
+<p>3.js的this只会在函数作用域或全局作用域，不要与块级作用域混淆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function() &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br><span class="line">xw.say();</span><br></pre></td></tr></table></figure>
 
 <p>本身没什么好说的，显示的肯定是小王 ， 男 ， 今年24。</p>
 <p>如何用xw的say方法来显示xh的数据呢。</p>
@@ -403,11 +406,11 @@
     <section class="article-body markdown-body">
         
         <p>Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。</p>
-<p>下面咱们开始react，</p>
-<p>React呢，是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
-<p>都是用虚拟DOM;</p>
-<p>都提供了响应式和组件化的视图组件；</p>
-<p>注意力都集中保持在核心库；</p>
+<p>React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
+<p>React 和 Vue 有许多相似之处，它们都有：</p>
+<p>使用 Virtual DOM</p>
+<p>提供了响应式（Reactive）和组件化（Composable）的视图组件。</p>
+<p>将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。</p>
         
         <p class="article-more-link">
             <a href="/2019/11/19/vueReact/#more">

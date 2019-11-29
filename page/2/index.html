@@ -545,7 +545,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/09/22/nginx/">Nginx</a>
+            <a href="/2019/09/22/debounce/">节流防抖</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -559,7 +559,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nginx/">nginx</a>
+    <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -568,18 +568,11 @@
     
     <section class="article-body markdown-body">
         
-        <p>Nginx是一个高性能的HTTP和反向代理服务器, 及电子邮件代理服务器, 同时也是一个非常高效的反向代理、负载平衡。</p>
-<h2 id="为什么要用Nginx"><a href="#为什么要用Nginx" class="headerlink" title="为什么要用Nginx"></a>为什么要用Nginx</h2><p>跨平台、配置简单, 非阻塞、高并发连接：处理2-3万并发连接数, 官方监测能支持5万并发, </p>
-<p>内存消耗小：开启10个nginx才占150M内存 , nginx处理静态文件好,耗费内存少,</p>
-<p>内置的健康检查功能：如果有一个服务器宕机, 会做一个健康检查, 再发送的请求就不会发送到宕机的服务器了。重新将请求提交到其他的节点上。</p>
-<p>节省宽带：支持GZIP压缩, 可以添加浏览器本地缓存</p>
-<p>稳定性高：宕机的概率非常小</p>
-<p>接收用户请求是异步的：浏览器将请求发送到nginx服务器, 它先将用户请求全部接收下来, 再一次性发送给后端web服务器, 极大减轻了web服务器的压力,一边接收web服务</p>
-<p>器的返回数据, 一边发送给浏览器客户端, 网络依赖性比较低, 只要ping通就可以负载均衡,可以有多台nginx服务器 使用DNS做负载均衡,事件驱动：通信机制采用epoll模</p>
-<p>型（nio2 异步非阻塞）</p>
+        <h2 id="防抖（debounce）"><a href="#防抖（debounce）" class="headerlink" title="防抖（debounce）"></a>防抖（debounce）</h2><p>所谓防抖， 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;    </span><br><span class="line">    var timeout = null;    </span><br><span class="line">    return function() &#123;        </span><br><span class="line">        if(timeout !== null)   clearTimeout(timeout);        </span><br><span class="line">        timeout = setTimeout(fn, wait);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         <p class="article-more-link">
-            <a href="/2019/09/22/nginx/#more">
+            <a href="/2019/09/22/debounce/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>

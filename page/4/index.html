@@ -340,9 +340,18 @@
     <section class="article-body markdown-body">
         
         <p>目前最为流行的浏览器为：Chrome，IE，Safari，FireFox，Opera。浏览器的内核是多线程的。</p>
-<p>一个浏览器通常由以下几个常驻的线程：</p>
+<p>进程是操作系统分配资源的最小单位，线程是程序执行的最小单位。</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p><strong>浏览器进程（Browser进程）</strong></p>
+<p>浏览器的主进程（负责协调、主控），只有一个。作用有<br>负责浏览器界面显示，与用户交互。如前进，后退等<br>负责各个页面的管理，创建和销毁其他进程<br>将Renderer进程得到的内存中的Bitmap，绘制到用户界面上<br>网络资源的管理，下载等</p>
+<p><strong>GPU进程</strong></p>
+<p>用于3D绘制等</p>
+<p><strong>浏览器渲染进程（Renderer进程，内部是多线程的）</strong></p>
+<p>每一个标签页的打开都会创建一个浏览器渲染进程（浏览器内核）。</p>
+<p>浏览器内核通常由以下几个常驻的线程：</p>
 <p><strong>渲染引擎线程</strong>：顾名思义，该线程负责页面的渲染</p>
-<p><strong>JS引擎线程</strong>：负责JS的解析和执行</p>
+<pre><code>负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
+注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。 </code></pre><p><strong>JS引擎线程</strong>：负责JS的解析和执行</p>
 <p><strong>定时触发器线程</strong>：处理定时事件，比如setTimeout, setInterval</p>
 <p><strong>事件触发线程</strong>：处理DOM事件</p>
 <p><strong>异步http请求线程</strong>：处理http请求</p>
