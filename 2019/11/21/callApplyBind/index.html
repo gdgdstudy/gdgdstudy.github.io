@@ -10,7 +10,7 @@
     <title>call Apply Bind | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="1.普通或匿名函数内的this，就是调用函数的那个对象，且绝大多数匿名函数均被实现为this指向window。2.箭头函数内的this，就是箭头函数被定义时所在作用域的this。3.js的this只会在函数作用域或全局作用域，不要与块级作用域混淆。1234567891011121314var xw = &amp;#123;        name : &amp;quot;小王&amp;quot;,        gender : &amp;quot;男&amp;quot;,        age : 24,        ...">
+    <meta name="description" content="1.普通或匿名函数内的this，就是调用函数的那个对象，且绝大多数匿名函数均被实现为this指向window。2.箭头函数内的this，就是箭头函数被定义时所在作用域的this。 箭头函数可以方便地让我们在 setTimeout ,setInterval中方便的使用this3.js的this只会在函数作用域或全局作用域，不要与块级作用域混淆。12345678910111213var obj = &amp;#123;   say: function () &amp;#123;          var...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -133,8 +133,10 @@
     <section class="article-body markdown-body">
         
         <p>1.普通或匿名函数内的this，就是调用函数的那个对象，且绝大多数匿名函数均被实现为this指向window。</p>
-<p>2.箭头函数内的this，就是箭头函数被定义时所在作用域的this。</p>
+<p>2.箭头函数内的this，就是<strong>箭头函数被定义时</strong>所在作用域的this。 箭头函数可以方便地让我们在 setTimeout ,setInterval中方便的使用this</p>
 <p>3.js的this只会在函数作用域或全局作用域，不要与块级作用域混淆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;  </span><br><span class="line"> say: function () &#123;  </span><br><span class="line">        var f1 = () =&gt; &#123;  </span><br><span class="line">                console.log(this); // obj  </span><br><span class="line">                setTimeout(() =&gt; &#123;  </span><br><span class="line">                        console.log(this); // obj  </span><br><span class="line">                &#125;)  </span><br><span class="line">        &#125;  </span><br><span class="line">        f1();  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;   </span><br><span class="line">obj.say()  </span><br><span class="line">因为f1定义时所处的函数 中的 this是指的 obj, setTimeout中的箭头函数this继承自f1,所以不管有多层嵌套,都是 obj</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xw = &#123;</span><br><span class="line">        name : &quot;小王&quot;,</span><br><span class="line">        gender : &quot;男&quot;,</span><br><span class="line">        age : 24,</span><br><span class="line">        say : function() &#123;</span><br><span class="line">                alert(this.name + &quot; , &quot; + this.gender + &quot; ,今年&quot; + this.age);                                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">var xh = &#123;</span><br><span class="line">        name : &quot;小红&quot;,</span><br><span class="line">        gender : &quot;女&quot;,</span><br><span class="line">        age : 18</span><br><span class="line">&#125;</span><br><span class="line">xw.say();</span><br></pre></td></tr></table></figure>
 
 <p>本身没什么好说的，显示的肯定是小王 ， 男 ， 今年24。</p>

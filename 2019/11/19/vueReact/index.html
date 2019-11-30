@@ -190,6 +190,15 @@
 <p>在大小方面，虽然 Angular 2 使用 tree-shaking 和离线编译技术使代码体积减小了许多。但包含编译器和全部功能的 Vue2(23kb) 相比 Angular 2</p>
 <p>(50kb) 还是要小的多。但是要注意，用 Angular 2 的 App 的体积缩减是使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着功能引入</p>
 <p>的不断增多，尺寸会变得越来越大。</p>
+<p><strong>angular 变更检测</strong></p>
+<p>每个组件有一个变更检测器，主要通过zone.js 监听异步事件（event, xhr, setTimeout）, 当发生异步事件时，触发一次变更检测， 形成了一颗变更检测树，数据自上而下，单项数据流， 提高检测效率。</p>
+<p><strong>在 Angular 源码中，有一个 ApplicationRef_ 类，其作用是用来监听 NgZone 中的 onMicrotaskEmpty 事件，无论何时只要触发这个事件，那么将会执行一个 tick 方法用来告诉 Angular 去执行变化检测。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OnPush进行变更优化；若输入属性没有发生变化，组件的变化检测将会被跳过。</span><br><span class="line">@Component(&#123;</span><br><span class="line">    selector: &apos;profile-card&apos;,</span><br><span class="line">    template: `</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">         &lt;profile-name [name]=&apos;profile.name&apos;&gt;&lt;/profile-name&gt;</span><br><span class="line">         &lt;profile-age [age]=&apos;profile.age&apos;&gt;&lt;/profile-age&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">    `,</span><br><span class="line">    changeDetection: ChangeDetectionStrategy.OnPush</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>vue diff算法</strong></p>
+<p>渲染真实DOM的开销是很大的，比如有时候我们修改了某个数据，如果直接渲染到真实dom上会引起整个dom树的重绘和重排，有没有可能我们只更新我们修改的那一小块dom而不要更新整个dom呢？diff算法能够帮助我们。</p>
+<p>我们先根据真实DOM生成一颗virtual DOM，当virtual DOM某个节点的数据改变后会生成一个新的Vnode，然后Vnode和oldVnode作对比，发现有不一样的地方就直接修改在真实的DOM上，然后使oldVnode的值为Vnode。</p>
+<p>diff的过程就是调用名为<strong>patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁</strong>。</p>
 <p>响应式</p>
 <p>自适应响应式布局，从最早的不同分辨率的屏幕，到现在遍布各个生活角落的移动设备，响应式布局已经成了几乎所有互联网公司必备的条件。在我的映像中，bootstrap一直是响应式的头号选择，的确，其中的各种xl，xs，栅格布局让响应式变得很容易。</p>
 <p>话说，这Vue做响应式，其实一点都不复杂：一个生命周期钩子，一个条指令，一套js判断语句解决。</p>
