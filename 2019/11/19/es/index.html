@@ -153,6 +153,10 @@
 <a id="more"></a>
 
 <h2 id="ES8的特性"><a href="#ES8的特性" class="headerlink" title="ES8的特性"></a>ES8的特性</h2><p>async/await</p>
+<p>Iterator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是 ES6 创造了一种新的遍历命令for…of循环，Iterator 接口主要供for…of消费。</p>
+<p>Generator 函数是一个状态机，封装了多个内部状态。有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function* helloWorldGenerator() &#123;</span><br><span class="line">  yield &apos;hello&apos;;</span><br><span class="line">  yield &apos;world&apos;;</span><br><span class="line">  return &apos;ending&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var hw = helloWorldGenerator();</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;hello&apos;, done: false &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;world&apos;, done: false &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;ending&apos;, done: true &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: undefined, done: true &#125;</span><br></pre></td></tr></table></figure>
+
 <p>Object.values()</p>
 <p>Object.entries()</p>
 <p>String padding</p>
