@@ -235,50 +235,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/09/22/thinkVue/">Vue文档再研-感悟</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Vue</p>
-<h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是<strong>响应式</strong>的。</p>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/22/thinkVue/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2019/05/13/gulpWebpack/">Webpck职能</a>
         </h1>
         
@@ -603,7 +559,8 @@
 <p>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存。</p>
 <p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。</p>
 <p>强制缓存：expires，cache-control；HTTP/1.1后强制缓存expires 被cache-control替代；</p>
-<p>no-cache:客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。<br>no-store:所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存。<br>public:所有内容都将被缓存（客户端和代理服务器都可缓存）。<br>private:所有内容只有客户端可以缓存。</p>
+<p>expires:受限于本地时间，如果修改了本地时间，可能会造成缓存失效。</p>
+<p>cache-control:<br>no-cache:客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。<br>no-store:所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存。<br>public:所有内容都将被缓存（客户端和代理服务器都可缓存）。<br>private:所有内容只有客户端可以缓存。</p>
 <p>协商缓存：Etag / If-None-Match，Last-Modified / If-Modified-Since；</p>
 <p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)；</p>
 <p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
@@ -612,6 +569,49 @@
         
         <p class="article-more-link">
             <a href="/2018/10/03/cache/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/01/study/">《前端工程师进阶》 </a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-01T01:52:00.000Z" itemprop="datePublished">2018-09-01</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/css/">css</a>, <a class="article-tag-link" href="/tags/h5/">h5</a>, <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>, <a class="article-tag-link" href="/tags/webpack/">webpack</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>HTML先看《HTML &amp; CSS: Design and Build Websites》1-9章，然后《HTML5: The Missing Manual》1-4章。 </p>
+<p>需掌握：<br>SVG及矢量图原理<br>Canvas开发及动画原理（帧动画）<br>Video和Audio<br>flex box布局方式  </p>
+        
+        <p class="article-more-link">
+            <a href="/2018/09/01/study/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
