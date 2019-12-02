@@ -95,7 +95,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式"><span class="toc-number">1.</span> <span class="toc-text">响应式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算属性"><span class="toc-number">2.</span> <span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义指令"><span class="toc-number">3.</span> <span class="toc-text">自定义指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变化检测问题"><span class="toc-number">4.</span> <span class="toc-text">变化检测问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式"><span class="toc-number">1.</span> <span class="toc-text">响应式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算属性"><span class="toc-number">2.</span> <span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义指令"><span class="toc-number">3.</span> <span class="toc-text">自定义指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变化检测问题"><span class="toc-number">4.</span> <span class="toc-text">变化检测问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双向数据绑定"><span class="toc-number">5.</span> <span class="toc-text">双向数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由"><span class="toc-number">6.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vuex"><span class="toc-number">7.</span> <span class="toc-text">vuex</span></a></li></ol>
         
     </div>
 </aside>
@@ -152,6 +152,24 @@
 
 <p>有时你想向已有对象上添加一些属性，例如使用 Object.assign() 或 _.extend() 方法来添加属性。但是，添加到对象上的新属性不会触发更新。在这种情况下可以创建一个新的对象，让它包含原对象的属性和新的属性：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 代替 `Object.assign(this.someObject, &#123; a: 1, b: 2 &#125;)`</span><br><span class="line">this.someObject = Object.assign(&#123;&#125;, this.someObject, &#123; a: 1, b: 2 &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h2><p>js实现一个双向数据绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; id=&quot;a&quot;&gt;</span><br><span class="line">        &lt;span id=&quot;b&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var obj = &#123;&#125;;  //定义一个空对象</span><br><span class="line"></span><br><span class="line">    var val = &apos;zhao&apos;;  //赋予初始值</span><br><span class="line"></span><br><span class="line">    Object.defineProperty(obj, &apos;val&apos;, &#123;//定义要修改对象的属性</span><br><span class="line"></span><br><span class="line">        get: function () &#123;</span><br><span class="line"></span><br><span class="line">            return val;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        set: function (newVal) &#123; </span><br><span class="line"></span><br><span class="line">             val = newVal;//定义val等于修改后的内容</span><br><span class="line"></span><br><span class="line">            document.getElementById(&apos;a&apos;).value = val;//让文本框的内容等于val</span><br><span class="line">            </span><br><span class="line">            document.getElementById(&apos;b&apos;).innerHTML = val;//让span的内容等于val</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">    document.addEventListener(&apos;keyup&apos;, function (e) &#123;//当在文本框输入内容时让对象里你定义的val等于文本框的值</span><br><span class="line"></span><br><span class="line">        obj.val = e.target.value;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>拆分任务可以让我们的思路更加清晰：<br>（1）将vue中的data中的内容绑定到输入文本框和文本节点中<br>（2）当文本框的内容改变时，vue实例中的data也同时发生改变<br>（3）当data中的内容发生改变时，输入框及文本节点的内容也发生变化</p>
+<p> 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><strong>hash模式：</strong></p>
+<p>在浏览器中符号“#”，#以及#后面的字符称之为hash，用window.location.hash读取；</p>
+<p>特点：<br>hash虽然在URL中，但不被包括在HTTP请求中；用来指导浏览器动作，对服务端安全无害，hash不会重新加载页面。</p>
+<p>hash 模式下，仅 hash 符号之前的内容会被包含在请求中，如 <a href="http://www.xxx.com，因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回" target="_blank" rel="noopener">http://www.xxx.com，因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回</a> 404 错误。</p>
+<p><strong>history模式：</strong></p>
+<p>history采用HTML5的新特性；且提供了两个新方法：pushState（），replaceState（）可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。</p>
+<p>history 模式下，前端的 URL 必须和实际向后端发起请求的 URL 一致，如 <a href="http://www.xxx.com/items/id。后端如果缺少对" target="_blank" rel="noopener">http://www.xxx.com/items/id。后端如果缺少对</a> /items/id 的路由处理，将返回 404 错误。</p>
+<p>Vue-Router 官网里如此描述：“不过这种模式要玩好，还需要后台配置支持……所以呢，你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面。” </p>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p>1、vuex可以理解为一种开发模式或框架。比如PHP有thinkphp，java有spring等。<br>通过状态（数据源）集中管理驱动组件的变化（好比spring的IOC容器对bean进行集中管理）。</p>
+<p>2、应用级的状态集中放在store中； 改变状态的方式是提交mutations，这是个同步的事物； 异步逻辑应该封装在action中。</p>
+<p>改变状态的方式，同步逻辑封装在mutation中，异步逻辑封装在action中。</p>
+
         
     </section>
 </article>
@@ -161,7 +179,7 @@
 <a id="pagenext" href="/2019/05/13/gulpWebpack/" class="article-next" title="Webpck职能"><i class="icon-arrow-right"></i></a>
 
 
-<a id="pageprev" href="/2019/09/22/project/" class="article-prev" title="经验代码总结"><i class="icon-arrow-left"></i></a>
+<a id="pageprev" href="/2019/09/22/nginx/" class="article-prev" title="Nginx"><i class="icon-arrow-left"></i></a>
 
 
 

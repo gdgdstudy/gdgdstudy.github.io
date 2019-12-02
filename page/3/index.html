@@ -227,6 +227,50 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/09/22/project/">经验代码总结</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    typeToClass() &#123;</span><br><span class="line">      return (time, index, number) =&gt; &#123;</span><br><span class="line">        if (time.kind === 0) &#123;</span><br><span class="line">          return &apos;whiteBgk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (time.kind === 1) &#123;</span><br><span class="line">          if (this.indexStatus === &apos;preView&apos; &amp;&amp; this.canArrangeClickIndex === index &amp;&amp; this.canArrangeClickNum &lt; time.endIndex &amp;&amp; this.canArrangeClickNum &gt;= time.startIndex) &#123;</span><br><span class="line">            return &apos;canArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          if (this.indexStatus !== &apos;preView&apos;) &#123;</span><br><span class="line">            return &apos;editCanArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          return &apos;canArrangeBgk&apos;;</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+        
+        <p class="article-more-link">
+            <a href="/2019/09/22/project/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/09/22/nginx/">Nginx</a>
         </h1>
         
@@ -262,50 +306,6 @@
         
         <p class="article-more-link">
             <a href="/2019/09/22/nginx/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/22/project/">经验代码总结</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    typeToClass() &#123;</span><br><span class="line">      return (time, index, number) =&gt; &#123;</span><br><span class="line">        if (time.kind === 0) &#123;</span><br><span class="line">          return &apos;whiteBgk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (time.kind === 1) &#123;</span><br><span class="line">          if (this.indexStatus === &apos;preView&apos; &amp;&amp; this.canArrangeClickIndex === index &amp;&amp; this.canArrangeClickNum &lt; time.endIndex &amp;&amp; this.canArrangeClickNum &gt;= time.startIndex) &#123;</span><br><span class="line">            return &apos;canArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          if (this.indexStatus !== &apos;preView&apos;) &#123;</span><br><span class="line">            return &apos;editCanArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          return &apos;canArrangeBgk&apos;;</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/22/project/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -478,8 +478,8 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="HTTP-2-协议的主要目的是提高网页性能。"><a href="#HTTP-2-协议的主要目的是提高网页性能。" class="headerlink" title="HTTP/2 协议的主要目的是提高网页性能。"></a>HTTP/2 协议的主要目的是提高网页性能。</h2><p>二进制传输：将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
-<p>Header 压缩：头信息（header）原来是直接传输文本，现在是压缩后传输。</p>
+        <h2 id="HTTP-2-协议的主要目的是提高网页性能。"><a href="#HTTP-2-协议的主要目的是提高网页性能。" class="headerlink" title="HTTP/2 协议的主要目的是提高网页性能。"></a>HTTP/2 协议的主要目的是提高网页性能。</h2><p><strong>二进制传输：</strong>将请求和响应数据分割为更小的帧，并且它们采用二进制编码。</p>
+<p><strong>Header 压缩：</strong>头信息（header）原来是直接传输文本，现在是压缩后传输。</p>
 <pre><code>在 HTTP/1.x 中，我们使用文本的形式传输 header，在 header 携带 cookie 的情况下，可能每次都需要重复传输几百到几千的字节。
 
 为了减少这块的资源消耗并提升性能， HTTP/2对这些首部采取了压缩策略

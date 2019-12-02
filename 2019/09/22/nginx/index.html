@@ -164,7 +164,8 @@
 <p>weight, 加权轮询,跟据配置的权重的大小而分发给不同服务器不同数量的请求。如果不设置, 则默认为1。下面服务器的请求顺序为：ABBABBABBABBABB….</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream mysvr &#123; </span><br><span class="line">    server 127.0.0.1:7878 weight=2 max_fails=2 fail_timeout=2;</span><br><span class="line">    server 192.168.10.121:3333 weight=1 max_fails=2 fail_timeout=1;   </span><br><span class="line">    ip_hash; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="模块解析"><a href="#模块解析" class="headerlink" title="模块解析"></a>模块解析</h2><p>nginx 分为如下几块 ：全局模块  events http serve location</p>
+<h2 id="模块解析"><a href="#模块解析" class="headerlink" title="模块解析"></a>模块解析</h2><p>nginx 分为如下几块 ：</p>
+<p><strong>全局模块  events http serve location</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">work_process 4   // 全局模块   包括一个主进程 和4个工作进程   主进程负责监控端口，协调工作进程的工作状态  分配工作任务</span><br><span class="line">events&#123;</span><br><span class="line">    work_connection 1000  //events模块  单个工作进程允许同时建立外部的连接数 </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http&#123;</span><br><span class="line">    include  mime.type;     //文件扩展名与文件类型映射表  网络资源的媒体类型</span><br><span class="line">    default_type  application/octet-stream;   // #默认文件类型，默认为text/plain</span><br><span class="line">    keepalive_timeout 65;   // 连接的超时时间</span><br><span class="line">    upstream back_server&#123;  //负载均衡   内置策略 轮询   加权轮询  ip hash</span><br><span class="line">        server  192.168.62.62:80 weight=20;   //权重默认为1  </span><br><span class="line">        server  192.168.62.61:80; </span><br><span class="line">        server  192.168.62.64:80; </span><br><span class="line">    &#125;</span><br><span class="line">    server&#123;</span><br><span class="line">        listen 80;  // 监听端口</span><br><span class="line">        servername wwwbackend;</span><br><span class="line">        location webRoot/dist; </span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass 168.62.72.72:4343；</span><br><span class="line">            client_max_body_size     50m;  //最大上传文件大小</span><br><span class="line">        &#125;</span><br><span class="line">        location /api/vertion &#123;</span><br><span class="line">            proxy_pass 168.62.72.72:9090   //反向代理</span><br><span class="line">            proxy_set_header</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
     </section>
@@ -172,10 +173,10 @@
 
 
 
-<a id="pagenext" href="/2019/09/22/project/" class="article-next" title="经验代码总结"><i class="icon-arrow-right"></i></a>
+<a id="pagenext" href="/2019/09/22/thinkVue/" class="article-next" title="Vue文档再研-感悟"><i class="icon-arrow-right"></i></a>
 
 
-<a id="pageprev" href="/2019/09/22/debounce/" class="article-prev" title="节流防抖"><i class="icon-arrow-left"></i></a>
+<a id="pageprev" href="/2019/09/22/project/" class="article-prev" title="经验代码总结"><i class="icon-arrow-left"></i></a>
 
 
 

@@ -10,7 +10,7 @@
     <title>nodeJS | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。1. 创建服务器123456789var http = require(&amp;quot;http&amp;quot;);http.createServer(function(req, res)&amp;#123; ...">
+    <meta name="description" content="Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。1. 创建服务器12345678910var http = require(&amp;quot;http&amp;quot;);http.createServer(function(req, res)&amp;#123...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -135,7 +135,7 @@
         <p>Node.js 就是运行在服务端的 JavaScript。</p>
 <p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。</p>
 <p>Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</p>
-<h2 id="1-创建服务器"><a href="#1-创建服务器" class="headerlink" title="1. 创建服务器"></a>1. 创建服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">http.createServer(function(req, res)&#123;</span><br><span class="line">    res.writeHead(200,&#123;</span><br><span class="line">        &apos;content-Type&apos;:&apos;text/plain&apos;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    res.end(&apos;hello World);</span><br><span class="line"></span><br><span class="line">&#125;).listen(8888);</span><br></pre></td></tr></table></figure>
+<h2 id="1-创建服务器"><a href="#1-创建服务器" class="headerlink" title="1. 创建服务器"></a>1. 创建服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">http.createServer(function(req, res)&#123;</span><br><span class="line">    res.writeHead(200,&#123;</span><br><span class="line">        &apos;content-Type&apos;:&apos;text/plain&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    response.write(&quot;Hello World&quot;);</span><br><span class="line"></span><br><span class="line">    res.end();</span><br><span class="line"></span><br><span class="line">&#125;).listen(8888);</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 

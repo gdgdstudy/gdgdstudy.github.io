@@ -7,10 +7,10 @@
 
     
 
-    <title>Category: back-end | Yan Lian&#39;s Blog</title>
+    <title>浏览器缓存 | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content>
+    <meta name="description" content="浏览器的缓存机制也就是我们说的HTTP缓存机制，其机制是根据HTTP报文的缓存标识进行的。作用：（1）减少网络带宽消耗　　无论对于网站运营者或者用户，带宽都代表着金钱，过多的带宽消耗，只会便宜了网络运营商。当Web缓存副本被使用时，只会产生极小的网络流量，可以有效的降低运营成本。（2）降低服务器压力　　给网络资源设定有效期之后，用户可以重复使用本地的缓存，减少对源服务器的请求，间接降低服务器的压力。同时，搜索引擎的爬虫机器人也能根据过期机制降低爬取的频率，也能有效降低服务器的压力...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -65,7 +65,7 @@
                 <span class="nav-text">前端</span>
             </a>
         
-            <a class="nav-item active" href="/categories/back-end/">
+            <a class="nav-item" href="/categories/back-end/">
                 <span class="nav-text">后端</span>
             </a>
         
@@ -89,6 +89,8 @@
     <div id="aside-inner" class="aside-inner">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
+        
+        
         
         
 
@@ -135,27 +137,26 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                
-    <article class="article" itemscope itemprop="blogPost">
+                <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/11/21/nodeJS/">nodeJS</a>
+            浏览器缓存
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/back-end/index.html">
+            <a class="article-date" href="http://yoursite.com/2018/10/03/cache/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-11-21T02:42:25.193Z" itemprop="datePublished">2019-11-21</time>
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -164,23 +165,41 @@
     
     <section class="article-body markdown-body">
         
-        <p>Node.js 就是运行在服务端的 JavaScript。</p>
-<p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。</p>
-<p>Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</p>
-<h2 id="1-创建服务器"><a href="#1-创建服务器" class="headerlink" title="1. 创建服务器"></a>1. 创建服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">http.createServer(function(req, res)&#123;</span><br><span class="line">    res.writeHead(200,&#123;</span><br><span class="line">        &apos;content-Type&apos;:&apos;text/plain&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    response.write(&quot;Hello World&quot;);</span><br><span class="line"></span><br><span class="line">    res.end();</span><br><span class="line"></span><br><span class="line">&#125;).listen(8888);</span><br></pre></td></tr></table></figure>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/21/nodeJS/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
+        <p>浏览器的缓存机制也就是我们说的HTTP缓存机制，其机制是根据HTTP报文的缓存标识进行的。</p>
+<p>作用：</p>
+<p>（1）减少网络带宽消耗</p>
+<p>　　无论对于网站运营者或者用户，带宽都代表着金钱，过多的带宽消耗，只会便宜了网络运营商。当Web缓存副本被使用时，只会产生极小的网络流量，可以有效的降低运营成本。</p>
+<p>（2）降低服务器压力</p>
+<p>　　给网络资源设定有效期之后，用户可以重复使用本地的缓存，减少对源服务器的请求，间接降低服务器的压力。同时，搜索引擎的爬虫机器人也能根据过期机制降低爬取的频率，也能有效降低服务器的压力。</p>
+<p>（3）减少网络延迟，加快页面打开速度</p>
+<p>　　带宽对于个人网站运营者来说是十分重要，而对于大型的互联网公司来说，可能有时因为钱多而真的不在乎。那Web缓存还有作用吗？答案是肯定的，对于最终用户，缓存的使用能够明显加快页面打开速度，达到更好的体验。</p>
+<p>浏览器的缓分为<strong>强制缓存和协商缓存</strong>。</p>
+<p>缓存存放的位置：内存缓存/硬盘缓存。</p>
+<p>（1）内存缓存(from memory cache)：内存缓存具有两个特点，分别是快速读取和时效性：</p>
+<pre><code>1、快速读取：内存缓存会将编译解析后的文件，直接存入该进程的内存中，占据该进程一定的内存资源，以方便下次运行使用时的快速读取。
+
+2、时效性：一旦该进程关闭，则该进程的内存则会清空。</code></pre><p>（2）硬盘缓存(from disk cache)：硬盘缓存则是直接将缓存写入硬盘文件中，读取缓存需要对该缓存存放的硬盘文件进行I/O操作，然后重新解析该缓存内容，读取复杂，速度比内存缓存慢。</p>
+<p>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存。</p>
+<p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。</p>
+<p>强制缓存：expires，cache-control；HTTP/1.1后强制缓存expires 被cache-control替代；</p>
+<p>协商缓存：Etag / If-None-Match，Last-Modified / If-Modified-Since；</p>
+<p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)；</p>
+<p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
+<p>Last-Modified是服务器响应请求时，返回该资源文件在服务器最后被修改的时间；</p>
+<p>If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据If-Modified-Since的字段值与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200；否则则返回304，代表资源无更新，可继续使用缓存文件。</p>
+<a id="more"></a>
+
+
         
     </section>
 </article>
 
 
+
+<a id="pagenext" href="/2018/09/01/study/" class="article-next" title="《前端工程师进阶》 "><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2018/10/03/amd/" class="article-prev" title="CommonJs/AMD/CMD/ES6"><i class="icon-arrow-left"></i></a>
 
 
 
@@ -246,6 +265,31 @@
         }
     });
     </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
     
 
 </body>
