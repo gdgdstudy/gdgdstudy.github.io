@@ -141,6 +141,49 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/09/22/debounce/">节流防抖</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="防抖（debounce）"><a href="#防抖（debounce）" class="headerlink" title="防抖（debounce）"></a>防抖（debounce）</h2><p>所谓防抖， 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;    </span><br><span class="line">    var timeout = null;    </span><br><span class="line">    return function() &#123;        </span><br><span class="line">        if(timeout !== null)   clearTimeout(timeout);        </span><br><span class="line">        timeout = setTimeout(fn, wait);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        <p class="article-more-link">
+            <a href="/2019/09/22/debounce/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/09/22/nginx/">Nginx</a>
         </h1>
         
@@ -470,52 +513,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
-<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
-<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
-<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
-<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/10/03/amd/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2018/10/03/cache/">浏览器缓存</a>
         </h1>
         
@@ -584,7 +581,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/09/01/study/">《前端工程师进阶》 </a>
+            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -592,13 +589,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-01T01:52:00.000Z" itemprop="datePublished">2018-09-01</time>
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/css/">css</a>, <a class="article-tag-link" href="/tags/h5/">h5</a>, <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>, <a class="article-tag-link" href="/tags/webpack/">webpack</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
 </div>
 
 
@@ -607,11 +604,14 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>HTML先看《HTML &amp; CSS: Design and Build Websites》1-9章，然后《HTML5: The Missing Manual》1-4章。 </p>
-<p>需掌握：<br>SVG及矢量图原理<br>Canvas开发及动画原理（帧动画）<br>Video和Audio<br>flex box布局方式  </p>
+        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
+<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
+<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
+<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
+<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
         
         <p class="article-more-link">
-            <a href="/2018/09/01/study/#more">
+            <a href="/2018/10/03/amd/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
