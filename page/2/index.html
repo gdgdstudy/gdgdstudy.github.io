@@ -226,7 +226,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/11/19/mpvue/">mpvue</a>
+            <a href="/2019/11/19/docker/">容器和虚机的区别</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -240,7 +240,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/mpvue/">mpvue</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+    <a class="article-tag-link" href="/tags/docker/">docker</a>, <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -249,15 +249,31 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="mpvue"><a href="#mpvue" class="headerlink" title="mpvue"></a>mpvue</h2>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/19/mpvue/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
+        <a id="more"></a>
+
+<h2 id="Docker解决的主要问题"><a href="#Docker解决的主要问题" class="headerlink" title="Docker解决的主要问题"></a>Docker解决的主要问题</h2><p>有过后台开发经验的同学，一定遇到过下面这些问题：</p>
+<p>程序在开发环境跑得好好的，但是部署到生产环境，却状况频出；</p>
+<p>假设某个程序要在客户的环境上进行部署，虽然在自己的环境上部署、验证成功，但始终担心客户的环境上缺少某些必要的库文件，或者某些文件的版本不符合要求；</p>
+<p>那么，有了docker，这些问题都将不复存在。</p>
+<h2 id="什么是Docker"><a href="#什么是Docker" class="headerlink" title="什么是Docker"></a>什么是Docker</h2><p>Docker是一个虚拟环境容器，可以将你的可执行文件、配置文件及一切其他你需要的文件一并打包到这个容器中，并发布和应用到任意平台。比如，你在本地用Python开发了一个网站后台，开发测试完成后，就可以将Python3及其依赖包、Flask及其各种插件、Mysql、Nginx等打包到一个容器中，然后部署到任意你想部署到的环境。</p>
+<p>如果不好理解，我们再拿集装箱打个比方。</p>
+<p>集装箱解决了什么问题呢？在一艘大船上，可以把货物规整的摆放起来。并且各种各样的货物被集装箱标准化了，集装箱和集装箱之间不会互相影响。那么我就不需要专门运送水果的船和专门运送化学品的船了。只要这些货物在集装箱里封装的好好的，那我就可以用一艘大船把他们都运走。</p>
+<p>docker也是类似的理念。我们可以在一台机器上跑多个互相毫无关联的docker容器，每一个容器就相当于一个集装箱。</p>
+<p>Docker里的几个基本概念</p>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><p>镜像可以理解为一堆静态的文件</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>容器则是镜像run起来之后的一个实例。镜像之于容器就好比面向对象编程里的class之于object。</p>
+<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><p>镜像需要地方保存，这个地方就是仓库</p>
+<h2 id="与传统虚拟化的区别"><a href="#与传统虚拟化的区别" class="headerlink" title="与传统虚拟化的区别"></a>与传统虚拟化的区别</h2><p>这里我们顺便讲一下传统虚拟化。</p>
+<p>我们看到，传统虚拟化是站在硬件物理资源的基础上，虚拟出多个OS，然后在OS的基础上构建相对独立的程序运行环境，而Dokcer则是在OS的基础上进行虚拟，显然Dokcer轻量得多，因此其资源占用、性能消耗相比传统虚拟化都有很大优势。</p>
+<p>在IT行业从业多年，也算从看着时代从物理服务器走向虚拟化云计算时代，又准备进入Docker时代，作为下一代虚拟化技术，Docker正改变着整个行业开发、测试、部署应用的方式，至于虚拟化技术和docker技术到底有什么不同，下面来分析一下。</p>
+<h2 id="01-什么是虚拟化？"><a href="#01-什么是虚拟化？" class="headerlink" title="01 什么是虚拟化？"></a>01 什么是虚拟化？</h2><p>顾名思义，虚拟化技术是将物理资源以某种技术虚拟成资源池的形式，主要有一虚多和多虚一两种形式，比如个人电脑安装Vmware软件，可以在这个软件上安装其他Win系统、MacOS、Linux系统等，实现一台电脑/笔记本承载多个系统的优点，目前苹果笔记本用户双系统解决方案也以虚拟机为主，普通Windows用户可能需求量不大，而技术人员基本是必备软件了。</p>
+<p>从企业层面来看，多虚一为主要形式，也就是将大量物理服务器集群虚拟化，形成一个资源池，在这个资源上创建各种不同的虚拟机，实现灵活部署。</p>
+<h2 id="02-什么是Docker"><a href="#02-什么是Docker" class="headerlink" title="02 什么是Docker"></a>02 什么是Docker</h2><p>其实docker和虚拟技术很像，但又有一些不同点，一方面是两个技术的层级上，虚拟机一般是底层硬件Hardware支撑，上层是虚拟管理系统Hypervisor层，在上层开启不同的VM业务，如果需要将这些业务进行隔离，需要每个VM启动客户机操作系统，非常消耗资源。</p>
+<p>Docker完全不同，底层有硬件和Host OS系统支撑，比如Windows/MacOS/Linux，中间抛去了臃肿的系统，而是以Docker守护进程代替，上层建立不同的容器，不同的应用镜像打包在不同的容器中，他们互相隔离。</p>
+<h2 id="03-虚拟化与docker的区别"><a href="#03-虚拟化与docker的区别" class="headerlink" title="03 虚拟化与docker的区别"></a>03 虚拟化与docker的区别</h2><p>docker设计小巧，部署迁移快速，运行高效，应用之间相互独立，管理人员可以看到所有容器的内容，虚拟化技术比较臃肿，不论什么应用都需要先创建新的系统，并且并非按照应用隔离，而是按照系统隔离，管理员无法看到系统内部信息。</p>
+<p>举个例子，Docker就是手机中的各种APP，只需要一个系统就可以下载自己所需的应用，但是虚拟化技术相当于你的苹果手机安装一个庞大软件，这个软件上安装安卓系统、魅族系统等，每个系统上还要安装各类应用，比较麻烦。</p>
+<p>但两者没有绝对的好坏，主要还是看应用场景，根据不同的需求选择不同的解决方案即可。</p>
+
         
     </section>
 </article>
