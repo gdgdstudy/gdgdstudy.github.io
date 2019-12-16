@@ -257,7 +257,21 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>1.减少http请求次数和大小<br>  a.资源合并压缩<br>  b.图片懒加载<br>  c.音频走流文件</p>
+<p>2.DNS缓存和304缓存</p>
+<p>3.避免dom的重绘和回流</p>
+<p>a.分离读写（dom操作时）<br>  box.style.width = ‘10px’;<br>  box.style.height = ‘10px’;<br>  // console.log(111);   放在这里 两次回流<br>  box.style.margin = ‘10px’;<br>  // console.log(111);   放在这里 一次回流   由于浏览器的批量渲染机制<br>b.样式批量处理<br>box.style.cssText = ‘width:10px;height:10px;margin:10px;’</p>
+<p>c.元素批量修改</p>
+<p>文档碎片<br>let frag = document.createDocumentFrament();  //文档碎片<br>for(let i=0;i&lt;5;i++){<br>  let newLi.innerHtml = document.createElement(‘li);<br>  newLi.innerHTML = i;<br>  frag.appendChild(newLi);<br>}<br>box.appendChild(frag); //一次回流<br>frag = null;</p>
+<p>模板字符串<br>let str = ``;<br>for(let i=0; i&lt;5;i++){<br>  str += <code>&lt;li&gt;${i}&lt;/li&gt;</code>;<br>}<br>box.innerHTML = str;</p>
+<p>d.transform/opacity/filters  开启的是硬件加速，不会引发回流和重绘</p>
+<p>box.style.left=’100px’;<br>box.style.transform = ‘translateX(100px)’;  //不会引发回流和重绘</p>
+<p>e.牺牲平滑度换取速度<br>1px 移动会很平滑 但是回流太多； 10px移动不够平滑 但是回流少</p>
+<p>f.避免table布局和使用css的js表达式</p>
+<p>…</p>
+<h2 id="position-fixed-在ios上滑动不固定问题"><a href="#position-fixed-在ios上滑动不固定问题" class="headerlink" title="position fixed 在ios上滑动不固定问题"></a>position fixed 在ios上滑动不固定问题</h2><p>1、方法一：将fixed定位的内容移出 滚动视图外;</p>
+<p>2、方法二：在使用position:fixed的元素上加上transform: translateZ(0);</p>
+<h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    typeToClass() &#123;</span><br><span class="line">      return (time, index, number) =&gt; &#123;</span><br><span class="line">        if (time.kind === 0) &#123;</span><br><span class="line">          return &apos;whiteBgk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (time.kind === 1) &#123;</span><br><span class="line">          if (this.indexStatus === &apos;preView&apos; &amp;&amp; this.canArrangeClickIndex === index &amp;&amp; this.canArrangeClickNum &lt; time.endIndex &amp;&amp; this.canArrangeClickNum &gt;= time.startIndex) &#123;</span><br><span class="line">            return &apos;canArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          if (this.indexStatus !== &apos;preView&apos;) &#123;</span><br><span class="line">            return &apos;editCanArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          return &apos;canArrangeBgk&apos;;</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
         
@@ -603,7 +617,11 @@
 <p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。</p>
 <p>强制缓存：expires，cache-control；HTTP/1.1后强制缓存expires 被cache-control替代；</p>
 <p>expires:受限于本地时间，如果修改了本地时间，可能会造成缓存失效。</p>
-<p>cache-control:<br>no-cache:客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。<br>no-store:所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存。<br>public:所有内容都将被缓存（客户端和代理服务器都可缓存）。<br>private:所有内容只有客户端可以缓存。</p>
+<p>cache-control:<br>no-cache:客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。<br>no-store:所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存。<br>public:所有内容都将被缓存（客户端和代理服务器都可缓存）。<br>private:所有内容只有客户端可以缓存。<br>max-age: 缓存xx秒后过期。</p>
+<p>304：</p>
+<p>客户端                    浏览器缓存                        服务端<br>——————–&gt;http请求<br>&lt;——————- 缓存过期，返回缓存标识<br>——————————————————-&gt;http请求+过期缓存标识<br>&lt;—————————————————— 304资源未更新 not modified<br>——————–&gt;获取该请求缓存结果<br>&lt;——————- 返回该请求缓存结果</p>
+<p>200：</p>
+<p>客户端                    浏览器缓存                        服务端<br>——————–&gt;http请求<br>&lt;——————- 缓存过期，返回缓存标识<br>——————————————————-&gt;http请求+过期缓存标识<br>&lt;—————————————————— 200 资源已更新 结果+缓存标识<br>——————–&gt;缓存结果+标识</p>
 <p>协商缓存：Etag / If-None-Match，Last-Modified / If-Modified-Since；</p>
 <p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)；</p>
 <p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>

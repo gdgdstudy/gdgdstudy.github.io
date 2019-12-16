@@ -10,7 +10,7 @@
     <title>Vuex | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="vuex是 vue官方推荐的一个状态管理器。当我们遇到很多状态改变时，组件之间的通信就会变得复杂，这时候vuex的强大就展现出来。观念state (状态)，驱动我们应用的真实的源；view (视图)，对应着 状态 的声明式映射；actions (动作)，用户在 视图 上的输入引起状态的更改的可能方式。响应式的。vuex的核心vuex的核心是store对象，它承载了vue的状态管理。vuex的实现分为了2个部分，第一个部分是store的创建，以及第二部分store的挂载，并且解析...">
+    <meta name="description" content="vuex是 vue官方推荐的一个状态管理器。当我们遇到很多状态改变时，组件之间的通信就会变得复杂，这时候vuex的强大就展现出来。观念state (状态)，驱动我们应用的真实的源；view (视图)，对应着 状态 的声明式映射；actions (动作)，用户在 视图 上的输入引起状态的更改的可能方式。响应式的。vuex的核心state：存储状态（变量）getters：对数据获取之前的再次编译，可以理解为state的计算属性。我们在组件中使用 $sotre.getters.fu...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -138,7 +138,12 @@
 <p>actions (动作)，用户在 视图 上的输入引起状态的更改的可能方式。<strong>响应式</strong>的。</p>
 <a id="more"></a>
 
-<h2 id="vuex的核心"><a href="#vuex的核心" class="headerlink" title="vuex的核心"></a>vuex的核心</h2><p>vuex的核心是store对象，它承载了vue的状态管理。vuex的实现分为了2个部分，第一个部分是store的创建，以及第二部分store的挂载，并且解析store。</p>
+<h2 id="vuex的核心"><a href="#vuex的核心" class="headerlink" title="vuex的核心"></a>vuex的核心</h2><p>state：存储状态（变量）</p>
+<p>getters：对数据获取之前的再次编译，可以理解为state的计算属性。我们在组件中使用 $sotre.getters.fun()</p>
+<p>mutations：修改状态，并且是同步的。在组件中使用$store.commit(‘’,params)。这个和我们组件中的自定义事件类似。</p>
+<p>actions：异步操作。在组件中使用是$store.dispath(‘’)</p>
+<p>modules：store的子模块，为了开发大型项目，方便状态管理而使用的。这里我们就不解释了，用起来和上面的一样。</p>
+<p>vuex的核心是store对象，它承载了vue的状态管理。vuex的实现分为了2个部分，第一个部分是store的创建，以及第二部分store的挂载，并且解析store。</p>
 <p>vuex通过插件安装的形式来使得vue挂载vuex的store，当然这个是在vue组件的createBefore阶段实现的。随后Vuex将它直接挂载到 $options.$store 以供使用vue使用。</p>
 <p>对于vuex的属性，Vuex 会将 vuex 属性解构成 getters 和 actions。并将 getters 的每个属性都挂载 vm 下(有可能被组件的 $options.data() 的属性覆盖)，同时定义每个值的 getter 方法，但并不会定义 setter 方法，这是因为根据 Vuex 的设计是不允许开发者直接在组件内更改 store.state，而对数据的改动要通过提交 mutation。Vuex 实际上将 vm.vuex.getter 内的属性当作当前 vm 的计算属性来处理。和计算属性的区别是计算属性依赖计算的是 vm.$options.data 内的值，而 vm.vuex.getter 的属性依赖计算的是 store._vm.$options.data。这样所有组件的渲染都将都可以直接从状态树拿数据来渲染 UI 。</p>
 <p>所有的组件都可以和vuex的状态树进行数据交互。但是不允许直接改变状态树的状态，应该用vuex的mutations来提交状态的改变。vuex会将actions内的方法绑定到vue的$options.methods下，它们与vue中定义的方法并没有区别。而 actions 内的方法将通过 dispatch 触发 mutations 来更新全局状态,actions方法与mutations的区别是，mutations改变state并且必须是同步改变，而actions可以作为异步提交的方法，dispatch 可以接收一个promise，并且返回一个promise。</p>
