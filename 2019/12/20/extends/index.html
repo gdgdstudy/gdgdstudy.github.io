@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>js继承 | Yan Lian&#39;s Blog</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="1. 原型链继承12345678910111213141516function Super()&amp;#123;  this.colors = [&amp;apos;a&amp;apos;,&amp;apos;b&amp;apos;,&amp;apos;c&amp;apos;];&amp;#125;function Sub()&amp;#123;&amp;#125;Sub.prototype = new Super();Sub.prototype.constructor = Sub;var instance1 = new Sub();instance1.colors...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end/">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end/">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-原型链继承"><span class="toc-number">1.</span> <span class="toc-text">1. 原型链继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-构造函数继承"><span class="toc-number">2.</span> <span class="toc-text">2. 构造函数继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-组合继承"><span class="toc-number">3.</span> <span class="toc-text">3. 组合继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-寄生继承"><span class="toc-number">4.</span> <span class="toc-text">4. 寄生继承</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            js继承
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/12/20/extends/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-20T07:47:41.963Z" itemprop="datePublished">2019-12-20</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/继承/">继承</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = new Super();</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    //a,b,c,d</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c,d</span><br></pre></td></tr></table></figure>
+
+<p>原型链继承最主要的问题 <strong>在于包含引用类型值的原型属性会被所有实例共享</strong>。</p>
+<h2 id="2-构造函数继承"><a href="#2-构造函数继承" class="headerlink" title="2. 构造函数继承"></a>2. 构造函数继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line">  Sub.call(this);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub(name)&#123;</span><br><span class="line">  Super.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub(&apos;aa&apos;);   </span><br><span class="line">instance1.name; </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&apos;bb&apos;);   </span><br><span class="line">instance2.name;</span><br></pre></td></tr></table></figure>
+
+<p>相比原型链继承：  </p>
+<p>1.构造函数继承 引用类型值的原型属性不会被所有实例继承；</p>
+<p>2.而且可以在子类型构造函数中向超类型构造函数传递参数。</p>
+<p>3.<strong>构造函数继承————方法都在构造函数中定义，因此函数复用就无从谈起了</strong></p>
+<h2 id="3-组合继承"><a href="#3-组合继承" class="headerlink" title="3. 组合继承"></a>3. 组合继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">     // 第二次调用Super()，Sub.prototype又得到了name和colors两个属性，并对上次得到的属性值进行了覆盖</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">//第一次调用Super()，Sub.prototype得到了name和colors两个属性</span><br><span class="line">Sub.prototype = new Super(); </span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line">Sub.prototype.sayAge = function()&#123;</span><br><span class="line">    return this.age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>组合继承有它自己的问题。那就是无论什么情况下，都会<strong>调用两次父类型构造函数</strong>：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。子类型最终会包含父类型对象的全部实例属性，但不得不在调用子类型构造函数时重写这些属性</p>
+<h2 id="4-寄生继承"><a href="#4-寄生继承" class="headerlink" title="4. 寄生继承"></a>4. 寄生继承</h2><p>解决两次调用的方法是使用寄生组合式继承。寄生组合式继承与组合继承相似，都是<strong>通过借用构造函数来继承不可共享的属性</strong>，<strong>通过原型链的混成形式来继承方法和可共享的属性</strong>。只不过把原型继承的形式变成了寄生式继承。</p>
+<p>使用寄生组合式继承可以不必为了指定子类型的原型而调用父类型的构造函数，从而寄生式继承只继承了父类型的原型属性，而父类型的实例属性是通过借用构造函数的方式来得到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!Object.create)&#123;   //如果不支持方法；则自己写一个</span><br><span class="line">  Object.create = function(proto)&#123;</span><br><span class="line">    function F()&#123;&#125;;</span><br><span class="line">    F.prototype = proto;</span><br><span class="line">    return new F;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">Sub.prototype = Object.create(Super.prototype);</span><br><span class="line"></span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub(&quot;bai&quot;,29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">console.log(instance1.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;,&apos;black&apos;]</span><br><span class="line">instance1.sayName();//&quot;bai&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&quot;hu&quot;,27);</span><br><span class="line">console.log(instance2.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;]</span><br><span class="line">instance2.sayName();//&quot;hu&quot;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/12/20/type/" class="article-next" title="判断js数据类型"><i class="icon-arrow-right"></i></a>
+
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

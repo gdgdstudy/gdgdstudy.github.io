@@ -141,6 +141,107 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/12/20/extends/">js继承</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-20T07:47:41.963Z" itemprop="datePublished">2019-12-20</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/继承/">继承</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = new Super();</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    //a,b,c,d</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c,d</span><br></pre></td></tr></table></figure>
+
+<p>原型链继承最主要的问题 <strong>在于包含引用类型值的原型属性会被所有实例共享</strong>。</p>
+<h2 id="2-构造函数继承"><a href="#2-构造函数继承" class="headerlink" title="2. 构造函数继承"></a>2. 构造函数继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line">  Sub.call(this);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub(name)&#123;</span><br><span class="line">  Super.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub(&apos;aa&apos;);   </span><br><span class="line">instance1.name; </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&apos;bb&apos;);   </span><br><span class="line">instance2.name;</span><br></pre></td></tr></table></figure>
+
+<p>相比原型链继承：  </p>
+<p>1.构造函数继承 引用类型值的原型属性不会被所有实例继承；</p>
+<p>2.而且可以在子类型构造函数中向超类型构造函数传递参数。</p>
+<p>3.<strong>构造函数继承————方法都在构造函数中定义，因此函数复用就无从谈起了</strong></p>
+<h2 id="3-组合继承"><a href="#3-组合继承" class="headerlink" title="3. 组合继承"></a>3. 组合继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">     // 第二次调用Super()，Sub.prototype又得到了name和colors两个属性，并对上次得到的属性值进行了覆盖</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">//第一次调用Super()，Sub.prototype得到了name和colors两个属性</span><br><span class="line">Sub.prototype = new Super(); </span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line">Sub.prototype.sayAge = function()&#123;</span><br><span class="line">    return this.age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>组合继承有它自己的问题。那就是无论什么情况下，都会<strong>调用两次父类型构造函数</strong>：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。子类型最终会包含父类型对象的全部实例属性，但不得不在调用子类型构造函数时重写这些属性</p>
+<h2 id="4-寄生继承"><a href="#4-寄生继承" class="headerlink" title="4. 寄生继承"></a>4. 寄生继承</h2><p>解决两次调用的方法是使用寄生组合式继承。寄生组合式继承与组合继承相似，都是<strong>通过借用构造函数来继承不可共享的属性</strong>，<strong>通过原型链的混成形式来继承方法和可共享的属性</strong>。只不过把原型继承的形式变成了寄生式继承。</p>
+<p>使用寄生组合式继承可以不必为了指定子类型的原型而调用父类型的构造函数，从而寄生式继承只继承了父类型的原型属性，而父类型的实例属性是通过借用构造函数的方式来得到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!Object.create)&#123;   //如果不支持方法；则自己写一个</span><br><span class="line">  Object.create = function(proto)&#123;</span><br><span class="line">    function F()&#123;&#125;;</span><br><span class="line">    F.prototype = proto;</span><br><span class="line">    return new F;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">Sub.prototype = Object.create(Super.prototype);</span><br><span class="line"></span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub(&quot;bai&quot;,29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">console.log(instance1.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;,&apos;black&apos;]</span><br><span class="line">instance1.sayName();//&quot;bai&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&quot;hu&quot;,27);</span><br><span class="line">console.log(instance2.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;]</span><br><span class="line">instance2.sayName();//&quot;hu&quot;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/12/20/type/">判断js数据类型</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-20T02:23:47.467Z" itemprop="datePublished">2019-12-20</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1. typeof"></a>1. typeof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    typeof 123, //&quot;number&quot;</span><br><span class="line">    typeof &apos;dsfsf&apos;, //&quot;string&quot;</span><br><span class="line">    typeof false, //&quot;boolean&quot;</span><br><span class="line">    typeof [1,2,3], //&quot;object&quot;</span><br><span class="line">    typeof &#123;a:1,b:2,c:3&#125;, //&quot;object&quot;</span><br><span class="line">    typeof function()&#123;console.log(&apos;aaa&apos;);&#125;, //&quot;function&quot;</span><br><span class="line">    typeof undefined, //&quot;undefined&quot;</span><br><span class="line">    typeof null, //&quot;object&quot;</span><br><span class="line">    typeof new Date(), //&quot;object&quot;</span><br><span class="line">    typeof /^[a-zA-Z]&#123;5,20&#125;$/, //&quot;object&quot;</span><br><span class="line">    typeof new Error() //&quot;object&quot;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>Array，Object，null，Date，RegExp，Error这几个类型都被typeof判断为object，所以如果想要判断这几种类型，就不能使用typeof了。</p>
+<p>Number，String，Boolean，Function，undefined，如果想判断这几种类型，那就可以使用typeof。</p>
+<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2. instanceof"></a>2. instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    123 instanceof Number, //false</span><br><span class="line">    &apos;dsfsf&apos; instanceof String, //false</span><br><span class="line">    false instanceof Boolean, //false</span><br><span class="line">    [1,2,3] instanceof Array, //true</span><br><span class="line">    &#123;a:1,b:2,c:3&#125; instanceof Object, //true</span><br><span class="line">    function()&#123;console.log(&apos;aaa&apos;);&#125; instanceof Function, //true</span><br><span class="line">    undefined instanceof Object, //false</span><br><span class="line">    null instanceof Object, //false</span><br><span class="line">    new Date() instanceof Date, //true</span><br><span class="line">    /^[a-zA-Z]&#123;5,20&#125;$/ instanceof RegExp, //true</span><br><span class="line">    new Error() instanceof Error //true</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Number，String，Boolean没有检测出他们的类型;</p>
+<p>还需要注意null和undefined都返回了false，这是因为它们的类型就是自己本身，并不是Object创建出来它们，所以返回了false。</p>
+<h2 id="3-使用toString-检测对象类型"><a href="#3-使用toString-检测对象类型" class="headerlink" title="3. 使用toString()检测对象类型"></a>3. 使用toString()检测对象类型</h2><p>可以通过toString() 来获取每个对象的类型。为了每个对象都能通过 Object.prototype.toString() 来检测，需要以 <strong>Function.prototype.call()</strong> 或者 <strong>Function.prototype.apply()</strong> 的形式来调用，传递要检查的对象作为第一个参数，称为thisArg。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var toString = Object.prototype.toString;</span><br><span class="line">toString.call(123); //&quot;[object Number]&quot;</span><br><span class="line">toString.call(&apos;abcdef&apos;); //&quot;[object String]&quot;</span><br><span class="line">toString.call(true); //&quot;[object Boolean]&quot;</span><br><span class="line">toString.call([1, 2, 3, 4]); //&quot;[object Array]&quot;</span><br><span class="line">toString.call(&#123;name:&apos;wenzi&apos;, age:25&#125;); //&quot;[object Object]&quot;</span><br><span class="line">toString.call(function()&#123; console.log(&apos;this is function&apos;); &#125;); //&quot;[object Function]&quot;</span><br><span class="line">toString.call(undefined); //&quot;[object Undefined]&quot;</span><br><span class="line">toString.call(null); //&quot;[object Null]&quot;</span><br><span class="line">toString.call(new Date()); //&quot;[object Date]&quot;</span><br><span class="line">toString.call(/^[a-zA-Z]&#123;5,20&#125;$/); //&quot;[object RegExp]&quot;</span><br><span class="line">toString.call(new Error()); //&quot;[object Error]&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-constructor"><a href="#4-constructor" class="headerlink" title="4. constructor"></a>4. constructor</h2><p>constructor是prototype对象上的属性，指向构造函数。根据实例对象寻找属性的顺序，若实例对象上没有实例属性或方法时，就去原型链上寻找，因此，实例对象也是能使用constructor属性的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var num  = 123;</span><br><span class="line">var str  = &apos;abcdef&apos;;</span><br><span class="line">var bool = true;</span><br><span class="line">var arr  = [1, 2, 3, 4];</span><br><span class="line">var json = &#123;name:&apos;wenzi&apos;, age:25&#125;;</span><br><span class="line">var func = function()&#123; console.log(&apos;this is function&apos;); &#125;</span><br><span class="line">var und  = undefined;</span><br><span class="line">var nul  = null;</span><br><span class="line">var date = new Date();</span><br><span class="line">var reg  = /^[a-zA-Z]&#123;5,20&#125;$/;</span><br><span class="line">var error= new Error();</span><br><span class="line"></span><br><span class="line">function Person()&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">var tom = new Person();</span><br><span class="line"></span><br><span class="line">// undefined和null没有constructor属性</span><br><span class="line">console.log(</span><br><span class="line">    tom.constructor==Person,</span><br><span class="line">    num.constructor==Number,</span><br><span class="line">    str.constructor==String,</span><br><span class="line">    bool.constructor==Boolean,</span><br><span class="line">    arr.constructor==Array,</span><br><span class="line">    json.constructor==Object,</span><br><span class="line">    func.constructor==Function,</span><br><span class="line">    date.constructor==Date,</span><br><span class="line">    reg.constructor==RegExp,</span><br><span class="line">    error.constructor==Error</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>除了undefined和null之外，其他类型都可以通过constructor属性来判断类型。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/11/21/callApplyBind/">call Apply Bind</a>
         </h1>
         
@@ -315,6 +416,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function identity(arg: number): number &#123;</span><br><span class="line">    return arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function identity&lt;T&gt;(arg:T):T &#123;</span><br><span class="line">        return arg;</span><br><span class="line">&#125;</span><br><span class="line">let output = identity&lt;string&gt;(&quot;myString&quot;);  // type of output will be &apos;string&apos;</span><br><span class="line"></span><br><span class="line">let output = identity(&quot;myString&quot;);  // type of output will be &apos;string&apos;</span><br></pre></td></tr></table></figure>
+
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Greeter(greeting: string) &#123;</span><br><span class="line">  return function(target: Function) &#123;</span><br><span class="line">    target.prototype.greet = function(): void &#123;</span><br><span class="line">      console.log(greeting);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Greeter(&apos;您好&apos;)  //传参  也可以是如下一个对象&#123;selector: ...&#125;</span><br><span class="line">class Greeting &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    // 内部实现</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let myGreeting = new Greeting();</span><br><span class="line">myGreeting.greet(); // console output: &apos;您好!&apos;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">    selector: &apos;exe-counter&apos;,</span><br><span class="line">    template: `</span><br><span class="line">      &lt;p&gt;当前值: &#123;&#123; counter &#125;&#125;&lt;/p&gt;</span><br><span class="line">    `,</span><br><span class="line">    changeDetection: ChangeDetectionStrategy.OnPush</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口是一系列抽象方法的声明，是一些方法特征的集合，这些方法都应该是抽象的，需要由具体的类去实现，然后第三方就可以通过这组抽象方法调用，让具体的类执行具体的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function greeter(person: Person) &#123;</span><br><span class="line">    return &quot;Hello, &quot; + person.firstName + &quot; &quot; + person.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user = &#123; firstName: &quot;Jane&quot;, lastName: &quot;User&quot; &#125;;</span><br><span class="line"></span><br><span class="line">document.body.innerHTML = greeter(user);</span><br></pre></td></tr></table></figure>
+
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>TypeScript 是面向对象的 JavaScript。TypeScript 支持面向对象的所有特性，比如 类、接口等。 类描述了所创建的对象共同的属性和方法。</p>
+<p>在构造函数的参数上使用public等同于创建了同名的成员变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Student &#123;</span><br><span class="line">    fullName: string;</span><br><span class="line">    constructor(public firstName, public middleInitial, public lastName) &#123;</span><br><span class="line">        this.fullName = firstName + &quot; &quot; + middleInitial + &quot; &quot; + lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function greeter(person : Person) &#123;</span><br><span class="line">    return &quot;Hello, &quot; + person.firstName + &quot; &quot; + person.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user = new Student(&quot;Jane&quot;, &quot;M.&quot;, &quot;User&quot;);</span><br><span class="line"></span><br><span class="line">document.body.innerHTML = greeter(user);</span><br></pre></td></tr></table></figure>
         
     </section>
 </article>
@@ -507,91 +619,6 @@
             </a>
         </p>
         
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/19/webView/">WebView</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-19T04:04:23.792Z" itemprop="datePublished">2019-11-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>WebView是我们熟悉的”网络视图”,能加载并显示网页,可以将其视为一个浏览器。主要用于展示网络请求后的内容,就是将网络地址请求的内容展示在里面</p>
-<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>1.1显示、渲染请求的Web页面;</p>
-<p>1.2对展示的html文件进行布局;</p>
-<p>1.3与JavaScript相互调用。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/19/webView/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/19/RN/">React-Native</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-19T04:03:59.850Z" itemprop="datePublished">2019-11-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/RN/">RN</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React-Native"></a>React-Native</h2><p>RN主要是提供了一种多平台同时运行的语言环境。RN的口号是:Learn Once，Write AnyWhere。恩，很熟悉的口号，记得当初在大学里面学Java的时候似乎也是差不多:Write Once，Run AnyWhere。确实很像，但是实际上他们是完全不一样的！对于Java来说，他拥有强大的虚拟机，使得他能够在任何平台上都可以通过JVM跑起来，减低的是开发成本。毕竟只要Write Once！但是RN的口号是Learn Once。说的通俗点，就是学起来炒鸡简单。至于各个品台的适配等工作，就慢慢自己折腾吧！当然这个也和移动端设备的千奇百怪有关，不同设备从硬件到软件的环境都可能不同。比如Android有返回等物理按键，但是iPhone就没有这样的按钮。等等类似的这种情况都使得我们不得不单独做适配。 </p>
-<p>##优势</p>
-<p>RN在跳过了原生平台繁琐API学习成本的同时。其高效和跨平台的优势也很明显。<br>在各大厂商和全球开发者的监督下，稳定性与性能和原生平台的近似。<br>对于线上的Bug和紧急需求，其具备快速发布的能力。</p>
-<h2 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h2><p>1.作为一个由Facebook维护的三方库。其更新完全依赖于Facebook，如果哪一天不更新了。事实上很多火爆一时的第三方库，最后因为无人维护，被开发者丢弃。但是有一点是不会变的！一门具备跨平台的高性能是被市场所需求的。不过就目前的发展情况而言，RN社区的活跃度及市场对于RN开发的需求还是很大的。</p>
-<p>2.不成熟性。RN目前最新版本是0.51。这就意味着，尚未稳定，很多原生的功能尚未很好的实现。是一个依然处于开发阶段的库，这也意味着，能多深层次的优化和兼容操作，RN目前是无法像原生一样的。同时针对不同的设备。RN开发需要更多的逻辑开销去思考不同设备之间的兼容问题。</p>
-<p>3.调试成本。RN是一个相对比较重的库。会增加代码库的复杂度，其调试与原生相比有着一定的困难。 </p>
-
         
     </section>
 </article>

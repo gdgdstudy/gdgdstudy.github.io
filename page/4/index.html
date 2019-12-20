@@ -141,7 +141,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
+            <a href="/2019/03/02/task/">什么是宏任务、微任务</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -149,13 +149,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+    <time datetime="2019-03-02T03:23:00.000Z" itemprop="datePublished">2019-03-02</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -164,14 +164,61 @@
     
     <section class="article-body markdown-body">
         
-        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
-<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
-<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
-<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
-<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
+        <p>先来了通俗易懂的例子：<br>去银行办理业务的人就是一个个宏任务，当宏任务P1在柜台办理业务时，其它任务都需等待，当一个宏任务P1办理业务结束时，柜台职员会询问他还有没有其它微任务，如果他还有其他业务，则其他宏任务都需等待。就是微任务是在宏任务之前执行。</p>
+<h2 id="宏任务、微任务有哪些"><a href="#宏任务、微任务有哪些" class="headerlink" title="宏任务、微任务有哪些"></a>宏任务、微任务有哪些</h2><p>宏任务包括：<strong>script(整体代码), setTimeout, setInterval, setImmediate, I/O</strong>, UI rendering。</p>
+<p>微任务包括： <strong>Promises</strong>, Object.observe, MutationObserver</p>
+<h2 id="宏任务、微任务的执行顺序"><a href="#宏任务、微任务的执行顺序" class="headerlink" title="宏任务、微任务的执行顺序"></a>宏任务、微任务的执行顺序</h2><p>执行顺序：</p>
+<p>先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，遇到异步微任务则将异步微任务放入微任务队列中，<strong>当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，微任务执行完毕后再将异步宏任务从队列中调入主线程执行</strong>，一直循环直至所有任务执行完毕。</p>
         
         <p class="article-more-link">
-            <a href="/2018/10/03/amd/#more">
+            <a href="/2019/03/02/task/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/01/23/charles/">Charle</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-23T14:11:00.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/charles/">charles</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Charles 主要的功能包括：</p>
+<p>1）截取 Http 和 Https 网络封包。</p>
+<p>2）支持重发网络请求，方便后端调试。</p>
+<p>3）支持修改网络请求参数。</p>
+<p>4）支持网络请求的截获并动态修改。</p>
+<p>5）支持模拟慢速网络。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/01/23/charles/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -244,6 +291,52 @@
         
         <p class="article-more-link">
             <a href="/2018/10/03/cache/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
+<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
+<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
+<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
+<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/10/03/amd/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -526,54 +619,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2017/12/13/crossSite/">跨域</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/4/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2017-12-13T13:21:00.000Z" itemprop="datePublished">2017-12-13</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="1-为什么出现跨域"><a href="#1-为什么出现跨域" class="headerlink" title="1.为什么出现跨域"></a>1.为什么出现跨域</h2><p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p>
-<p>假设有两个网站，A网站部署在：<a href="http://localhost:80" target="_blank" rel="noopener">http://localhost:80</a> 即本地ip端口80上；B网站部署在：<a href="http://localhost:81" target="_blank" rel="noopener">http://localhost:81</a> 即本地ip端口81上。现在A网站的页面想去访问B网站的信息</p>
-<p><code>$.get(&quot;http://localhost:81/api/values&quot;,function (result) {</code><br><code>$(&quot;#show&quot;).html(result);</code><br><code>})</code></p>
-        
-        <p class="article-more-link">
-            <a href="/2017/12/13/crossSite/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
 </nav>
 
 

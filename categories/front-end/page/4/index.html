@@ -141,6 +141,124 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/10/03/cache/">浏览器缓存</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>浏览器的缓存机制也就是我们说的HTTP缓存机制，其机制是根据HTTP报文的缓存标识进行的。</p>
+<p>作用：</p>
+<p>（1）减少网络带宽消耗</p>
+<p>　　无论对于网站运营者或者用户，带宽都代表着金钱，过多的带宽消耗，只会便宜了网络运营商。当Web缓存副本被使用时，只会产生极小的网络流量，可以有效的降低运营成本。</p>
+<p>（2）降低服务器压力</p>
+<p>　　给网络资源设定有效期之后，用户可以重复使用本地的缓存，减少对源服务器的请求，间接降低服务器的压力。同时，搜索引擎的爬虫机器人也能根据过期机制降低爬取的频率，也能有效降低服务器的压力。</p>
+<p>（3）减少网络延迟，加快页面打开速度</p>
+<p>　　带宽对于个人网站运营者来说是十分重要，而对于大型的互联网公司来说，可能有时因为钱多而真的不在乎。那Web缓存还有作用吗？答案是肯定的，对于最终用户，缓存的使用能够明显加快页面打开速度，达到更好的体验。</p>
+<p><strong>缓存存放的位置：内存缓存/硬盘缓存</strong></p>
+<p>（1）内存缓存(from memory cache)：内存缓存具有两个特点，分别是快速读取和时效性：</p>
+<pre><code>1、快速读取：内存缓存会将编译解析后的文件，直接存入该进程的内存中，占据该进程一定的内存资源，以方便下次运行使用时的快速读取。
+
+2、时效性：一旦该进程关闭，则该进程的内存则会清空。</code></pre><p>（2）硬盘缓存(from disk cache)：硬盘缓存则是直接将缓存写入硬盘文件中，读取缓存需要对该缓存存放的硬盘文件进行I/O操作，然后重新解析该缓存内容，读取复杂，速度比内存缓存慢。</p>
+<p><strong>浏览器会把哪些文件丢进内存中？哪些丢进硬盘中？</strong></p>
+<p>对于大文件来说，大概率是不存储在内存中的，反之优先</p>
+<p>当前系统内存使用率高的话，文件优先存储进硬盘</p>
+<p>浏览器的缓分为<strong>强制缓存和协商缓存</strong>。</p>
+<p>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存。</p>
+<p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。</p>
+<p>强制缓存：expires，cache-control；HTTP/1.1后强制缓存expires 被cache-control替代；</p>
+<p>expires:受限于本地时间，如果修改了本地时间，可能会造成缓存失效。</p>
+<p>cache-control:<br>no-cache:客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。<br>no-store:所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存。<br>public:所有内容都将被缓存（客户端和代理服务器都可缓存）。<br>private:所有内容只有客户端可以缓存。<br>max-age: 缓存xx秒后过期。</p>
+<p>304：</p>
+<p>客户端                    浏览器缓存                        服务端<br>——————–&gt;http请求<br>&lt;——————- 缓存过期，返回缓存标识<br>——————————————————-&gt;http请求+过期缓存标识<br>&lt;—————————————————— 304资源未更新 not modified<br>——————–&gt;获取该请求缓存结果<br>&lt;——————- 返回该请求缓存结果</p>
+<p>200：</p>
+<p>客户端                    浏览器缓存                        服务端<br>——————–&gt;http请求<br>&lt;——————- 缓存过期，返回缓存标识<br>——————————————————-&gt;http请求+过期缓存标识<br>&lt;—————————————————— 200 资源已更新 结果+缓存标识<br>——————–&gt;缓存结果+标识</p>
+<p>协商缓存：Etag / If-None-Match，Last-Modified / If-Modified-Since；</p>
+<p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)；</p>
+<p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
+<p>Last-Modified是服务器响应请求时，返回该资源文件在服务器最后被修改的时间；</p>
+<p>If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据If-Modified-Since的字段值与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200；否则则返回304，代表资源无更新，可继续使用缓存文件。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/10/03/cache/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
+<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
+<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
+<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
+<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/10/03/amd/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/01/study/">《前端工程师进阶》 </a>
         </h1>
         

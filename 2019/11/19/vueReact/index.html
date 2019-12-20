@@ -191,8 +191,10 @@
 <p>(50kb) 还是要小的多。但是要注意，用 Angular 2 的 App 的体积缩减是使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着功能引入</p>
 <p>的不断增多，尺寸会变得越来越大。</p>
 <p><strong>angular 变更检测</strong></p>
+<p>变化监测是单向线性的，即从根组件开始，依次触发各个子组件的变化监测器去完成变化的对比工作。在每个组件的执行环境中，angular都会创建一个变化监测类的实例，该实例能准确地记录每个组件的数据模型，并以此作为下一轮变化监测的参考标准。</p>
 <p>每个组件有一个变更检测器，主要通过zone.js 监听异步事件（event, xhr, setTimeout）, 当发生异步事件时，触发一次变更检测， 形成了一颗变更检测树，数据自上而下，单项数据流， 提高检测效率。</p>
 <p><strong>在 Angular 源码中，有一个 ApplicationRef_ 类，其作用是用来监听 NgZone 中的 onMicrotaskEmpty 事件，无论何时只要触发这个事件，那么将会执行一个 tick 方法用来告诉 Angular 去执行变化检测。</strong></p>
+<p>默认情况下，任何一个组件模型中的数据变化都会导致整个组件树的变化监测，但其实很多组件的输入属性是没有变化的，因此没必要对这样的组件进行变化监测操作。减少不必要的监测操作可以提升应用程序的性能。 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OnPush进行变更优化；若输入属性没有发生变化，组件的变化检测将会被跳过。</span><br><span class="line">@Component(&#123;</span><br><span class="line">    selector: &apos;profile-card&apos;,</span><br><span class="line">    template: `</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">         &lt;profile-name [name]=&apos;profile.name&apos;&gt;&lt;/profile-name&gt;</span><br><span class="line">         &lt;profile-age [age]=&apos;profile.age&apos;&gt;&lt;/profile-age&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">    `,</span><br><span class="line">    changeDetection: ChangeDetectionStrategy.OnPush</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p><strong>vue diff算法</strong></p>

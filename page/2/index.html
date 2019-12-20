@@ -141,6 +141,95 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/11/19/vueReact/">Vue-React 区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:06:38.592Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。</p>
+<p>React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
+<p>React 和 Vue 有许多相似之处，它们都有：</p>
+<p>使用 Virtual DOM</p>
+<p>提供了响应式（Reactive）和组件化（Composable）的视图组件。</p>
+<p>将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/vueReact/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/19/dataStructure/">js数据结构预算法</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:04:58.304Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="js实现一个队列"><a href="#js实现一个队列" class="headerlink" title="js实现一个队列"></a>js实现一个队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function Queue()&#123;</span><br><span class="line">    this.items = [];</span><br><span class="line">    Queue.prototype.push = function(data)&#123;</span><br><span class="line">        this.items.push(data);</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.shift = function()&#123;</span><br><span class="line">        this.items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.size = function()&#123;</span><br><span class="line">        return this.items.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.toString = function()&#123;</span><br><span class="line">        let stringData = &apos;&apos;;</span><br><span class="line">        for(const item of this.items)&#123;</span><br><span class="line">            stringData += item+&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringData;</span><br><span class="line">    &#125;; </span><br><span class="line">&#125;</span><br><span class="line">var queue = new Queue();</span><br><span class="line">queue.push(2121);</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2); </span><br><span class="line">alert(queue.toString());</span><br></pre></td></tr></table></figure>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/dataStructure/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/11/19/webView/">WebView</a>
         </h1>
         
@@ -496,106 +585,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/19/vuedata/">Vue为什么data返回的是个函数</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-19T03:59:39.124Z" itemprop="datePublished">2019-11-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件是可复用的vue实例，一个组件被创建好之后，就可能被用在各个地方，而组件不管被复用了多少次，组件中的data数据都应该是相互隔离，互不影响的，基于这一理念，</p>
-<p>组件每复用一次，data数据就应该被复制一次，之后，当某一处复用的地方组件内data数据被改变时，其他复用地方组件的data数据不受影响，如下面这个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        count: 0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该组件被复用了三次，但每个复用的地方组件内的count数据相互不受影响，它们各自维护各自内部的count</p>
-<p>能有这样效果正是因为上述例子中的data不是一个单纯的对象，而是一个函数返回值的形式，所以每个组件实例可以维护一份被返回对象的独立拷贝，如果我们将上述例子中</p>
-<p>的data修改为：</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/19/vuedata/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/15/map、forEach/">map,forEach的区别</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-15T13:15:00.000Z" itemprop="datePublished">2019-11-15</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="共同点："><a href="#共同点：" class="headerlink" title="共同点："></a>共同点：</h2><pre><code>1.都是循环遍历数组中的每一项。
-
-2.forEach() 和 map() 里面每一次执行匿名函数都支持3个参数：数组中的当前项item,当前项的索引index,原始数组input。
-
-3.匿名函数中的this都是指Window。
-
-4.只能遍历数组。</code></pre>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/15/map、forEach/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
 </nav>
 
 

@@ -141,6 +141,102 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/11/19/vuedata/">Vue为什么data返回的是个函数</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T03:59:39.124Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件是可复用的vue实例，一个组件被创建好之后，就可能被用在各个地方，而组件不管被复用了多少次，组件中的data数据都应该是相互隔离，互不影响的，基于这一理念，</p>
+<p>组件每复用一次，data数据就应该被复制一次，之后，当某一处复用的地方组件内data数据被改变时，其他复用地方组件的data数据不受影响，如下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        count: 0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该组件被复用了三次，但每个复用的地方组件内的count数据相互不受影响，它们各自维护各自内部的count</p>
+<p>能有这样效果正是因为上述例子中的data不是一个单纯的对象，而是一个函数返回值的形式，所以每个组件实例可以维护一份被返回对象的独立拷贝，如果我们将上述例子中</p>
+<p>的data修改为：</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/vuedata/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/11/15/map、forEach/">map,forEach的区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-15T13:15:00.000Z" itemprop="datePublished">2019-11-15</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="共同点："><a href="#共同点：" class="headerlink" title="共同点："></a>共同点：</h2><pre><code>1.都是循环遍历数组中的每一项。
+
+2.forEach() 和 map() 里面每一次执行匿名函数都支持3个参数：数组中的当前项item,当前项的索引index,原始数组input。
+
+3.匿名函数中的this都是指Window。
+
+4.只能遍历数组。</code></pre>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/15/map、forEach/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/11/15/vue3/">Vue 3.0</a>
         </h1>
         
@@ -517,103 +613,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/03/02/task/">什么是宏任务、微任务</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-03-02T03:23:00.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>先来了通俗易懂的例子：<br>去银行办理业务的人就是一个个宏任务，当宏任务P1在柜台办理业务时，其它任务都需等待，当一个宏任务P1办理业务结束时，柜台职员会询问他还有没有其它微任务，如果他还有其他业务，则其他宏任务都需等待。就是微任务是在宏任务之前执行。</p>
-<h2 id="宏任务、微任务有哪些"><a href="#宏任务、微任务有哪些" class="headerlink" title="宏任务、微任务有哪些"></a>宏任务、微任务有哪些</h2><p>宏任务包括：<strong>script(整体代码), setTimeout, setInterval, setImmediate, I/O</strong>, UI rendering。</p>
-<p>微任务包括： <strong>Promises</strong>, Object.observe, MutationObserver</p>
-<h2 id="宏任务、微任务的执行顺序"><a href="#宏任务、微任务的执行顺序" class="headerlink" title="宏任务、微任务的执行顺序"></a>宏任务、微任务的执行顺序</h2><p>执行顺序：</p>
-<p>先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，遇到异步微任务则将异步微任务放入微任务队列中，<strong>当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，微任务执行完毕后再将异步宏任务从队列中调入主线程执行</strong>，一直循环直至所有任务执行完毕。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/03/02/task/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/01/23/charles/">Charle</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-01-23T14:11:00.000Z" itemprop="datePublished">2019-01-23</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/charles/">charles</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Charles 主要的功能包括：</p>
-<p>1）截取 Http 和 Https 网络封包。</p>
-<p>2）支持重发网络请求，方便后端调试。</p>
-<p>3）支持修改网络请求参数。</p>
-<p>4）支持网络请求的截获并动态修改。</p>
-<p>5）支持模拟慢速网络。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/01/23/charles/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
 </nav>
 
 
