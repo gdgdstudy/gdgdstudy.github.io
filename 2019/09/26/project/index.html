@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>经验代码总结 | Yan Lian&#39;s Blog</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="性能优化1.减少http请求次数和大小  a.资源合并压缩  b.图片懒加载  c.音频走流文件2.DNS缓存和304缓存3.避免dom的重绘和回流a.分离读写（dom操作时）  box.style.width = ‘10px’;  box.style.height = ‘10px’;  // console.log(111);   放在这里 两次回流  box.style.margin = ‘10px’;  // console.log(111);   放在这里 一次回流   由于...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end/">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end/">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#性能优化"><span class="toc-number">1.</span> <span class="toc-text">性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position-fixed-在ios上滑动不固定问题"><span class="toc-number">2.</span> <span class="toc-text">position fixed 在ios上滑动不固定问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何保持后端传的html空格换行格式-white-space-pre-wrap-word-break-break-all"><span class="toc-number">3.</span> <span class="toc-text">如何保持后端传的html空格换行格式 white-space: pre-wrap;   word-break:break-all;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue（FastClick）-input-点击多次-才有效-解决"><span class="toc-number">4.</span> <span class="toc-text">vue（FastClick） input 点击多次 才有效 解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与安卓联调"><span class="toc-number">5.</span> <span class="toc-text">与安卓联调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与ios联调："><span class="toc-number">6.</span> <span class="toc-text">与ios联调：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决-img是无效的url-出现碎片图标的情况-可以代替一个默认图的url"><span class="toc-number">7.</span> <span class="toc-text">解决 img是无效的url   出现碎片图标的情况  可以代替一个默认图的url</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vconsole插件的应用-在项目的main-js里面-加一个本页面的url-方便获取url和查错"><span class="toc-number">8.</span> <span class="toc-text">vconsole插件的应用  在项目的main.js里面 加一个本页面的url  方便获取url和查错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片上传cdn-拒绝本地加载-减小编译的包的体积-加快页面渲染速度"><span class="toc-number">9.</span> <span class="toc-text">图片上传cdn  拒绝本地加载 减小编译的包的体积 加快页面渲染速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何调整html-中-input里面的输入光标大小"><span class="toc-number">10.</span> <span class="toc-text">如何调整html 中 input里面的输入光标大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video自动播放"><span class="toc-number">11.</span> <span class="toc-text">video自动播放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#computed"><span class="toc-number">12.</span> <span class="toc-text">computed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#debounce"><span class="toc-number">13.</span> <span class="toc-text">debounce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#换行"><span class="toc-number">14.</span> <span class="toc-text">换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1px-缝隙"><span class="toc-number">15.</span> <span class="toc-text">1px 缝隙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-Img"><span class="toc-number">16.</span> <span class="toc-text">background Img</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toTop"><span class="toc-number">17.</span> <span class="toc-text">toTop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#native交互"><span class="toc-number">18.</span> <span class="toc-text">native交互</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            经验代码总结
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/09/26/project/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-09-26T05:56:00.000Z" itemprop="datePublished">2019-09-26</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>1.减少http请求次数和大小<br>  a.资源合并压缩<br>  b.图片懒加载<br>  c.音频走流文件</p>
+<p>2.DNS缓存和304缓存</p>
+<p>3.避免dom的重绘和回流</p>
+<p>a.分离读写（dom操作时）<br>  box.style.width = ‘10px’;<br>  box.style.height = ‘10px’;<br>  // console.log(111);   放在这里 两次回流<br>  box.style.margin = ‘10px’;<br>  // console.log(111);   放在这里 一次回流   由于浏览器的批量渲染机制<br>b.样式批量处理<br>box.style.cssText = ‘width:10px;height:10px;margin:10px;’</p>
+<p>c.元素批量修改</p>
+<p>文档碎片<br>let frag = document.createDocumentFrament();  //文档碎片<br>for(let i=0;i&lt;5;i++){<br>  let newLi.innerHtml = document.createElement(‘li);<br>  newLi.innerHTML = i;<br>  frag.appendChild(newLi);<br>}<br>box.appendChild(frag); //一次回流<br>frag = null;</p>
+<p>模板字符串<br>let str = ``;<br>for(let i=0; i&lt;5;i++){<br>  str += <code>&lt;li&gt;${i}&lt;/li&gt;</code>;<br>}<br>box.innerHTML = str;</p>
+<p>d.transform/opacity/filters  开启的是硬件加速，不会引发回流和重绘</p>
+<p>box.style.left=’100px’;<br>box.style.transform = ‘translateX(100px)’;  //不会引发回流和重绘</p>
+<p>e.牺牲平滑度换取速度<br>1px 移动会很平滑 但是回流太多； 10px移动不够平滑 但是回流少</p>
+<p>f.避免table布局和使用css的js表达式</p>
+<p>…</p>
+<h2 id="position-fixed-在ios上滑动不固定问题"><a href="#position-fixed-在ios上滑动不固定问题" class="headerlink" title="position fixed 在ios上滑动不固定问题"></a>position fixed 在ios上滑动不固定问题</h2><p>1、方法一：将fixed定位的内容移出 滚动视图外;</p>
+<p>2、方法二：在使用position:fixed的元素上加上transform: translateZ(0);</p>
+<h2 id="如何保持后端传的html空格换行格式-white-space-pre-wrap-word-break-break-all"><a href="#如何保持后端传的html空格换行格式-white-space-pre-wrap-word-break-break-all" class="headerlink" title="如何保持后端传的html空格换行格式 white-space: pre-wrap;   word-break:break-all;"></a>如何保持后端传的html空格换行格式 white-space: pre-wrap;   word-break:break-all;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.content&#123;</span><br><span class="line">        font-size:32/@REM;</span><br><span class="line">        font-family:PingFangSC-Regular,PingFang SC;</span><br><span class="line">        font-weight:400;</span><br><span class="line">        line-height:40/@REM; </span><br><span class="line">        color:#333333;</span><br><span class="line">        margin-bottom: 32/@REM;</span><br><span class="line">        text-align:justify;  </span><br><span class="line">        span&#123; </span><br><span class="line">            color:rgba(35,133,238,1);</span><br><span class="line">        &#125;</span><br><span class="line">        p&#123;</span><br><span class="line">            display: inline;</span><br><span class="line">            word-break:break-all;</span><br><span class="line">            white-space: pre-wrap;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue（FastClick）-input-点击多次-才有效-解决"><a href="#vue（FastClick）-input-点击多次-才有效-解决" class="headerlink" title="vue（FastClick） input 点击多次 才有效 解决"></a>vue（FastClick） input 点击多次 才有效 解决</h2><p>当使用FastClick 时，输入框在ios上点击输入调取手机自带输入键盘不灵敏，有时候甚至点不出来。而安卓上完全没问题。这个原因是因为FastClick的点击穿透。解决方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FastClick.prototype.focus = function (targetElement) &#123;</span><br><span class="line">  let length;</span><br><span class="line">  if (targetElement.setSelectionRange &amp;&amp; targetElement.type.indexOf(&apos;date&apos;) !== 0 &amp;&amp; targetElement.type !== &apos;time&apos; &amp;&amp; targetElement.type !== &apos;month&apos;) &#123;</span><br><span class="line">    length = targetElement.value.length;</span><br><span class="line">    targetElement.focus();</span><br><span class="line">    targetElement.setSelectionRange(length, length);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    targetElement.focus();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与安卓联调"><a href="#与安卓联调" class="headerlink" title="与安卓联调"></a>与安卓联调</h2><p>a.需要增加物理键退出方法；<br>b.右滑退出webview的去除;<br>c.字体font-weight bold代替600。</p>
+<h2 id="与ios联调："><a href="#与ios联调：" class="headerlink" title="与ios联调："></a>与ios联调：</h2><p>由于ios不支持’2019-09-01’的形式，只支持’2019/09/01’形式，需要注意 后端习惯性传‘–’形式导致的不同端时间处理不兼容；需要用new Date(time.replace((/-/g, ‘/‘)).getTime();<br>new Date(time).getTime();</p>
+<h2 id="解决-img是无效的url-出现碎片图标的情况-可以代替一个默认图的url"><a href="#解决-img是无效的url-出现碎片图标的情况-可以代替一个默认图的url" class="headerlink" title="解决 img是无效的url   出现碎片图标的情况  可以代替一个默认图的url"></a>解决 img是无效的url   出现碎片图标的情况  可以代替一个默认图的url</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;img1&quot; onerror=&quot;this.src=&apos;https://web-data.zmlearn.com/image/wzHjQDccxCtvTe7UMag8Th/index_bgk.png&apos;&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vconsole插件的应用-在项目的main-js里面-加一个本页面的url-方便获取url和查错"><a href="#vconsole插件的应用-在项目的main-js里面-加一个本页面的url-方便获取url和查错" class="headerlink" title="vconsole插件的应用  在项目的main.js里面 加一个本页面的url  方便获取url和查错"></a>vconsole插件的应用  在项目的main.js里面 加一个本页面的url  方便获取url和查错</h2><h2 id="图片上传cdn-拒绝本地加载-减小编译的包的体积-加快页面渲染速度"><a href="#图片上传cdn-拒绝本地加载-减小编译的包的体积-加快页面渲染速度" class="headerlink" title="图片上传cdn  拒绝本地加载 减小编译的包的体积 加快页面渲染速度"></a>图片上传cdn  拒绝本地加载 减小编译的包的体积 加快页面渲染速度</h2><h2 id="如何调整html-中-input里面的输入光标大小"><a href="#如何调整html-中-input里面的输入光标大小" class="headerlink" title="如何调整html 中 input里面的输入光标大小"></a>如何调整html 中 input里面的输入光标大小</h2><p>IE：不管该行有没有文字，光标高度与font-size一致。</p>
+<p>FF：该行有文字时，光标高度与font-size一致。该行无文字时，光标高度与input的height一致。</p>
+<p>Chrome：该行无文字时，光标高度与line-height一致；该行有文字时，光标高度从input顶部到文字底部(这两种情况都是在有设定line-height的时候)，如果没有line-height，则是与font-size一致。</p>
+<p>解决的方案：</p>
+<p>给input的height设定一个较小的高度，然后用padding去填充，基本上可以解决所有浏览器的问题</p>
+<p>input{ height: 16px; padding: 4px 0px; font-size: 12px; } </p>
+<h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    typeToClass() &#123;</span><br><span class="line">      return (time, index, number) =&gt; &#123;</span><br><span class="line">        if (time.kind === 0) &#123;</span><br><span class="line">          return &apos;whiteBgk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (time.kind === 1) &#123;</span><br><span class="line">          if (this.indexStatus === &apos;preView&apos; &amp;&amp; this.canArrangeClickIndex === index &amp;&amp; this.canArrangeClickNum &lt; time.endIndex &amp;&amp; this.canArrangeClickNum &gt;= time.startIndex) &#123;</span><br><span class="line">            return &apos;canArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          if (this.indexStatus !== &apos;preView&apos;) &#123;</span><br><span class="line">            return &apos;editCanArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          return &apos;canArrangeBgk&apos;;</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">debounce(fn) &#123;</span><br><span class="line">    if (this.timeout !== null) &#123;</span><br><span class="line">    clearTimeout(this.timeout);</span><br><span class="line">    &#125;</span><br><span class="line">    this.timeout = setTimeout(fn, 1000)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>word-wrap: break-word; word-break: break-all; overflow: hidden;</p>
+<h2 id="1px-缝隙"><a href="#1px-缝隙" class="headerlink" title="1px 缝隙"></a>1px 缝隙</h2><img src="/images/1pxSlot.png">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">margin-top: -1px;</span><br><span class="line">margin-bottom: -1px;</span><br><span class="line">margin-left: -1px;</span><br><span class="line">margin-right: -1px;</span><br></pre></td></tr></table></figure>
+
+<h2 id="background-Img"><a href="#background-Img" class="headerlink" title="background Img"></a>background Img</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background: url(../../assets/image/icons/index_bgk.png) center 0 no-repeat; background-size: cover;</span><br></pre></td></tr></table></figure>
+
+<h2 id="toTop"><a href="#toTop" class="headerlink" title="toTop"></a>toTop</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 先在需要置顶的位置  安置a标签 --&gt;</span><br><span class="line">&lt;a name=&quot;toTop&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">然后在点击 置顶的img 外部 包裹a标签   设置href属性</span><br><span class="line">&lt;a href=&quot;#toTop&quot;&gt;&lt;img src=&quot;../../assets/image/icons/index_totop.png&quot; class=&quot;totop&quot; v-if=&quot;lookMore&quot; /&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 先页面定位位置： --&gt;</span><br><span class="line"></span><br><span class="line">&lt;a id=&quot;name&quot; /&gt; </span><br><span class="line">document.querySelector(&quot;#name&quot;).scrollIntoView();</span><br></pre></td></tr></table></figure>
+
+<h2 id="native交互"><a href="#native交互" class="headerlink" title="native交互"></a>native交互</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 原生交互 --&gt;</span><br><span class="line"></span><br><span class="line">export function getImgFromCamera(message) &#123;</span><br><span class="line">  (isAndroid() &amp;&amp; window.JStInterface.getImgFromCamera(JSON.stringify(message))) ||</span><br><span class="line">    (isApple() &amp;&amp;</span><br><span class="line">      window.webkit.messageHandlers.getImgFromCamera.postMessage(&#123;</span><br><span class="line">        body: message</span><br><span class="line">      &#125;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- 苹果手机 --&gt;</span><br><span class="line">export function isApple(getVersion)&#123;</span><br><span class="line">	const  u = navigator.userAgent.toLowerCase()</span><br><span class="line">	const isApple = /iphone|ipad|ipod|ios/i.test(u)</span><br><span class="line">	const ver=u.match(/cpu iphone os (.*?) like mac os/)</span><br><span class="line">	if(isApple &amp;&amp; getVersion === true)&#123;</span><br><span class="line">		return parseInt(ver[1].replace(/_/g,&apos;.&apos;))</span><br><span class="line">	&#125;</span><br><span class="line">	return isApple</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- 安卓手机 --&gt;</span><br><span class="line"></span><br><span class="line">export function isAndroid()&#123;</span><br><span class="line">	const  u = navigator.userAgent.toLowerCase()</span><br><span class="line">	const isAndroid = /android/i.test(u)</span><br><span class="line">	return isAndroid</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- X手机 --&gt;</span><br><span class="line">export function isIphoneX()&#123;</span><br><span class="line">	return /iphone/gi.test(navigator.userAgent) &amp;&amp; (screen.height == 812 &amp;&amp; screen.width == 375)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/09/22/debounce/" class="article-next" title="节流防抖"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/11/03/thinkVue/" class="article-prev" title="Vue 再研"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

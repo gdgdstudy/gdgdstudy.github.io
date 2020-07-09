@@ -141,7 +141,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/11/15/vue3/">Vue 3.0</a>
+            <a href="/2019/06/22/ts/">ts</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -149,13 +149,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-11-15T13:15:00.000Z" itemprop="datePublished">2019-11-15</time>
+    <time datetime="2019-06-22T12:13:00.000Z" itemprop="datePublished">2019-06-22</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+    <a class="article-tag-link" href="/tags/typescript/">typescript</a>
 </div>
 
 
@@ -164,225 +164,22 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="基于Proxy的响应"><a href="#基于Proxy的响应" class="headerlink" title="基于Proxy的响应"></a>基于Proxy的响应</h2><p>在Vue 2x中Vue的响应是基于Object.defineProperty，但是这个会存在着诸多限制，例如在Vue 2x中，Vue不能跟踪对象属性的添加和删除，所以在Vue 2x中就有了Vue.set 和 Vue.delete这样的API。而在Vue 3中已经不再采用这种定义的方式，改用ES6中提供的Proxy这个API实现数据响应的功能。 </p>
-<h2 id="新的组件渲染模式"><a href="#新的组件渲染模式" class="headerlink" title="新的组件渲染模式"></a>新的组件渲染模式</h2><p>在Vue 2x中Vue的组件渲染是父组件重新渲染，会导致子组件也重新渲染，即使子组件没发生任何改变。而，这种渲染的模式，无疑是很消耗性能的。所以，在Vue 3中针对这个问题，重新定义了渲染的模式，在重新渲染时不会重新渲染没有发生改变的组件，只会重新渲染发生改变的组件。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/15/vue3/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
+        <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型来创建可重用的组件，一个组件可以支持多种类型的数据。</p>
+<p>不用泛型的话，这个函数可能是下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function identity(arg: number): number &#123;</span><br><span class="line">    return arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function identity&lt;T&gt;(arg:T):T &#123;</span><br><span class="line">        return arg;</span><br><span class="line">&#125;</span><br><span class="line">let output = identity&lt;string&gt;(&quot;myString&quot;);  // type of output will be &apos;string&apos;</span><br><span class="line"></span><br><span class="line">let output = identity(&quot;myString&quot;);  // type of output will be &apos;string&apos;</span><br></pre></td></tr></table></figure>
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/03/thinkVue/">Vue 再研</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-03T01:15:00.000Z" itemprop="datePublished">2019-11-03</time>
-</a>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Greeter(greeting: string) &#123;</span><br><span class="line">  return function(target: Function) &#123;</span><br><span class="line">    target.prototype.greet = function(): void &#123;</span><br><span class="line">      console.log(greeting);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Greeter(&apos;您好&apos;)  //传参  也可以是如下一个对象&#123;selector: ...&#125;</span><br><span class="line">class Greeting &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    // 内部实现</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let myGreeting = new Greeting();</span><br><span class="line">myGreeting.greet(); // console output: &apos;您好!&apos;;</span><br></pre></td></tr></table></figure>
 
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">    selector: &apos;exe-counter&apos;,</span><br><span class="line">    template: `</span><br><span class="line">      &lt;p&gt;当前值: &#123;&#123; counter &#125;&#125;&lt;/p&gt;</span><br><span class="line">    `,</span><br><span class="line">    changeDetection: ChangeDetectionStrategy.OnPush</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口是一系列抽象方法的声明，是一些方法特征的集合，这些方法都应该是抽象的，需要由具体的类去实现，然后第三方就可以通过这组抽象方法调用，让具体的类执行具体的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function greeter(person: Person) &#123;</span><br><span class="line">    return &quot;Hello, &quot; + person.firstName + &quot; &quot; + person.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user = &#123; firstName: &quot;Jane&quot;, lastName: &quot;User&quot; &#125;;</span><br><span class="line"></span><br><span class="line">document.body.innerHTML = greeter(user);</span><br></pre></td></tr></table></figure>
 
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h2><p>1.只有当实例被创建时就已经存在于 data 中的属性才是<strong>响应式</strong>的。</p>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>2.计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/03/thinkVue/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/22/debounce/">节流防抖</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="防抖（debounce）"><a href="#防抖（debounce）" class="headerlink" title="防抖（debounce）"></a>防抖（debounce）</h2><p>所谓防抖， 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;    </span><br><span class="line">    var timeout = null;    </span><br><span class="line">    return function() &#123;        </span><br><span class="line">        if(timeout !== null)   clearTimeout(timeout);        </span><br><span class="line">        timeout = setTimeout(fn, wait);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/22/debounce/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/22/nginx/">Nginx</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nginx/">nginx</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Nginx是一个高性能的HTTP和反向代理服务器, 及电子邮件代理服务器, 同时也是一个非常高效的反向代理、负载平衡。</p>
-<h2 id="为什么要用Nginx"><a href="#为什么要用Nginx" class="headerlink" title="为什么要用Nginx"></a>为什么要用Nginx</h2><p>跨平台、配置简单, 非阻塞、高并发连接：处理2-3万并发连接数, 官方监测能支持5万并发, </p>
-<p>内存消耗小：开启10个nginx才占150M内存 , nginx处理静态文件好,耗费内存少,</p>
-<p>内置的健康检查功能：如果有一个服务器宕机, 会做一个健康检查, 再发送的请求就不会发送到宕机的服务器了。重新将请求提交到其他的节点上。</p>
-<p>节省宽带：支持GZIP压缩, 可以添加浏览器本地缓存</p>
-<p>稳定性高：宕机的概率非常小</p>
-<p>接收用户请求是异步的：浏览器将请求发送到nginx服务器, 它先将用户请求全部接收下来, 再一次性发送给后端web服务器, 极大减轻了web服务器的压力,一边接收web服务</p>
-<p>器的返回数据, 一边发送给浏览器客户端, 网络依赖性比较低, 只要ping通就可以负载均衡,可以有多台nginx服务器 使用DNS做负载均衡,事件驱动：通信机制采用epoll模</p>
-<p>型（nio2 异步非阻塞）</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/22/nginx/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/09/22/project/">经验代码总结</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/angular/">angular</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/react/">react</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>1.减少http请求次数和大小<br>  a.资源合并压缩<br>  b.图片懒加载<br>  c.音频走流文件</p>
-<p>2.DNS缓存和304缓存</p>
-<p>3.避免dom的重绘和回流</p>
-<p>a.分离读写（dom操作时）<br>  box.style.width = ‘10px’;<br>  box.style.height = ‘10px’;<br>  // console.log(111);   放在这里 两次回流<br>  box.style.margin = ‘10px’;<br>  // console.log(111);   放在这里 一次回流   由于浏览器的批量渲染机制<br>b.样式批量处理<br>box.style.cssText = ‘width:10px;height:10px;margin:10px;’</p>
-<p>c.元素批量修改</p>
-<p>文档碎片<br>let frag = document.createDocumentFrament();  //文档碎片<br>for(let i=0;i&lt;5;i++){<br>  let newLi.innerHtml = document.createElement(‘li);<br>  newLi.innerHTML = i;<br>  frag.appendChild(newLi);<br>}<br>box.appendChild(frag); //一次回流<br>frag = null;</p>
-<p>模板字符串<br>let str = ``;<br>for(let i=0; i&lt;5;i++){<br>  str += <code>&lt;li&gt;${i}&lt;/li&gt;</code>;<br>}<br>box.innerHTML = str;</p>
-<p>d.transform/opacity/filters  开启的是硬件加速，不会引发回流和重绘</p>
-<p>box.style.left=’100px’;<br>box.style.transform = ‘translateX(100px)’;  //不会引发回流和重绘</p>
-<p>e.牺牲平滑度换取速度<br>1px 移动会很平滑 但是回流太多； 10px移动不够平滑 但是回流少</p>
-<p>f.避免table布局和使用css的js表达式</p>
-<p>…</p>
-<h2 id="position-fixed-在ios上滑动不固定问题"><a href="#position-fixed-在ios上滑动不固定问题" class="headerlink" title="position fixed 在ios上滑动不固定问题"></a>position fixed 在ios上滑动不固定问题</h2><p>1、方法一：将fixed定位的内容移出 滚动视图外;</p>
-<p>2、方法二：在使用position:fixed的元素上加上transform: translateZ(0);</p>
-<h2 id="如何保持后端传的html空格换行格式-white-space-pre-wrap-word-break-break-all"><a href="#如何保持后端传的html空格换行格式-white-space-pre-wrap-word-break-break-all" class="headerlink" title="如何保持后端传的html空格换行格式 white-space: pre-wrap;   word-break:break-all;"></a>如何保持后端传的html空格换行格式 white-space: pre-wrap;   word-break:break-all;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.content&#123;</span><br><span class="line">        font-size:32/@REM;</span><br><span class="line">        font-family:PingFangSC-Regular,PingFang SC;</span><br><span class="line">        font-weight:400;</span><br><span class="line">        line-height:40/@REM; </span><br><span class="line">        color:#333333;</span><br><span class="line">        margin-bottom: 32/@REM;</span><br><span class="line">        text-align:justify;  </span><br><span class="line">        span&#123; </span><br><span class="line">            color:rgba(35,133,238,1);</span><br><span class="line">        &#125;</span><br><span class="line">        p&#123;</span><br><span class="line">            display: inline;</span><br><span class="line">            word-break:break-all;</span><br><span class="line">            white-space: pre-wrap;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="vue（FastClick）-input-点击多次-才有效-解决"><a href="#vue（FastClick）-input-点击多次-才有效-解决" class="headerlink" title="vue（FastClick） input 点击多次 才有效 解决"></a>vue（FastClick） input 点击多次 才有效 解决</h2><p>当使用FastClick 时，输入框在ios上点击输入调取手机自带输入键盘不灵敏，有时候甚至点不出来。而安卓上完全没问题。这个原因是因为FastClick的点击穿透。解决方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FastClick.prototype.focus = function (targetElement) &#123;</span><br><span class="line">  let length;</span><br><span class="line">  if (targetElement.setSelectionRange &amp;&amp; targetElement.type.indexOf(&apos;date&apos;) !== 0 &amp;&amp; targetElement.type !== &apos;time&apos; &amp;&amp; targetElement.type !== &apos;month&apos;) &#123;</span><br><span class="line">    length = targetElement.value.length;</span><br><span class="line">    targetElement.focus();</span><br><span class="line">    targetElement.setSelectionRange(length, length);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    targetElement.focus();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与安卓联调"><a href="#与安卓联调" class="headerlink" title="与安卓联调"></a>与安卓联调</h2><p>a.需要增加物理键退出方法；<br>b.右滑退出webview的去除;<br>c.字体font-weight bold代替600。</p>
-<h2 id="与ios联调："><a href="#与ios联调：" class="headerlink" title="与ios联调："></a>与ios联调：</h2><p>由于ios不支持’2019-09-01’的形式，只支持’2019/09/01’形式，需要注意 后端习惯性传‘–’形式导致的不同端时间处理不兼容；需要用new Date(time.replace((/-/g, ‘/‘)).getTime();<br>new Date(time).getTime();</p>
-<h2 id="解决-img是无效的url-出现碎片图标的情况-可以代替一个默认图的url"><a href="#解决-img是无效的url-出现碎片图标的情况-可以代替一个默认图的url" class="headerlink" title="解决 img是无效的url   出现碎片图标的情况  可以代替一个默认图的url"></a>解决 img是无效的url   出现碎片图标的情况  可以代替一个默认图的url</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;img1&quot; onerror=&quot;this.src=&apos;https://web-data.zmlearn.com/image/wzHjQDccxCtvTe7UMag8Th/index_bgk.png&apos;&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="vconsole插件的应用-在项目的main-js里面-加一个本页面的url-方便获取url和查错"><a href="#vconsole插件的应用-在项目的main-js里面-加一个本页面的url-方便获取url和查错" class="headerlink" title="vconsole插件的应用  在项目的main.js里面 加一个本页面的url  方便获取url和查错"></a>vconsole插件的应用  在项目的main.js里面 加一个本页面的url  方便获取url和查错</h2><h2 id="图片上传cdn-拒绝本地加载-减小编译的包的体积-加快页面渲染速度"><a href="#图片上传cdn-拒绝本地加载-减小编译的包的体积-加快页面渲染速度" class="headerlink" title="图片上传cdn  拒绝本地加载 减小编译的包的体积 加快页面渲染速度"></a>图片上传cdn  拒绝本地加载 减小编译的包的体积 加快页面渲染速度</h2><h2 id="如何调整html-中-input里面的输入光标大小"><a href="#如何调整html-中-input里面的输入光标大小" class="headerlink" title="如何调整html 中 input里面的输入光标大小"></a>如何调整html 中 input里面的输入光标大小</h2><p>IE：不管该行有没有文字，光标高度与font-size一致。</p>
-<p>FF：该行有文字时，光标高度与font-size一致。该行无文字时，光标高度与input的height一致。</p>
-<p>Chrome：该行无文字时，光标高度与line-height一致；该行有文字时，光标高度从input顶部到文字底部(这两种情况都是在有设定line-height的时候)，如果没有line-height，则是与font-size一致。</p>
-<p>解决的方案：</p>
-<p>给input的height设定一个较小的高度，然后用padding去填充，基本上可以解决所有浏览器的问题</p>
-<p>input{ height: 16px; padding: 4px 0px; font-size: 12px; } </p>
-<h2 id="video自动播放"><a href="#video自动播放" class="headerlink" title="video自动播放"></a>video自动播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;videoPlay&quot; muted  autoplay loop  :src=&quot;videoUrl&quot; webkit-playsinline=&quot;true&quot; playsinline=&quot;true&quot;  controls=&quot;controls&quot; controlslist=&quot;nodownload&quot;&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    typeToClass() &#123;</span><br><span class="line">      return (time, index, number) =&gt; &#123;</span><br><span class="line">        if (time.kind === 0) &#123;</span><br><span class="line">          return &apos;whiteBgk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (time.kind === 1) &#123;</span><br><span class="line">          if (this.indexStatus === &apos;preView&apos; &amp;&amp; this.canArrangeClickIndex === index &amp;&amp; this.canArrangeClickNum &lt; time.endIndex &amp;&amp; this.canArrangeClickNum &gt;= time.startIndex) &#123;</span><br><span class="line">            return &apos;canArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          if (this.indexStatus !== &apos;preView&apos;) &#123;</span><br><span class="line">            return &apos;editCanArrangeBgkLight&apos;;</span><br><span class="line">          &#125;</span><br><span class="line">          return &apos;canArrangeBgk&apos;;</span><br><span class="line">        &#125; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-        
-        <p class="article-more-link">
-            <a href="/2019/09/22/project/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>TypeScript 是面向对象的 JavaScript。TypeScript 支持面向对象的所有特性，比如 类、接口等。 类描述了所创建的对象共同的属性和方法。</p>
+<p>在构造函数的参数上使用public等同于创建了同名的成员变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Student &#123;</span><br><span class="line">    fullName: string;</span><br><span class="line">    constructor(public firstName, public middleInitial, public lastName) &#123;</span><br><span class="line">        this.fullName = firstName + &quot; &quot; + middleInitial + &quot; &quot; + lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">    firstName: string;</span><br><span class="line">    lastName: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function greeter(person : Person) &#123;</span><br><span class="line">    return &quot;Hello, &quot; + person.firstName + &quot; &quot; + person.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user = new Student(&quot;Jane&quot;, &quot;M.&quot;, &quot;User&quot;);</span><br><span class="line"></span><br><span class="line">document.body.innerHTML = greeter(user);</span><br></pre></td></tr></table></figure>
         
     </section>
 </article>
@@ -581,6 +378,101 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/02/22/vuedata/">Vue为什么data返回的是个函数</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-22T13:53:00.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件是可复用的vue实例，一个组件被创建好之后，就可能被用在各个地方，而组件不管被复用了多少次，组件中的data数据都应该是相互隔离，互不影响的，基于这一理念，</p>
+<p>组件每复用一次，data数据就应该被复制一次，之后，当某一处复用的地方组件内data数据被改变时，其他复用地方组件的data数据不受影响，如下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        count: 0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该组件被复用了三次，但每个复用的地方组件内的count数据相互不受影响，它们各自维护各自内部的count</p>
+<p>能有这样效果正是因为上述例子中的data不是一个单纯的对象，而是一个函数返回值的形式，所以每个组件实例可以维护一份被返回对象的独立拷贝，如果我们将上述例子中</p>
+<p>的data修改为：</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/02/22/vuedata/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/02/12/vueReact/">Vue-React 区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-12T14:23:00.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。</p>
+<p>React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
+<p>React 和 Vue 有许多相似之处，它们都有：</p>
+<p>使用 Virtual DOM</p>
+<p>提供了响应式（Reactive）和组件化（Composable）的视图组件。</p>
+<p>将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。</p>
+        
+        <p class="article-more-link">
+            <a href="/2019/02/12/vueReact/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/01/23/charles/">Charle</a>
         </h1>
         
@@ -613,6 +505,117 @@
         
         <p class="article-more-link">
             <a href="/2019/01/23/charles/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/01/21/extends/">js继承</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-21T11:56:00.000Z" itemprop="datePublished">2019-01-21</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/继承/">继承</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = new Super();</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    //a,b,c,d</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c,d</span><br></pre></td></tr></table></figure>
+
+<p>原型链继承最主要的问题 <strong>在于包含引用类型值的原型属性会被所有实例共享</strong>。</p>
+<h2 id="2-构造函数继承"><a href="#2-构造函数继承" class="headerlink" title="2. 构造函数继承"></a>2. 构造函数继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line">  Super.call(this);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub(name)&#123;</span><br><span class="line">  Super.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub(&apos;aa&apos;);   </span><br><span class="line">instance1.name; </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&apos;bb&apos;);   </span><br><span class="line">instance2.name;</span><br></pre></td></tr></table></figure>
+
+<p>相比原型链继承：  </p>
+<p>1.构造函数继承 引用类型值的原型属性不会被所有实例继承；</p>
+<p>2.而且可以在子类型构造函数中向超类型构造函数传递参数。</p>
+<p>3.<strong>构造函数继承————方法都在构造函数中定义，因此函数复用就无从谈起了</strong></p>
+<h2 id="3-组合继承"><a href="#3-组合继承" class="headerlink" title="3. 组合继承"></a>3. 组合继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">     // 第二次调用Super()，Sub.prototype又得到了name和colors两个属性，并对上次得到的属性值进行了覆盖</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">//第一次调用Super()，Sub.prototype得到了name和colors两个属性</span><br><span class="line">Sub.prototype = new Super(); </span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line">Sub.prototype.sayAge = function()&#123;</span><br><span class="line">    return this.age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>组合继承有它自己的问题。那就是无论什么情况下，都会<strong>调用两次父类型构造函数</strong>：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。子类型最终会包含父类型对象的全部实例属性，但不得不在调用子类型构造函数时重写这些属性</p>
+<h2 id="4-寄生继承"><a href="#4-寄生继承" class="headerlink" title="4. 寄生继承"></a>4. 寄生继承</h2><p>解决两次调用的方法是使用寄生组合式继承。寄生组合式继承与组合继承相似，都是<strong>通过借用构造函数来继承不可共享的属性</strong>，<strong>通过原型链的混成形式来继承方法和可共享的属性</strong>。只不过把原型继承的形式变成了寄生式继承。</p>
+<p>使用寄生组合式继承可以不必为了指定子类型的原型而调用父类型的构造函数，从而寄生式继承只继承了父类型的原型属性，而父类型的实例属性是通过借用构造函数的方式来得到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!Object.create)&#123;   //如果不支持方法；则自己写一个</span><br><span class="line">  Object.create = function(proto)&#123;</span><br><span class="line">    function F()&#123;&#125;;</span><br><span class="line">    F.prototype = proto;</span><br><span class="line">    return new F;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">Sub.prototype = Object.create(Super.prototype);</span><br><span class="line"></span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub(&quot;bai&quot;,29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">console.log(instance1.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;,&apos;black&apos;]</span><br><span class="line">instance1.sayName();//&quot;bai&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&quot;hu&quot;,27);</span><br><span class="line">console.log(instance2.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;]</span><br><span class="line">instance2.sayName();//&quot;hu&quot;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-19T14:11:00.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/es7/">es7</a>, <a class="article-tag-link" href="/tags/es8/">es8</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
+<p>模块化</p>
+<p>箭头函数</p>
+<p>函数参数默认值</p>
+<p>模板字符串</p>
+<p>解构赋值</p>
+<p>延展操作符</p>
+<p>对象属性简写</p>
+<p>symbol  :新的原始数据类型Symbol，表示<strong>独一无二的值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">let s1 = Symbol();</span><br><span class="line">let s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">let s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">let s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+
+<p>Set :本身是一个构造函数，用来生成 Set 数据结构。Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line"></span><br><span class="line">[2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line"></span><br><span class="line">for (let i of s) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 2 3 5 4</span><br><span class="line"></span><br><span class="line">// 去除数组的重复成员</span><br><span class="line">[...new Set(array)]</span><br><span class="line"></span><br><span class="line">//去除字符串里面的重复字符</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;)</span><br><span class="line">// &quot;abc&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面代码向 Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">let a = NaN;</span><br><span class="line">let b = NaN;</span><br><span class="line">set.add(a);</span><br><span class="line">set.add(b);</span><br><span class="line">set // Set &#123;NaN&#125;</span><br><span class="line"></span><br><span class="line">另外，两个对象总是不相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 1</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.add(1).add(2).add(2);</span><br><span class="line">// 注意2被加入了两次</span><br><span class="line"></span><br><span class="line">s.size // 2</span><br><span class="line"></span><br><span class="line">s.has(1) // true</span><br><span class="line">s.has(2) // true</span><br><span class="line">s.has(3) // false</span><br><span class="line"></span><br><span class="line">s.delete(2);</span><br><span class="line">s.has(2) // false</span><br></pre></td></tr></table></figure>
+
+<p>Promise</p>
+<p>Let与Const</p>
+<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
+<p>指数操作符</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/11/19/es/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>

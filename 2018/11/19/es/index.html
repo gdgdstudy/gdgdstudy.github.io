@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>ES6、ES7、ES8、ES9、ES10特性一锅炖 | Yan Lian&#39;s Blog</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="ES6的特性类模块化箭头函数函数参数默认值模板字符串解构赋值延展操作符对象属性简写symbol  :新的原始数据类型Symbol，表示独一无二的值1234567891011// 没有参数的情况let s1 = Symbol();let s2 = Symbol();s1 === s2 // false// 有参数的情况let s1 = Symbol(&amp;apos;foo&amp;apos;);let s2 = Symbol(&amp;apos;foo&amp;apos;);s1 === s2 // ...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end/">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end/">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6的特性"><span class="toc-number">1.</span> <span class="toc-text">ES6的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES7的特性"><span class="toc-number">2.</span> <span class="toc-text">ES7的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES8的特性"><span class="toc-number">3.</span> <span class="toc-text">ES8的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES9的特性"><span class="toc-number">4.</span> <span class="toc-text">ES9的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES10的特性"><span class="toc-number">5.</span> <span class="toc-text">ES10的特性</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            ES6、ES7、ES8、ES9、ES10特性一锅炖
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2018/11/19/es/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-19T14:11:00.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/es7/">es7</a>, <a class="article-tag-link" href="/tags/es8/">es8</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
+<p>模块化</p>
+<p>箭头函数</p>
+<p>函数参数默认值</p>
+<p>模板字符串</p>
+<p>解构赋值</p>
+<p>延展操作符</p>
+<p>对象属性简写</p>
+<p>symbol  :新的原始数据类型Symbol，表示<strong>独一无二的值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">let s1 = Symbol();</span><br><span class="line">let s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">let s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">let s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+
+<p>Set :本身是一个构造函数，用来生成 Set 数据结构。Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line"></span><br><span class="line">[2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line"></span><br><span class="line">for (let i of s) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 2 3 5 4</span><br><span class="line"></span><br><span class="line">// 去除数组的重复成员</span><br><span class="line">[...new Set(array)]</span><br><span class="line"></span><br><span class="line">//去除字符串里面的重复字符</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;)</span><br><span class="line">// &quot;abc&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面代码向 Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">let a = NaN;</span><br><span class="line">let b = NaN;</span><br><span class="line">set.add(a);</span><br><span class="line">set.add(b);</span><br><span class="line">set // Set &#123;NaN&#125;</span><br><span class="line"></span><br><span class="line">另外，两个对象总是不相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 1</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.add(1).add(2).add(2);</span><br><span class="line">// 注意2被加入了两次</span><br><span class="line"></span><br><span class="line">s.size // 2</span><br><span class="line"></span><br><span class="line">s.has(1) // true</span><br><span class="line">s.has(2) // true</span><br><span class="line">s.has(3) // false</span><br><span class="line"></span><br><span class="line">s.delete(2);</span><br><span class="line">s.has(2) // false</span><br></pre></td></tr></table></figure>
+
+<p>Promise</p>
+<p>Let与Const</p>
+<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
+<p>指数操作符</p>
+<a id="more"></a>
+
+<h2 id="ES8的特性"><a href="#ES8的特性" class="headerlink" title="ES8的特性"></a>ES8的特性</h2><p>async/await</p>
+<p>Iterator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是 ES6 创造了一种新的遍历命令for…of循环，Iterator 接口主要供for…of消费。</p>
+<p>Generator 函数是一个状态机，封装了多个内部状态。有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）。</p>
+<p>Generator函数和普通函数的区别：</p>
+<ol>
+<li>普通函数执行时 无法暂停和中断； generator函数可以交出函数的执行权；</li>
+<li>function 后面加了一个*；</li>
+<li>函数体中 通过yield进行任务切分；</li>
+<li>generator() 不会自动执行，返回的是一个指针；</li>
+<li>通过next 分步执行函数段</li>
+<li>返回值 是一个对象{value:xxx, done:true/false}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function* helloWorldGenerator() &#123;</span><br><span class="line">  yield &apos;hello&apos;;</span><br><span class="line">  yield &apos;world&apos;;</span><br><span class="line">  return &apos;ending&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var hw = helloWorldGenerator();</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;hello&apos;, done: false &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;world&apos;, done: false &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: &apos;ending&apos;, done: true &#125;</span><br><span class="line"></span><br><span class="line">hw.next()</span><br><span class="line">// &#123; value: undefined, done: true &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Object.values()</p>
+<p>Object.entries()</p>
+<p>String padding</p>
+<p>函数参数列表结尾允许逗号</p>
+<p>Object.getOwnPropertyDescriptors() </p>
+<p>SharedArrayBuffer对象</p>
+<p>Atomics对象 </p>
+<h2 id="ES9的特性"><a href="#ES9的特性" class="headerlink" title="ES9的特性"></a>ES9的特性</h2><p>异步迭代</p>
+<p>Promise.finally()</p>
+<p>正则表达式命名捕获组</p>
+<h2 id="ES10的特性"><a href="#ES10的特性" class="headerlink" title="ES10的特性"></a>ES10的特性</h2><p>新增了Array的flat()方法和flatMap()方法</p>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2018/10/09/docker/" class="article-next" title="容器和虚机的区别"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/01/21/extends/" class="article-prev" title="js继承"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

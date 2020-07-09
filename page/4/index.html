@@ -141,7 +141,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/03/02/task/">什么是宏任务、微任务</a>
+            <a href="/2018/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -149,13 +149,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-03-02T03:23:00.000Z" itemprop="datePublished">2019-03-02</time>
+    <time datetime="2018-11-19T14:11:00.000Z" itemprop="datePublished">2018-11-19</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/es7/">es7</a>, <a class="article-tag-link" href="/tags/es8/">es8</a>, <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -164,14 +164,27 @@
     
     <section class="article-body markdown-body">
         
-        <p>先来了通俗易懂的例子：<br>去银行办理业务的人就是一个个宏任务，当宏任务P1在柜台办理业务时，其它任务都需等待，当一个宏任务P1办理业务结束时，柜台职员会询问他还有没有其它微任务，如果他还有其他业务，则其他宏任务都需等待。就是微任务是在宏任务之前执行。</p>
-<h2 id="宏任务、微任务有哪些"><a href="#宏任务、微任务有哪些" class="headerlink" title="宏任务、微任务有哪些"></a>宏任务、微任务有哪些</h2><p>宏任务包括：<strong>script(整体代码), setTimeout, setInterval, setImmediate, I/O</strong>, UI rendering。</p>
-<p>微任务包括： <strong>Promises</strong>, Object.observe, MutationObserver</p>
-<h2 id="宏任务、微任务的执行顺序"><a href="#宏任务、微任务的执行顺序" class="headerlink" title="宏任务、微任务的执行顺序"></a>宏任务、微任务的执行顺序</h2><p>执行顺序：</p>
-<p>先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，遇到异步微任务则将异步微任务放入微任务队列中，<strong>当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，微任务执行完毕后再将异步宏任务从队列中调入主线程执行</strong>，一直循环直至所有任务执行完毕。</p>
+        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
+<p>模块化</p>
+<p>箭头函数</p>
+<p>函数参数默认值</p>
+<p>模板字符串</p>
+<p>解构赋值</p>
+<p>延展操作符</p>
+<p>对象属性简写</p>
+<p>symbol  :新的原始数据类型Symbol，表示<strong>独一无二的值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">let s1 = Symbol();</span><br><span class="line">let s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">let s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">let s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+
+<p>Set :本身是一个构造函数，用来生成 Set 数据结构。Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line"></span><br><span class="line">[2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line"></span><br><span class="line">for (let i of s) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 2 3 5 4</span><br><span class="line"></span><br><span class="line">// 去除数组的重复成员</span><br><span class="line">[...new Set(array)]</span><br><span class="line"></span><br><span class="line">//去除字符串里面的重复字符</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;)</span><br><span class="line">// &quot;abc&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面代码向 Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">let a = NaN;</span><br><span class="line">let b = NaN;</span><br><span class="line">set.add(a);</span><br><span class="line">set.add(b);</span><br><span class="line">set // Set &#123;NaN&#125;</span><br><span class="line"></span><br><span class="line">另外，两个对象总是不相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 1</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.add(1).add(2).add(2);</span><br><span class="line">// 注意2被加入了两次</span><br><span class="line"></span><br><span class="line">s.size // 2</span><br><span class="line"></span><br><span class="line">s.has(1) // true</span><br><span class="line">s.has(2) // true</span><br><span class="line">s.has(3) // false</span><br><span class="line"></span><br><span class="line">s.delete(2);</span><br><span class="line">s.has(2) // false</span><br></pre></td></tr></table></figure>
+
+<p>Promise</p>
+<p>Let与Const</p>
+<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
+<p>指数操作符</p>
         
         <p class="article-more-link">
-            <a href="/2019/03/02/task/#more">
+            <a href="/2018/11/19/es/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -187,7 +200,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/01/23/charles/">Charle</a>
+            <a href="/2018/10/09/docker/">容器和虚机的区别</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -195,13 +208,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-23T14:11:00.000Z" itemprop="datePublished">2019-01-23</time>
+    <time datetime="2018-10-09T12:23:00.000Z" itemprop="datePublished">2018-10-09</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/charles/">charles</a>
+    <a class="article-tag-link" href="/tags/docker/">docker</a>, <a class="article-tag-link" href="/tags/js/">js</a>
 </div>
 
 
@@ -210,20 +223,31 @@
     
     <section class="article-body markdown-body">
         
-        <p>Charles 主要的功能包括：</p>
-<p>1）截取 Http 和 Https 网络封包。</p>
-<p>2）支持重发网络请求，方便后端调试。</p>
-<p>3）支持修改网络请求参数。</p>
-<p>4）支持网络请求的截获并动态修改。</p>
-<p>5）支持模拟慢速网络。</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/01/23/charles/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
+        <a id="more"></a>
+
+<h2 id="Docker解决的主要问题"><a href="#Docker解决的主要问题" class="headerlink" title="Docker解决的主要问题"></a>Docker解决的主要问题</h2><p>有过后台开发经验的同学，一定遇到过下面这些问题：</p>
+<p>程序在开发环境跑得好好的，但是部署到生产环境，却状况频出；</p>
+<p>假设某个程序要在客户的环境上进行部署，虽然在自己的环境上部署、验证成功，但始终担心客户的环境上缺少某些必要的库文件，或者某些文件的版本不符合要求；</p>
+<p>那么，有了docker，这些问题都将不复存在。</p>
+<h2 id="什么是Docker"><a href="#什么是Docker" class="headerlink" title="什么是Docker"></a>什么是Docker</h2><p>Docker是一个虚拟环境容器，可以将你的可执行文件、配置文件及一切其他你需要的文件一并打包到这个容器中，并发布和应用到任意平台。比如，你在本地用Python开发了一个网站后台，开发测试完成后，就可以将Python3及其依赖包、Flask及其各种插件、Mysql、Nginx等打包到一个容器中，然后部署到任意你想部署到的环境。</p>
+<p>如果不好理解，我们再拿集装箱打个比方。</p>
+<p>集装箱解决了什么问题呢？在一艘大船上，可以把货物规整的摆放起来。并且各种各样的货物被集装箱标准化了，集装箱和集装箱之间不会互相影响。那么我就不需要专门运送水果的船和专门运送化学品的船了。只要这些货物在集装箱里封装的好好的，那我就可以用一艘大船把他们都运走。</p>
+<p>docker也是类似的理念。我们可以在一台机器上跑多个互相毫无关联的docker容器，每一个容器就相当于一个集装箱。</p>
+<p>Docker里的几个基本概念</p>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><p>镜像可以理解为一堆静态的文件</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>容器则是镜像run起来之后的一个实例。镜像之于容器就好比面向对象编程里的class之于object。</p>
+<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><p>镜像需要地方保存，这个地方就是仓库</p>
+<h2 id="与传统虚拟化的区别"><a href="#与传统虚拟化的区别" class="headerlink" title="与传统虚拟化的区别"></a>与传统虚拟化的区别</h2><p>这里我们顺便讲一下传统虚拟化。</p>
+<p>我们看到，传统虚拟化是站在硬件物理资源的基础上，虚拟出多个OS，然后在OS的基础上构建相对独立的程序运行环境，而Dokcer则是在OS的基础上进行虚拟，显然Dokcer轻量得多，因此其资源占用、性能消耗相比传统虚拟化都有很大优势。</p>
+<p>在IT行业从业多年，也算从看着时代从物理服务器走向虚拟化云计算时代，又准备进入Docker时代，作为下一代虚拟化技术，Docker正改变着整个行业开发、测试、部署应用的方式，至于虚拟化技术和docker技术到底有什么不同，下面来分析一下。</p>
+<h2 id="01-什么是虚拟化？"><a href="#01-什么是虚拟化？" class="headerlink" title="01 什么是虚拟化？"></a>01 什么是虚拟化？</h2><p>顾名思义，虚拟化技术是将物理资源以某种技术虚拟成资源池的形式，主要有一虚多和多虚一两种形式，比如个人电脑安装Vmware软件，可以在这个软件上安装其他Win系统、MacOS、Linux系统等，实现一台电脑/笔记本承载多个系统的优点，目前苹果笔记本用户双系统解决方案也以虚拟机为主，普通Windows用户可能需求量不大，而技术人员基本是必备软件了。</p>
+<p>从企业层面来看，多虚一为主要形式，也就是将大量物理服务器集群虚拟化，形成一个资源池，在这个资源上创建各种不同的虚拟机，实现灵活部署。</p>
+<h2 id="02-什么是Docker"><a href="#02-什么是Docker" class="headerlink" title="02 什么是Docker"></a>02 什么是Docker</h2><p>其实docker和虚拟技术很像，但又有一些不同点，一方面是两个技术的层级上，虚拟机一般是底层硬件Hardware支撑，上层是虚拟管理系统Hypervisor层，在上层开启不同的VM业务，如果需要将这些业务进行隔离，需要每个VM启动客户机操作系统，非常消耗资源。</p>
+<p>Docker完全不同，底层有硬件和Host OS系统支撑，比如Windows/MacOS/Linux，中间抛去了臃肿的系统，而是以Docker守护进程代替，上层建立不同的容器，不同的应用镜像打包在不同的容器中，他们互相隔离。</p>
+<h2 id="03-虚拟化与docker的区别"><a href="#03-虚拟化与docker的区别" class="headerlink" title="03 虚拟化与docker的区别"></a>03 虚拟化与docker的区别</h2><p>docker设计小巧，部署迁移快速，运行高效，应用之间相互独立，管理人员可以看到所有容器的内容，虚拟化技术比较臃肿，不论什么应用都需要先创建新的系统，并且并非按照应用隔离，而是按照系统隔离，管理员无法看到系统内部信息。</p>
+<p>举个例子，Docker就是手机中的各种APP，只需要一个系统就可以下载自己所需的应用，但是虚拟化技术相当于你的苹果手机安装一个庞大软件，这个软件上安装安卓系统、魅族系统等，每个系统上还要安装各类应用，比较麻烦。</p>
+<p>但两者没有绝对的好坏，主要还是看应用场景，根据不同的需求选择不同的解决方案即可。</p>
+
         
     </section>
 </article>
@@ -582,7 +606,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/01/02/property/">原型、原型链</a>
+            <a href="/2018/01/11/nodeJS/">nodeJS</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -590,13 +614,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-01-02T01:11:00.000Z" itemprop="datePublished">2018-01-02</time>
+    <time datetime="2018-01-11T02:41:00.000Z" itemprop="datePublished">2018-01-11</time>
 </a>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
 </div>
 
 
@@ -605,10 +629,13 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="工厂模式和构造函数的区别"><a href="#工厂模式和构造函数的区别" class="headerlink" title="工厂模式和构造函数的区别"></a>工厂模式和构造函数的区别</h2><p>学习JavaScript有一段时间了，但是随着工作的进展，我发现，javascript绝对不是写一下简单效果那么肤浅，是时候完全，透彻地理解他的精髓了。</p>
+        <p>Node.js 就是运行在服务端的 JavaScript。</p>
+<p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。</p>
+<p>Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</p>
+<h2 id="1-创建服务器"><a href="#1-创建服务器" class="headerlink" title="1. 创建服务器"></a>1. 创建服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">http.createServer(function(req, res)&#123;</span><br><span class="line">    res.writeHead(200,&#123;</span><br><span class="line">        &apos;content-Type&apos;:&apos;text/plain&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    response.write(&quot;Hello World&quot;);</span><br><span class="line"></span><br><span class="line">    res.end();</span><br><span class="line"></span><br><span class="line">&#125;).listen(8888);</span><br></pre></td></tr></table></figure>
         
         <p class="article-more-link">
-            <a href="/2018/01/02/property/#more">
+            <a href="/2018/01/11/nodeJS/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>Vue-React 区别 | Yan Lian&#39;s Blog</title>
+    <meta name="author" content="Kevin Yan">
+    <meta name="keywords" content>
+    <meta name="description" content="Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。React 和 Vue 有许多相似之处，它们都有：使用 Virtual DOM提供了响应式（Reactive）和组件化（Composable）的视图组件。将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="Yan Lian&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Yan Lian&#39;s Blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end/">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end/">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <div class="author-meta">
+            
+            <div class="author-avatar">
+                <a href="/">
+                    <img src="/images/avatar.jpg" title="Kevin Yan">
+                </a>
+            </div>
+            
+            <div class="author-name">Kevin Yan</div>
+            <div class="author-work">Web Developer & Breaking Bad</div>
+            <div class="author-location">
+                <i class="icon-location vm"></i>
+                <span class="vm">Shanghai, China</span>
+            </div>
+            
+            <div class="author-thread-wrap">
+                <div class="author-threads clearfix">
+                    
+                        <a class="thread-item" href="https://github.com/gdgdstudy" target="_blank" rel="noopener">
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1574405777647" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" xmlns:xlink="http://www.w3.org/1999/xlink" width="295" height="295"><defs><style type="text/css"/></defs><path d="M512.465 98.744c-236.05-2.401-429.41 187.034-431.998 423.242 0.894 183.912 120.176 346.283 295.332 402.018 21.6 3.93 29.451-9.04 29.451-20.436v-71.916c-120.17 25.545-145.7-56.59-145.7-56.59a112.364 112.364 0 0 0-47.914-62.089c-39.272-25.937 3.141-25.545 3.141-25.545a90.702 90.702 0 0 1 65.978 43.624c25.358 43.993 81.26 59.548 125.678 34.976a91.569 91.569 0 0 1 27.487-56.59c-95.825-10.615-196.36-46.768-196.36-209.067a163.13 163.13 0 0 1 43.591-114.358 148.652 148.652 0 0 1 4.32-111.609c15.896-35.223 36.525-11.397 117.815 43.229a419.24 419.24 0 0 1 216.002 0c82.471-54.626 117.82-43.229 117.82-43.229a148.657 148.657 0 0 1 4.32 111.61 163.145 163.145 0 0 1 45.945 113.57c0 162.695-101.321 198.458-196.36 209.067a98.273 98.273 0 0 1 29.452 78.594v115.933c0 13.752 7.856 24.756 29.457 20.43 174.63-56.071 293.466-218.106 294.545-401.622C941.878 285.778 748.52 96.343 512.465 98.744" fill="#1296db" p-id="2050"/></svg>
+                        </a>
+                    
+                        <a class="thread-item" href="https://blog.csdn.net/qq_36771997" target="_blank" rel="noopener">
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1574405600608" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1323" xmlns:xlink="http://www.w3.org/1999/xlink" width="295" height="295"><defs><style type="text/css"/></defs><path d="M512 1024C229.2224 1024 0 794.7776 0 512 0 229.2224 229.2224 0 512 0c282.7776 0 512 229.2224 512 512 0 282.7776-229.2224 512-512 512z m17.066667-413.525333c34.850133 4.352 68.778667 5.12 102.741333 2.0992 23.04-2.048 44.817067-8.362667 64.170667-21.9136 38.212267-26.794667 49.783467-85.1968 24.251733-123.050667-14.626133-21.7088-36.8128-30.344533-60.757333-35.498667-35.054933-7.543467-70.4512-5.751467-105.847467-3.413333-5.666133 0.3584-6.7584 3.072-7.236267 8.209067-3.072 32.682667-6.536533 65.314133-9.813333 97.962666-2.5088 24.814933-4.932267 49.629867-7.509333 75.605334z m53.4016-33.928534c1.962667-20.906667 3.6352-39.338667 5.4272-57.770666 1.553067-15.906133 3.413333-31.778133 4.727466-47.701334 0.3584-4.283733 1.553067-6.656 5.956267-6.382933 15.616 1.041067 31.709867 0.034133 46.728533 3.652267 36.488533 8.823467 48.725333 54.306133 23.3472 83.029333-15.8208 17.902933-36.7616 23.586133-59.255466 25.088-8.465067 0.546133-17.015467 0.085333-26.9312 0.085333zM512 434.295467c-2.184533-0.648533-3.5328-1.1776-4.932267-1.4336-37.717333-6.877867-75.690667-8.328533-113.646933-2.816-20.974933 3.037867-41.0112 9.489067-57.480533 23.330133-22.9888 19.319467-21.640533 46.848 4.4032 62.0032 13.056 7.594667 28.023467 12.509867 42.5984 17.288533 14.08 4.608 28.996267 6.826667 43.144533 11.264 12.5952 3.925333 14.011733 14.318933 3.584 22.306134-3.345067 2.56-7.441067 5.085867-11.537067 5.751466-11.195733 1.826133-22.698667 4.386133-33.826133 3.566934-24.098133-1.774933-48.042667-5.461333-72.5504-8.430934-1.365333 10.615467-2.935467 23.0912-4.5568 35.9424 4.181333 1.365333 7.68 2.730667 11.264 3.618134 33.9456 8.4992 68.386133 9.608533 102.912 5.12 20.087467-2.6112 39.4752-7.901867 56.695467-19.029334 28.603733-18.4832 36.693333-57.1904-4.676267-75.383466-14.506667-6.382933-30.190933-10.410667-45.482667-15.086934-11.4176-3.4816-23.313067-5.614933-34.525866-9.5232-9.7792-3.413333-11.144533-12.202667-3.037867-18.397866 4.6592-3.549867 10.717867-6.997333 16.384-7.3728a480.853333 480.853333 0 0 1 53.384533-0.853334c15.377067 0.699733 30.651733 3.549867 46.4896 5.5296L512 434.295467z m257.143467 2.048L750.933333 614.2976h54.152534c4.778667-45.636267 9.710933-90.7264 14.062933-135.8848 0.6144-6.365867 2.3552-8.840533 8.686933-9.0112 11.434667-0.273067 22.8864-1.979733 34.286934-1.570133 23.722667 0.853333 42.3936 9.728 38.4 43.264-2.901333 24.2688-5.597867 48.571733-8.2432 72.874666-1.092267 10.069333-1.826133 20.189867-2.730667 30.4128h55.330133c3.584-35.259733 7.9872-70.058667 10.496-104.994133 3.413333-47.4624-17.7664-73.3184-64.682666-80.213333-40.96-6.007467-81.339733-0.341333-121.5488 7.133866z m-483.498667 134.6048c-8.738133 1.297067-16.384 2.798933-24.098133 3.4816-25.6512 2.235733-51.319467 3.9424-76.305067-4.266667-13.909333-4.590933-24.6784-12.578133-29.7984-25.9584-7.901867-20.701867 0.887467-47.104 19.831467-60.3136 17.373867-12.117333 37.717333-15.9232 58.453333-15.9232 22.545067-0.017067 45.090133 2.423467 68.232533 3.84L307.2 432.298667c-15.069867-1.723733-29.4912-3.925333-43.997867-4.9152-41.0112-2.798933-80.64 2.6112-117.469866 20.462933-30.020267 14.557867-52.053333 36.010667-58.6752 68.130133-7.850667 38.144 11.537067 69.495467 51.7632 85.845334 19.1488 7.765333 39.287467 12.509867 60.0064 12.5952 24.746667 0.1024 49.493333-1.570133 74.205866-2.952534 3.106133-0.170667 8.311467-2.901333 8.669867-5.034666 1.979733-11.554133 2.730667-23.278933 3.9424-35.464534z" fill="#DD1700" p-id="1324"/></svg>
+                        </a>
+                    
+                        <a class="thread-item" href="mailto:yanliangjl@hotmail.com" target="_blank" rel="noopener">
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1574414074837" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1961" xmlns:xlink="http://www.w3.org/1999/xlink" width="295" height="295"><defs><style type="text/css"/></defs><path d="M512.104171 256.052085H192.507833c-18.334079 0-35.001424 7.916989-46.668565 20.417498-0.208342 0.208342-0.416684 0.208342-0.625026 0.416684-0.208342 0.208342-0.208342 0.416684-0.416684 0.625025-10.417091 11.4588-16.875687 26.667752-16.875686 43.335097v382.307222c0 17.084028 6.666938 32.501322 17.500712 44.168464 0.208342 0.208342 0.208342 0.625025 0.416684 0.833368 0 0 0.208342 0 0.208341 0.208341 11.667141 12.083825 28.126144 19.792472 46.251882 19.792472h319.387996l0.416684-512.104171z" fill="#FFB300" p-id="1962"/><path d="M896.078128 320.846389c0-16.667345-6.458596-31.667955-16.875686-43.335097-0.208342-0.208342-0.208342-0.416684-0.416684-0.625025-0.208342-0.208342-0.416684-0.208342-0.625026-0.416684-11.667141-12.500509-28.334486-20.417497-46.668565-20.417498H511.895829v512.104171h319.596338c18.125738 0 34.584741-7.708647 46.251882-19.792472 0 0 0.208342 0 0.208342-0.208341 0.208342-0.208342 0.208342-0.416684 0.416683-0.833368 10.833774-11.667141 17.500712-27.084435 17.500712-44.168464l0.208342-382.307222z" fill="#FFB300" p-id="1963"/><path d="M644.609563 491.895015l221.259003-186.674262c2.083418 4.791862 3.541811 10.000407 3.54181 15.625636v382.307222c0 5.000203-1.041709 9.792065-2.916785 14.375585L644.609563 491.895015zM157.506409 717.529196c-1.875076-4.375178-2.916785-9.16704-2.916785-14.375585V320.846389c0-5.625229 1.250051-10.833774 3.54181-15.625636l221.259003 186.674262L157.506409 717.529196zM192.507833 741.280163c-6.041913 0-11.875483-1.666734-17.084028-4.166836l224.38413-227.925941 103.54588 87.295218c2.500102 2.083418 5.416887 3.125127 8.542014 3.125127 3.125127 0 6.041913-1.041709 8.542014-3.125127l103.54588-87.295218 224.384131 227.925941c-5.208545 2.708444-10.833774 4.166836-17.084029 4.166836H192.507833z" fill="#FFD54F" p-id="1964"/><path d="M192.507833 276.886267c-6.041913 0-11.875483 1.666734-17.084028 4.166836l336.472024 288.345066 336.472025-288.345066c-5.208545-2.708444-10.833774-4.166836-17.084029-4.166836H192.507833z" fill="#FFD54F" p-id="1965"/></svg>
+                        </a>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Vue-React 区别
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2019/02/12/vueReact/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-12T14:23:00.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。</p>
+<p>React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。</p>
+<p>React 和 Vue 有许多相似之处，它们都有：</p>
+<p>使用 Virtual DOM</p>
+<p>提供了响应式（Reactive）和组件化（Composable）的视图组件。</p>
+<p>将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。</p>
+<a id="more"></a>
+
+<p><strong>React使用JSX渲染页面</strong></p>
+<p>在 React 中，HTML &amp; CSS都是 JavaScript 编写的，听起来这十分简单和优雅。然而不幸的事实是，JavaScript 内的 HTML 和 CSS 会产生很多痛点。</p>
+<p>JSX 的渲染功能有下面这些优势：</p>
+<p>你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。</p>
+<p>工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。</p>
+<p><strong>vue使用简单的模板:</strong></p>
+<p>在写模板的过程中，样式风格已定并涉及更少的功能实现。</p>
+<p>模板总是会被声明的。</p>
+<p>模板中任何 HTML 语法都是有效的。</p>
+<p>阅读起来更贴合英语（比如，for each item in items）。</p>
+<p>不需要高级版本的 JavaScript 语法，来增加可读性。</p>
+<p>vue运行的速度更快。</p>
+<p>上面提到了响应式和组件化，我也大概的介绍一下这两个，</p>
+<p><strong>VUE和Angular对比</strong></p>
+<p>在大小方面，虽然 Angular 2 使用 tree-shaking 和离线编译技术使代码体积减小了许多。但包含编译器和全部功能的 Vue2(23kb) 相比 Angular 2</p>
+<p>(50kb) 还是要小的多。但是要注意，用 Angular 2 的 App 的体积缩减是使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着功能引入</p>
+<p>的不断增多，尺寸会变得越来越大。</p>
+<p><strong>angular 变更检测</strong></p>
+<p>变化监测是单向线性的，即从根组件开始，依次触发各个子组件的变化监测器去完成变化的对比工作。在每个组件的执行环境中，angular都会创建一个变化监测类的实例，该实例能准确地记录每个组件的数据模型，并以此作为下一轮变化监测的参考标准。</p>
+<p>每个组件有一个变更检测器，主要通过zone.js 监听异步事件（event, xhr, setTimeout）, 当发生异步事件时，触发一次变更检测， 形成了一颗变更检测树，数据自上而下，单项数据流， 提高检测效率。</p>
+<p><strong>在 Angular 源码中，有一个 ApplicationRef_ 类，其作用是用来监听 NgZone 中的 onMicrotaskEmpty 事件，无论何时只要触发这个事件，那么将会执行一个 tick 方法用来告诉 Angular 去执行变化检测。</strong></p>
+<p>默认情况下，任何一个组件模型中的数据变化都会导致整个组件树的变化监测，但其实很多组件的输入属性是没有变化的，因此没必要对这样的组件进行变化监测操作。减少不必要的监测操作可以提升应用程序的性能。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OnPush进行变更优化；若输入属性没有发生变化，组件的变化检测将会被跳过。</span><br><span class="line">@Component(&#123;</span><br><span class="line">    selector: &apos;profile-card&apos;,</span><br><span class="line">    template: `</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">         &lt;profile-name [name]=&apos;profile.name&apos;&gt;&lt;/profile-name&gt;</span><br><span class="line">         &lt;profile-age [age]=&apos;profile.age&apos;&gt;&lt;/profile-age&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">    `,</span><br><span class="line">    changeDetection: ChangeDetectionStrategy.OnPush</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>vue diff算法</strong></p>
+<p>渲染真实DOM的开销是很大的，比如有时候我们修改了某个数据，如果直接渲染到真实dom上会引起整个dom树的重绘和重排，有没有可能我们只更新我们修改的那一小块dom而不要更新整个dom呢？diff算法能够帮助我们。</p>
+<p>我们先根据真实DOM生成一颗virtual DOM，当virtual DOM某个节点的数据改变后会生成一个新的Vnode，然后Vnode和oldVnode作对比，发现有不一样的地方就直接修改在真实的DOM上，然后使oldVnode的值为Vnode。</p>
+<p>diff的过程就是调用名为<strong>patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁</strong>。</p>
+<p>响应式</p>
+<p>自适应响应式布局，从最早的不同分辨率的屏幕，到现在遍布各个生活角落的移动设备，响应式布局已经成了几乎所有互联网公司必备的条件。在我的映像中，bootstrap一直是响应式的头号选择，的确，其中的各种xl，xs，栅格布局让响应式变得很容易。</p>
+<p>话说，这Vue做响应式，其实一点都不复杂：一个生命周期钩子，一个条指令，一套js判断语句解决。</p>
+<p>组件化</p>
+<p>因为现在移动端的兴起，前端页面的逻辑已经变得很重了，一个页面的代码超过5000行的场景渐渐增多，作为一个程序员我也很是苦恼，这个时候页面的维护便会很有问题，牵一发而动全身的事情会经常发生，为了解决这个问题，便出现了前端组件化，这个组件化就不是UI组件了，而是包含具体业务的业务组件。</p>
+<p>这种开发的思想其实也就是分而治之（最重要的架构思想，一切都是组件），APP分成多个频道由各个团队维护，频道分为多个页面由几个开发维护，页面逻辑过于复杂，便将页面分为很多个业务组件模块分而治之，这样的话维护人员每次只需要改动对应的模块即可，以达到最大程度的降低开发难度与维护成本的效果，所以现在比较好的框架都会对组件化作一定程度的实现。 </p>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/01/23/charles/" class="article-next" title="Charle"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/02/22/vuedata/" class="article-prev" title="Vue为什么data返回的是个函数"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
