@@ -141,6 +141,55 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/06/22/type/">判断js数据类型</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-22T14:23:00.000Z" itemprop="datePublished">2019-06-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1. typeof"></a>1. typeof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    typeof 123, //&quot;number&quot;</span><br><span class="line">    typeof &apos;dsfsf&apos;, //&quot;string&quot;</span><br><span class="line">    typeof false, //&quot;boolean&quot;</span><br><span class="line">    typeof [1,2,3], //&quot;object&quot;</span><br><span class="line">    typeof &#123;a:1,b:2,c:3&#125;, //&quot;object&quot;</span><br><span class="line">    typeof function()&#123;console.log(&apos;aaa&apos;);&#125;, //&quot;function&quot;</span><br><span class="line">    typeof undefined, //&quot;undefined&quot;</span><br><span class="line">    typeof null, //&quot;object&quot;</span><br><span class="line">    typeof new Date(), //&quot;object&quot;</span><br><span class="line">    typeof /^[a-zA-Z]&#123;5,20&#125;$/, //&quot;object&quot;</span><br><span class="line">    typeof new Error() //&quot;object&quot;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>Array，Object，null，Date，RegExp，Error这几个类型都被typeof判断为object，所以如果想要判断这几种类型，就不能使用typeof了。</p>
+<p>Number，String，Boolean，Function，undefined，如果想判断这几种类型，那就可以使用typeof。</p>
+<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2. instanceof"></a>2. instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    123 instanceof Number, //false</span><br><span class="line">    &apos;dsfsf&apos; instanceof String, //false</span><br><span class="line">    false instanceof Boolean, //false</span><br><span class="line">    [1,2,3] instanceof Array, //true</span><br><span class="line">    &#123;a:1,b:2,c:3&#125; instanceof Object, //true</span><br><span class="line">    function()&#123;console.log(&apos;aaa&apos;);&#125; instanceof Function, //true</span><br><span class="line">    undefined instanceof Object, //false</span><br><span class="line">    null instanceof Object, //false</span><br><span class="line">    new Date() instanceof Date, //true</span><br><span class="line">    /^[a-zA-Z]&#123;5,20&#125;$/ instanceof RegExp, //true</span><br><span class="line">    new Error() instanceof Error //true</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Number，String，Boolean没有检测出他们的类型;</p>
+<p>还需要注意null和undefined都返回了false，这是因为它们的类型就是自己本身，并不是Object创建出来它们，所以返回了false。</p>
+<h2 id="3-使用toString-检测对象类型"><a href="#3-使用toString-检测对象类型" class="headerlink" title="3. 使用toString()检测对象类型"></a>3. 使用toString()检测对象类型</h2><p>可以通过toString() 来获取每个对象的类型。为了每个对象都能通过 Object.prototype.toString() 来检测，需要以 <strong>Function.prototype.call()</strong> 或者 <strong>Function.prototype.apply()</strong> 的形式来调用，传递要检查的对象作为第一个参数，称为thisArg。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var toString = Object.prototype.toString;</span><br><span class="line">toString.call(123); //&quot;[object Number]&quot;</span><br><span class="line">toString.call(&apos;abcdef&apos;); //&quot;[object String]&quot;</span><br><span class="line">toString.call(true); //&quot;[object Boolean]&quot;</span><br><span class="line">toString.call([1, 2, 3, 4]); //&quot;[object Array]&quot;</span><br><span class="line">toString.call(&#123;name:&apos;wenzi&apos;, age:25&#125;); //&quot;[object Object]&quot;</span><br><span class="line">toString.call(function()&#123; console.log(&apos;this is function&apos;); &#125;); //&quot;[object Function]&quot;</span><br><span class="line">toString.call(undefined); //&quot;[object Undefined]&quot;</span><br><span class="line">toString.call(null); //&quot;[object Null]&quot;</span><br><span class="line">toString.call(new Date()); //&quot;[object Date]&quot;</span><br><span class="line">toString.call(/^[a-zA-Z]&#123;5,20&#125;$/); //&quot;[object RegExp]&quot;</span><br><span class="line">toString.call(new Error()); //&quot;[object Error]&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-constructor"><a href="#4-constructor" class="headerlink" title="4. constructor"></a>4. constructor</h2><p>constructor是prototype对象上的属性，指向构造函数。根据实例对象寻找属性的顺序，若实例对象上没有实例属性或方法时，就去原型链上寻找，因此，实例对象也是能使用constructor属性的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var num  = 123;</span><br><span class="line">var str  = &apos;abcdef&apos;;</span><br><span class="line">var bool = true;</span><br><span class="line">var arr  = [1, 2, 3, 4];</span><br><span class="line">var json = &#123;name:&apos;wenzi&apos;, age:25&#125;;</span><br><span class="line">var func = function()&#123; console.log(&apos;this is function&apos;); &#125;</span><br><span class="line">var und  = undefined;</span><br><span class="line">var nul  = null;</span><br><span class="line">var date = new Date();</span><br><span class="line">var reg  = /^[a-zA-Z]&#123;5,20&#125;$/;</span><br><span class="line">var error= new Error();</span><br><span class="line"></span><br><span class="line">function Person()&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">var tom = new Person();</span><br><span class="line"></span><br><span class="line">// undefined和null没有constructor属性</span><br><span class="line">console.log(</span><br><span class="line">    tom.constructor==Person,</span><br><span class="line">    num.constructor==Number,</span><br><span class="line">    str.constructor==String,</span><br><span class="line">    bool.constructor==Boolean,</span><br><span class="line">    arr.constructor==Array,</span><br><span class="line">    json.constructor==Object,</span><br><span class="line">    func.constructor==Function,</span><br><span class="line">    date.constructor==Date,</span><br><span class="line">    reg.constructor==RegExp,</span><br><span class="line">    error.constructor==Error</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>除了undefined和null之外，其他类型都可以通过constructor属性来判断类型。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/06/22/ts/">ts</a>
         </h1>
         
@@ -567,69 +616,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/3/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-11-19T14:11:00.000Z" itemprop="datePublished">2018-11-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/es7/">es7</a>, <a class="article-tag-link" href="/tags/es8/">es8</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
-<p>模块化</p>
-<p>箭头函数</p>
-<p>函数参数默认值</p>
-<p>模板字符串</p>
-<p>解构赋值</p>
-<p>延展操作符</p>
-<p>对象属性简写</p>
-<p>symbol  :新的原始数据类型Symbol，表示<strong>独一无二的值</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">let s1 = Symbol();</span><br><span class="line">let s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">let s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">let s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
-
-<p>Set :本身是一个构造函数，用来生成 Set 数据结构。Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line"></span><br><span class="line">[2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line"></span><br><span class="line">for (let i of s) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 2 3 5 4</span><br><span class="line"></span><br><span class="line">// 去除数组的重复成员</span><br><span class="line">[...new Set(array)]</span><br><span class="line"></span><br><span class="line">//去除字符串里面的重复字符</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;)</span><br><span class="line">// &quot;abc&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面代码向 Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">let a = NaN;</span><br><span class="line">let b = NaN;</span><br><span class="line">set.add(a);</span><br><span class="line">set.add(b);</span><br><span class="line">set // Set &#123;NaN&#125;</span><br><span class="line"></span><br><span class="line">另外，两个对象总是不相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 1</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.add(1).add(2).add(2);</span><br><span class="line">// 注意2被加入了两次</span><br><span class="line"></span><br><span class="line">s.size // 2</span><br><span class="line"></span><br><span class="line">s.has(1) // true</span><br><span class="line">s.has(2) // true</span><br><span class="line">s.has(3) // false</span><br><span class="line"></span><br><span class="line">s.delete(2);</span><br><span class="line">s.has(2) // false</span><br></pre></td></tr></table></figure>
-
-<p>Promise</p>
-<p>Let与Const</p>
-<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
-<p>指数操作符</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/11/19/es/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/categories/front-end/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><a class="page-number" href="/categories/front-end/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="extend next" rel="next" href="/categories/front-end/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/categories/front-end/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><a class="page-number" href="/categories/front-end/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="page-number" href="/categories/front-end/page/5/">5</a><a class="extend next" rel="next" href="/categories/front-end/page/4/">Next &raquo;</a>
 </nav>
 
 

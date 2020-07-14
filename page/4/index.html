@@ -141,6 +141,58 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/01/21/extends/">js继承</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-21T11:56:00.000Z" itemprop="datePublished">2019-01-21</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/继承/">继承</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = new Super();</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    //a,b,c,d</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c,d</span><br></pre></td></tr></table></figure>
+
+<p>原型链继承最主要的问题 <strong>在于包含引用类型值的原型属性会被所有实例共享</strong>。</p>
+<h2 id="2-构造函数继承"><a href="#2-构造函数继承" class="headerlink" title="2. 构造函数继承"></a>2. 构造函数继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super()&#123;</span><br><span class="line">  this.colors = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub()&#123;</span><br><span class="line">  Super.call(this);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub();</span><br><span class="line">instance1.colors.push(&apos;d&apos;);    </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub();</span><br><span class="line">console.log(instance2.colors);   //a,b,c</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub(name)&#123;</span><br><span class="line">  Super.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var instance1 = new Sub(&apos;aa&apos;);   </span><br><span class="line">instance1.name; </span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&apos;bb&apos;);   </span><br><span class="line">instance2.name;</span><br></pre></td></tr></table></figure>
+
+<p>相比原型链继承：  </p>
+<p>1.构造函数继承 引用类型值的原型属性不会被所有实例继承；</p>
+<p>2.而且可以在子类型构造函数中向超类型构造函数传递参数。</p>
+<p>3.<strong>构造函数继承————方法都在构造函数中定义，因此函数复用就无从谈起了</strong></p>
+<h2 id="3-组合继承"><a href="#3-组合继承" class="headerlink" title="3. 组合继承"></a>3. 组合继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">     // 第二次调用Super()，Sub.prototype又得到了name和colors两个属性，并对上次得到的属性值进行了覆盖</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">//第一次调用Super()，Sub.prototype得到了name和colors两个属性</span><br><span class="line">Sub.prototype = new Super(); </span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line">Sub.prototype.sayAge = function()&#123;</span><br><span class="line">    return this.age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>组合继承有它自己的问题。那就是无论什么情况下，都会<strong>调用两次父类型构造函数</strong>：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。子类型最终会包含父类型对象的全部实例属性，但不得不在调用子类型构造函数时重写这些属性</p>
+<h2 id="4-寄生继承"><a href="#4-寄生继承" class="headerlink" title="4. 寄生继承"></a>4. 寄生继承</h2><p>解决两次调用的方法是使用寄生组合式继承。寄生组合式继承与组合继承相似，都是<strong>通过借用构造函数来继承不可共享的属性</strong>，<strong>通过原型链的混成形式来继承方法和可共享的属性</strong>。只不过把原型继承的形式变成了寄生式继承。</p>
+<p>使用寄生组合式继承可以不必为了指定子类型的原型而调用父类型的构造函数，从而寄生式继承只继承了父类型的原型属性，而父类型的实例属性是通过借用构造函数的方式来得到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Super(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Sub(name,age)&#123;</span><br><span class="line">    Super.call(this,name);</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!Object.create)&#123;   //如果不支持方法；则自己写一个</span><br><span class="line">  Object.create = function(proto)&#123;</span><br><span class="line">    function F()&#123;&#125;;</span><br><span class="line">    F.prototype = proto;</span><br><span class="line">    return new F;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">Sub.prototype = Object.create(Super.prototype);</span><br><span class="line"></span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line">var instance1 = new Sub(&quot;bai&quot;,29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">console.log(instance1.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;,&apos;black&apos;]</span><br><span class="line">instance1.sayName();//&quot;bai&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new Sub(&quot;hu&quot;,27);</span><br><span class="line">console.log(instance2.colors);//[&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;]</span><br><span class="line">instance2.sayName();//&quot;hu&quot;</span><br></pre></td></tr></table></figure>
+
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
         </h1>
         
@@ -258,52 +310,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/4/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
-<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
-<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
-<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
-<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/10/03/amd/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2018/10/03/cache/">浏览器缓存</a>
         </h1>
         
@@ -361,6 +367,52 @@
         
         <p class="article-more-link">
             <a href="/2018/10/03/cache/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
+<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
+<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
+<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
+<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/10/03/amd/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -548,49 +600,6 @@
         
         <p class="article-more-link">
             <a href="/2018/01/23/bowser/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/11/ssr/">服务端渲染</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/page/4/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-11T02:41:00.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>SSR的优势</p>
-<h2 id="1-更利于SEO。"><a href="#1-更利于SEO。" class="headerlink" title="1. 更利于SEO。"></a>1. 更利于SEO。</h2><p>不同爬虫工作原理类似，只会爬取源码，不会执行网站的任何脚本（Google除外，据说Googlebot可以运行javaScript）。使用了React或者其它MVVM框架之后，页面大多数DOM元素都是在客户端根据js动态生成，可供爬虫抓取分析的内容大大减少(如图一)。另外，浏览器爬虫不会等待我们的数据完成之后再去抓取我们的页面数据。服务端渲染返回给客户端的是已经获取了异步数据并执行JavaScript脚本的最终HTML，网络爬中就可以抓取到完整页面的信息。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/01/11/ssr/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>

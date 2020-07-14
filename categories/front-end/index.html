@@ -141,6 +141,69 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2020/07/14/performance/">performance</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-07-14T14:34:00.000Z" itemprop="datePublished">2020-07-14</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>performance</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>window.performance.timing对象包含了完整的网页加载性能数据, 下面详细介绍如何通过对象各个属性获取页面加载期间各个阶段的性能.</p>
+<p>页面加载的第一个时间点是navigationStart, 表示上一个页面的unload事件触发, 接下来的事件点是fetchStart, 表示开始获取当前页面内容. fetchStart时间点和navigationStart时间点之间的时间差是浏览器内核为加载新页面做的一些准备工作耗时.</p>
+<p>获取页面内容的第一步是查询是否有跟页面相关的资源缓存, 查询完毕之后, 会触发开始DNS解析的时间点domainLookupStart. domainLookupStart时间点和fetchStart事件点之间的时间差是查询缓存所消耗的时间.</p>
+<p>DNS解析结束的时间点是domainLookupEnd. domainLookupEnd时间点和domainLookupStart时间点之间的时间差是DNS解析消耗的时间.</p>
+<p>DNS解析技术之后会开始建立TCP连接, TCP连接开始和结束的时间点分别是connectStart和connectEnd. connectStart时间点紧接着domainLookupEnd时间点, connectEnd时间点和connectStart时间点之间的时间差是建立TCP消耗的时间.</p>
+<p>TCP连接建立之后, 开始发送请求内容至服务器端, 这个时间点是requestStart. 服务器端接收到完整请求并处理完毕后, 会将响应结果返回客户端, 开始发送响应结果的时间点为responseStart. </p>
+<p>浏览器收到完整的响应结果之后, 会触发responseEnd时间点, 浏览器接收到响应的结果之后, 会开始DOM树解析, 这个时间点是domLoading, DOM解析完成的时间点是domInteractive. </p>
+<p>DOM解析完成是指DOM树构建完成, 页面依赖的外部资源, 如css, javascript, 图片等. 还未开始加载.(domLoading时间点不一定在responseEnd时间点之后, 有可能浏览器只接受了部分响应数据就开始解析DOM树).</p>
+<p>DOM树解析完成之后, 会开始按照顺序运行页面脚本和加载依赖外部资源, 其中Javascript资源会同步加载和执行. 一但所有页面脚本运行完毕, 会触发DOMContentLoaded事件, 这个时间点是domContentLoadedStart.</p>
+<p>开发者注册的DOMContentLoaded事件执行完毕之后, 会触发domContentLoadedEnd时间点.<br>当依赖的外部资源全部加载并解析完成之后, 会触发domComplete时间点, 同时会发触发暴露给开发者的load事件. loadEventStart时间点表示load事件开始触发, loadEventEnd时间点表示所有开发者注册在load事件上的脚本执行完毕. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">      let t = performance.timing</span><br><span class="line">      console.log(&apos;DNS查询耗时 ：&apos; + (t.domainLookupEnd - t.domainLookupStart).toFixed(0))</span><br><span class="line">      console.log(&apos;TCP链接耗时 ：&apos; + (t.connectEnd - t.connectStart).toFixed(0))</span><br><span class="line">      console.log(&apos;request请求耗时 ：&apos; + (t.responseEnd - t.responseStart).toFixed(0))</span><br><span class="line">      console.log(&apos;解析dom树耗时 ：&apos; + (t.domComplete - t.domInteractive).toFixed(0))</span><br><span class="line">      console.log(&apos;白屏时间 ：&apos; + (t.responseStart - t.navigationStart).toFixed(0))</span><br><span class="line">      console.log(&apos;domready时间 ：&apos; + (t.domContentLoadedEventEnd - t.navigationStart).toFixed(0))</span><br><span class="line">      console.log(&apos;onload时间 ：&apos; + (t.loadEventEnd - t.navigationStart).toFixed(0))</span><br><span class="line"></span><br><span class="line">      if(t = performance.memory)&#123;</span><br><span class="line">          console.log(&apos;js内存使用占比 ：&apos; + (t.usedJSHeapSize / t.totalJSHeapSize * 100).toFixed(2) + &apos;%&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack层面：</p>
+<ol>
+<li>UglifyJsPlugin  对js进行压缩</li>
+<li>ParallelUglifyPlugin  多进程并行处理压缩</li>
+<li>OptimizeCssPlugin </li>
+<li>ExtractTextPlugin 提取chunk中的css代码道单独的文件中</li>
+<li>compression-webpack-plugin   app vendor manifest</li>
+<li>sourcemap  </li>
+<li>url-loader  小的图片 用url-loader  转化为base64  大的图片用cdn的方式引入</li>
+</ol>
+<p>http层：<br>HTTP2 多路复用<br>服务端推送<br>头部压缩</p>
+<p>减少http请求<br>cdn  缓存</p>
+<p>代码层：<br>路由懒加载<br>const practice = () =&gt; import(/* webpackChunkName: “practice” */ “@/components/practice/practice”);  </p>
+<p>index.html<br>css放在header  js尽量放在body底部 </p>
+<p>数据重构的时候  算法降低时间复杂度  js单线程  减少大量计算占用内存  导致浏览器失帧</p>
+<p>服务端渲染 nuxt</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2020/05/22/thinkReact/">React</a>
         </h1>
         
@@ -579,52 +642,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/11/19/dataStructure/">js数据结构预算法</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-11-19T04:04:58.304Z" itemprop="datePublished">2019-11-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="js实现一个队列"><a href="#js实现一个队列" class="headerlink" title="js实现一个队列"></a>js实现一个队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function Queue()&#123;</span><br><span class="line">    this.items = [];</span><br><span class="line">    Queue.prototype.push = function(data)&#123;</span><br><span class="line">        this.items.push(data);</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.shift = function()&#123;</span><br><span class="line">        this.items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.size = function()&#123;</span><br><span class="line">        return this.items.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.toString = function()&#123;</span><br><span class="line">        let stringData = &apos;&apos;;</span><br><span class="line">        for(const item of this.items)&#123;</span><br><span class="line">            stringData += item+&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringData;</span><br><span class="line">    &#125;; </span><br><span class="line">&#125;</span><br><span class="line">var queue = new Queue();</span><br><span class="line">queue.push(2121);</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2); </span><br><span class="line">alert(queue.toString());</span><br></pre></td></tr></table></figure>
-        
-        <p class="article-more-link">
-            <a href="/2019/11/19/dataStructure/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/front-end/page/2/">2</a><a class="page-number" href="/categories/front-end/page/3/">3</a><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="extend next" rel="next" href="/categories/front-end/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/categories/front-end/page/2/">2</a><a class="page-number" href="/categories/front-end/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/categories/front-end/page/5/">5</a><a class="extend next" rel="next" href="/categories/front-end/page/2/">Next &raquo;</a>
 </nav>
 
 

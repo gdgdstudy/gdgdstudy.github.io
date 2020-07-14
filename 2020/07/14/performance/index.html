@@ -7,10 +7,10 @@
 
     
 
-    <title>观察者模式 - 发布订阅 | Yan Lian&#39;s Blog</title>
+    <title>performance | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
-    <meta name="description" content="观察者模式观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。而观察者模式属于行为型模式，行为型模式关注的是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯。发布订阅在“发布者-订阅者”模式中，称为发布者的消息发送者不会将消息编程为直接发送给称为订阅者的特定接收者。这意味着发布者和订阅者不知道彼此的存在。存在第三个组件，称为代理或消息代理或事件总线，它由发布者和订阅者都知道，它过滤所有传入的消息并相应地分发它们。换句话说...">
+    <meta name="description" content="performance作用window.performance.timing对象包含了完整的网页加载性能数据, 下面详细介绍如何通过对象各个属性获取页面加载期间各个阶段的性能.页面加载的第一个时间点是navigationStart, 表示上一个页面的unload事件触发, 接下来的事件点是fetchStart, 表示开始获取当前页面内容. fetchStart时间点和navigationStart时间点之间的时间差是浏览器内核为加载新页面做的一些准备工作耗时.获取页面内容的第一步是查...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -95,7 +95,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式"><span class="toc-number">1.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布订阅"><span class="toc-number">2.</span> <span class="toc-text">发布订阅</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li></ol>
         
     </div>
 </aside>
@@ -109,15 +109,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            观察者模式 - 发布订阅
+            performance
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/2019/09/22/observal/index.html">
+            <a class="article-date" href="http://yoursite.com/2020/07/14/performance/index.html">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
+    <time datetime="2020-07-14T14:34:00.000Z" itemprop="datePublished">2020-07-14</time>
 </a>
 
             
@@ -132,16 +132,35 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。而观察者模式属于行为型模式，行为型模式关注的</p>
-<p>是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯。</p>
-<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><p>在“发布者-订阅者”模式中，称为发布者的消息发送者不会将消息编程为直接发送给称为订阅者的特定接收者。这意味着发布者和订阅者不知道彼此的存在。存在第三个组件，</p>
-<p>称为代理或消息代理或事件总线，它由发布者和订阅者都知道，它过滤所有传入的消息并相应地分发它们。换句话说，pub-sub是用于在不同系统组件之间传递消息的模式，而</p>
-<p>这些组件不知道关于彼此身份的任何信息。经纪人如何过滤所有消息？实际上，有几个消息过滤过程。最常用的方法有：基于主题和基于内容的。</p>
-<p>在Observer模式中，Observers知道Subject，同时Subject还保留了Observers的记录。然而，在发布者/订阅者中，发布者和订阅者不需要彼此了解。他们只是在消息队列或代理的帮助下进行通信。</p>
-<p>在Publisher / Subscriber模式中，组件是松散耦合的，而不是Observer模式。</p>
-<p>观察者模式主要以同步方式实现，即当某些事件发生时，Subject调用其所有观察者的适当方法。发布者/订阅者在大多情况下是异步方式（使用消息队列）。</p>
-<p>观察者模式需要在单个应用程序地址空间中实现。另一方面，发布者/订阅者模式更像是跨应用程序模式。</p>
-<p>尽管这些模式之间存在差异，但有些人可能会说发布者 - 订阅者模式是观察者模式的变体，因为它们之间存在概念上的相似性，但并不是一样的。</p>
+        <p>performance</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>window.performance.timing对象包含了完整的网页加载性能数据, 下面详细介绍如何通过对象各个属性获取页面加载期间各个阶段的性能.</p>
+<p>页面加载的第一个时间点是navigationStart, 表示上一个页面的unload事件触发, 接下来的事件点是fetchStart, 表示开始获取当前页面内容. fetchStart时间点和navigationStart时间点之间的时间差是浏览器内核为加载新页面做的一些准备工作耗时.</p>
+<p>获取页面内容的第一步是查询是否有跟页面相关的资源缓存, 查询完毕之后, 会触发开始DNS解析的时间点domainLookupStart. domainLookupStart时间点和fetchStart事件点之间的时间差是查询缓存所消耗的时间.</p>
+<p>DNS解析结束的时间点是domainLookupEnd. domainLookupEnd时间点和domainLookupStart时间点之间的时间差是DNS解析消耗的时间.</p>
+<p>DNS解析技术之后会开始建立TCP连接, TCP连接开始和结束的时间点分别是connectStart和connectEnd. connectStart时间点紧接着domainLookupEnd时间点, connectEnd时间点和connectStart时间点之间的时间差是建立TCP消耗的时间.</p>
+<p>TCP连接建立之后, 开始发送请求内容至服务器端, 这个时间点是requestStart. 服务器端接收到完整请求并处理完毕后, 会将响应结果返回客户端, 开始发送响应结果的时间点为responseStart. </p>
+<p>浏览器收到完整的响应结果之后, 会触发responseEnd时间点, 浏览器接收到响应的结果之后, 会开始DOM树解析, 这个时间点是domLoading, DOM解析完成的时间点是domInteractive. </p>
+<p>DOM解析完成是指DOM树构建完成, 页面依赖的外部资源, 如css, javascript, 图片等. 还未开始加载.(domLoading时间点不一定在responseEnd时间点之后, 有可能浏览器只接受了部分响应数据就开始解析DOM树).</p>
+<p>DOM树解析完成之后, 会开始按照顺序运行页面脚本和加载依赖外部资源, 其中Javascript资源会同步加载和执行. 一但所有页面脚本运行完毕, 会触发DOMContentLoaded事件, 这个时间点是domContentLoadedStart.</p>
+<p>开发者注册的DOMContentLoaded事件执行完毕之后, 会触发domContentLoadedEnd时间点.<br>当依赖的外部资源全部加载并解析完成之后, 会触发domComplete时间点, 同时会发触发暴露给开发者的load事件. loadEventStart时间点表示load事件开始触发, loadEventEnd时间点表示所有开发者注册在load事件上的脚本执行完毕. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">      let t = performance.timing</span><br><span class="line">      console.log(&apos;DNS查询耗时 ：&apos; + (t.domainLookupEnd - t.domainLookupStart).toFixed(0))</span><br><span class="line">      console.log(&apos;TCP链接耗时 ：&apos; + (t.connectEnd - t.connectStart).toFixed(0))</span><br><span class="line">      console.log(&apos;request请求耗时 ：&apos; + (t.responseEnd - t.responseStart).toFixed(0))</span><br><span class="line">      console.log(&apos;解析dom树耗时 ：&apos; + (t.domComplete - t.domInteractive).toFixed(0))</span><br><span class="line">      console.log(&apos;白屏时间 ：&apos; + (t.responseStart - t.navigationStart).toFixed(0))</span><br><span class="line">      console.log(&apos;domready时间 ：&apos; + (t.domContentLoadedEventEnd - t.navigationStart).toFixed(0))</span><br><span class="line">      console.log(&apos;onload时间 ：&apos; + (t.loadEventEnd - t.navigationStart).toFixed(0))</span><br><span class="line"></span><br><span class="line">      if(t = performance.memory)&#123;</span><br><span class="line">          console.log(&apos;js内存使用占比 ：&apos; + (t.usedJSHeapSize / t.totalJSHeapSize * 100).toFixed(2) + &apos;%&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack层面：</p>
+<ol>
+<li>UglifyJsPlugin  对js进行压缩</li>
+<li>ParallelUglifyPlugin  多进程并行处理压缩</li>
+<li>OptimizeCssPlugin </li>
+<li>ExtractTextPlugin 提取chunk中的css代码道单独的文件中</li>
+<li>compression-webpack-plugin   app vendor manifest</li>
+<li>sourcemap  </li>
+<li>url-loader  小的图片 用url-loader  转化为base64  大的图片用cdn的方式引入</li>
+</ol>
+<p>http层：<br>HTTP2 多路复用<br>服务端推送<br>头部压缩</p>
+<p>减少http请求<br>cdn  缓存</p>
+<p>代码层：<br>路由懒加载<br>const practice = () =&gt; import(/* webpackChunkName: “practice” */ “@/components/practice/practice”);  </p>
+<p>index.html<br>css放在header  js尽量放在body底部 </p>
+<p>数据重构的时候  算法降低时间复杂度  js单线程  减少大量计算占用内存  导致浏览器失帧</p>
+<p>服务端渲染 nuxt</p>
 
         
     </section>
@@ -149,10 +168,8 @@
 
 
 
-<a id="pagenext" href="/2019/09/22/nginx/" class="article-next" title="Nginx"><i class="icon-arrow-right"></i></a>
+<a id="pagenext" href="/2020/05/22/thinkReact/" class="article-next" title="React"><i class="icon-arrow-right"></i></a>
 
-
-<a id="pageprev" href="/2019/09/22/debounce/" class="article-prev" title="节流防抖"><i class="icon-arrow-left"></i></a>
 
 
 

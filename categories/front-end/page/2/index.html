@@ -141,6 +141,48 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/11/19/dataStructure/">js数据结构预算法</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-19T04:04:58.304Z" itemprop="datePublished">2019-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/typescript/">typescript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="js实现一个队列"><a href="#js实现一个队列" class="headerlink" title="js实现一个队列"></a>js实现一个队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function Queue()&#123;</span><br><span class="line">    this.items = [];</span><br><span class="line">    Queue.prototype.push = function(data)&#123;</span><br><span class="line">        this.items.push(data);</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.shift = function()&#123;</span><br><span class="line">        this.items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.size = function()&#123;</span><br><span class="line">        return this.items.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.isEmpty = function()&#123;</span><br><span class="line">        return this.items.length === 0;</span><br><span class="line">    &#125;;</span><br><span class="line">    Queue.prototype.toString = function()&#123;</span><br><span class="line">        let stringData = &apos;&apos;;</span><br><span class="line">        for(const item of this.items)&#123;</span><br><span class="line">            stringData += item+&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringData;</span><br><span class="line">    &#125;; </span><br><span class="line">&#125;</span><br><span class="line">var queue = new Queue();</span><br><span class="line">queue.push(2121);</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(2); </span><br><span class="line">alert(queue.toString());</span><br></pre></td></tr></table></figure>
+        
+        <p class="article-more-link">
+            <a href="/2019/11/19/dataStructure/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/11/19/diff/">Vue diff 算法</a>
         </h1>
         
@@ -437,6 +479,50 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/09/22/observal/">观察者模式 - 发布订阅</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。而观察者模式属于行为型模式，行为型模式关注的</p>
+<p>是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯。</p>
+<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><p>在“发布者-订阅者”模式中，称为发布者的消息发送者不会将消息编程为直接发送给称为订阅者的特定接收者。这意味着发布者和订阅者不知道彼此的存在。存在第三个组件，</p>
+<p>称为代理或消息代理或事件总线，它由发布者和订阅者都知道，它过滤所有传入的消息并相应地分发它们。换句话说，pub-sub是用于在不同系统组件之间传递消息的模式，而</p>
+<p>这些组件不知道关于彼此身份的任何信息。经纪人如何过滤所有消息？实际上，有几个消息过滤过程。最常用的方法有：基于主题和基于内容的。</p>
+<p>在Observer模式中，Observers知道Subject，同时Subject还保留了Observers的记录。然而，在发布者/订阅者中，发布者和订阅者不需要彼此了解。他们只是在消息队列或代理的帮助下进行通信。</p>
+<p>在Publisher / Subscriber模式中，组件是松散耦合的，而不是Observer模式。</p>
+<p>观察者模式主要以同步方式实现，即当某些事件发生时，Subject调用其所有观察者的适当方法。发布者/订阅者在大多情况下是异步方式（使用消息队列）。</p>
+<p>观察者模式需要在单个应用程序地址空间中实现。另一方面，发布者/订阅者模式更像是跨应用程序模式。</p>
+<p>尽管这些模式之间存在差异，但有些人可能会说发布者 - 订阅者模式是观察者模式的变体，因为它们之间存在概念上的相似性，但并不是一样的。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2019/09/22/nginx/">Nginx</a>
         </h1>
         
@@ -487,50 +573,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/09/22/observal/">观察者模式 - 发布订阅</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-09-22T02:13:00.000Z" itemprop="datePublished">2019-09-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。而观察者模式属于行为型模式，行为型模式关注的</p>
-<p>是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯。</p>
-<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><p>在“发布者-订阅者”模式中，称为发布者的消息发送者不会将消息编程为直接发送给称为订阅者的特定接收者。这意味着发布者和订阅者不知道彼此的存在。存在第三个组件，</p>
-<p>称为代理或消息代理或事件总线，它由发布者和订阅者都知道，它过滤所有传入的消息并相应地分发它们。换句话说，pub-sub是用于在不同系统组件之间传递消息的模式，而</p>
-<p>这些组件不知道关于彼此身份的任何信息。经纪人如何过滤所有消息？实际上，有几个消息过滤过程。最常用的方法有：基于主题和基于内容的。</p>
-<p>在Observer模式中，Observers知道Subject，同时Subject还保留了Observers的记录。然而，在发布者/订阅者中，发布者和订阅者不需要彼此了解。他们只是在消息队列或代理的帮助下进行通信。</p>
-<p>在Publisher / Subscriber模式中，组件是松散耦合的，而不是Observer模式。</p>
-<p>观察者模式主要以同步方式实现，即当某些事件发生时，Subject调用其所有观察者的适当方法。发布者/订阅者在大多情况下是异步方式（使用消息队列）。</p>
-<p>观察者模式需要在单个应用程序地址空间中实现。另一方面，发布者/订阅者模式更像是跨应用程序模式。</p>
-<p>尽管这些模式之间存在差异，但有些人可能会说发布者 - 订阅者模式是观察者模式的变体，因为它们之间存在概念上的相似性，但并不是一样的。</p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2019/07/16/webView/">WebView</a>
         </h1>
         
@@ -571,59 +613,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/06/22/type/">判断js数据类型</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/2/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-06-22T14:23:00.000Z" itemprop="datePublished">2019-06-22</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1. typeof"></a>1. typeof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    typeof 123, //&quot;number&quot;</span><br><span class="line">    typeof &apos;dsfsf&apos;, //&quot;string&quot;</span><br><span class="line">    typeof false, //&quot;boolean&quot;</span><br><span class="line">    typeof [1,2,3], //&quot;object&quot;</span><br><span class="line">    typeof &#123;a:1,b:2,c:3&#125;, //&quot;object&quot;</span><br><span class="line">    typeof function()&#123;console.log(&apos;aaa&apos;);&#125;, //&quot;function&quot;</span><br><span class="line">    typeof undefined, //&quot;undefined&quot;</span><br><span class="line">    typeof null, //&quot;object&quot;</span><br><span class="line">    typeof new Date(), //&quot;object&quot;</span><br><span class="line">    typeof /^[a-zA-Z]&#123;5,20&#125;$/, //&quot;object&quot;</span><br><span class="line">    typeof new Error() //&quot;object&quot;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>Array，Object，null，Date，RegExp，Error这几个类型都被typeof判断为object，所以如果想要判断这几种类型，就不能使用typeof了。</p>
-<p>Number，String，Boolean，Function，undefined，如果想判断这几种类型，那就可以使用typeof。</p>
-<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2. instanceof"></a>2. instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">    123 instanceof Number, //false</span><br><span class="line">    &apos;dsfsf&apos; instanceof String, //false</span><br><span class="line">    false instanceof Boolean, //false</span><br><span class="line">    [1,2,3] instanceof Array, //true</span><br><span class="line">    &#123;a:1,b:2,c:3&#125; instanceof Object, //true</span><br><span class="line">    function()&#123;console.log(&apos;aaa&apos;);&#125; instanceof Function, //true</span><br><span class="line">    undefined instanceof Object, //false</span><br><span class="line">    null instanceof Object, //false</span><br><span class="line">    new Date() instanceof Date, //true</span><br><span class="line">    /^[a-zA-Z]&#123;5,20&#125;$/ instanceof RegExp, //true</span><br><span class="line">    new Error() instanceof Error //true</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>Number，String，Boolean没有检测出他们的类型;</p>
-<p>还需要注意null和undefined都返回了false，这是因为它们的类型就是自己本身，并不是Object创建出来它们，所以返回了false。</p>
-<h2 id="3-使用toString-检测对象类型"><a href="#3-使用toString-检测对象类型" class="headerlink" title="3. 使用toString()检测对象类型"></a>3. 使用toString()检测对象类型</h2><p>可以通过toString() 来获取每个对象的类型。为了每个对象都能通过 Object.prototype.toString() 来检测，需要以 <strong>Function.prototype.call()</strong> 或者 <strong>Function.prototype.apply()</strong> 的形式来调用，传递要检查的对象作为第一个参数，称为thisArg。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var toString = Object.prototype.toString;</span><br><span class="line">toString.call(123); //&quot;[object Number]&quot;</span><br><span class="line">toString.call(&apos;abcdef&apos;); //&quot;[object String]&quot;</span><br><span class="line">toString.call(true); //&quot;[object Boolean]&quot;</span><br><span class="line">toString.call([1, 2, 3, 4]); //&quot;[object Array]&quot;</span><br><span class="line">toString.call(&#123;name:&apos;wenzi&apos;, age:25&#125;); //&quot;[object Object]&quot;</span><br><span class="line">toString.call(function()&#123; console.log(&apos;this is function&apos;); &#125;); //&quot;[object Function]&quot;</span><br><span class="line">toString.call(undefined); //&quot;[object Undefined]&quot;</span><br><span class="line">toString.call(null); //&quot;[object Null]&quot;</span><br><span class="line">toString.call(new Date()); //&quot;[object Date]&quot;</span><br><span class="line">toString.call(/^[a-zA-Z]&#123;5,20&#125;$/); //&quot;[object RegExp]&quot;</span><br><span class="line">toString.call(new Error()); //&quot;[object Error]&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-constructor"><a href="#4-constructor" class="headerlink" title="4. constructor"></a>4. constructor</h2><p>constructor是prototype对象上的属性，指向构造函数。根据实例对象寻找属性的顺序，若实例对象上没有实例属性或方法时，就去原型链上寻找，因此，实例对象也是能使用constructor属性的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var num  = 123;</span><br><span class="line">var str  = &apos;abcdef&apos;;</span><br><span class="line">var bool = true;</span><br><span class="line">var arr  = [1, 2, 3, 4];</span><br><span class="line">var json = &#123;name:&apos;wenzi&apos;, age:25&#125;;</span><br><span class="line">var func = function()&#123; console.log(&apos;this is function&apos;); &#125;</span><br><span class="line">var und  = undefined;</span><br><span class="line">var nul  = null;</span><br><span class="line">var date = new Date();</span><br><span class="line">var reg  = /^[a-zA-Z]&#123;5,20&#125;$/;</span><br><span class="line">var error= new Error();</span><br><span class="line"></span><br><span class="line">function Person()&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">var tom = new Person();</span><br><span class="line"></span><br><span class="line">// undefined和null没有constructor属性</span><br><span class="line">console.log(</span><br><span class="line">    tom.constructor==Person,</span><br><span class="line">    num.constructor==Number,</span><br><span class="line">    str.constructor==String,</span><br><span class="line">    bool.constructor==Boolean,</span><br><span class="line">    arr.constructor==Array,</span><br><span class="line">    json.constructor==Object,</span><br><span class="line">    func.constructor==Function,</span><br><span class="line">    date.constructor==Date,</span><br><span class="line">    reg.constructor==RegExp,</span><br><span class="line">    error.constructor==Error</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>除了undefined和null之外，其他类型都可以通过constructor属性来判断类型。</p>
-
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/categories/front-end/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/front-end/page/3/">3</a><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="extend next" rel="next" href="/categories/front-end/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/categories/front-end/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/front-end/page/3/">3</a><a class="page-number" href="/categories/front-end/page/4/">4</a><a class="page-number" href="/categories/front-end/page/5/">5</a><a class="extend next" rel="next" href="/categories/front-end/page/3/">Next &raquo;</a>
 </nav>
 
 

@@ -141,6 +141,65 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/11/19/es/">ES6、ES7、ES8、ES9、ES10特性一锅炖</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-19T14:11:00.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/es7/">es7</a>, <a class="article-tag-link" href="/tags/es8/">es8</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="ES6的特性"><a href="#ES6的特性" class="headerlink" title="ES6的特性"></a>ES6的特性</h2><p>类</p>
+<p>模块化</p>
+<p>箭头函数</p>
+<p>函数参数默认值</p>
+<p>模板字符串</p>
+<p>解构赋值</p>
+<p>延展操作符</p>
+<p>对象属性简写</p>
+<p>symbol  :新的原始数据类型Symbol，表示<strong>独一无二的值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">let s1 = Symbol();</span><br><span class="line">let s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">let s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">let s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+
+<p>Set :本身是一个构造函数，用来生成 Set 数据结构。Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line"></span><br><span class="line">[2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line"></span><br><span class="line">for (let i of s) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 2 3 5 4</span><br><span class="line"></span><br><span class="line">// 去除数组的重复成员</span><br><span class="line">[...new Set(array)]</span><br><span class="line"></span><br><span class="line">//去除字符串里面的重复字符</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;)</span><br><span class="line">// &quot;abc&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面代码向 Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">let a = NaN;</span><br><span class="line">let b = NaN;</span><br><span class="line">set.add(a);</span><br><span class="line">set.add(b);</span><br><span class="line">set // Set &#123;NaN&#125;</span><br><span class="line"></span><br><span class="line">另外，两个对象总是不相等的。</span><br><span class="line"></span><br><span class="line">let set = new Set();</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 1</span><br><span class="line">set.add(&#123;&#125;);</span><br><span class="line">set.size // 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.add(1).add(2).add(2);</span><br><span class="line">// 注意2被加入了两次</span><br><span class="line"></span><br><span class="line">s.size // 2</span><br><span class="line"></span><br><span class="line">s.has(1) // true</span><br><span class="line">s.has(2) // true</span><br><span class="line">s.has(3) // false</span><br><span class="line"></span><br><span class="line">s.delete(2);</span><br><span class="line">s.has(2) // false</span><br></pre></td></tr></table></figure>
+
+<p>Promise</p>
+<p>Let与Const</p>
+<h2 id="ES7的特性"><a href="#ES7的特性" class="headerlink" title="ES7的特性"></a>ES7的特性</h2><p>includes()</p>
+<p>指数操作符</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/11/19/es/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/10/09/docker/">容器和虚机的区别</a>
         </h1>
         
@@ -189,52 +248,6 @@
 <p>举个例子，Docker就是手机中的各种APP，只需要一个系统就可以下载自己所需的应用，但是虚拟化技术相当于你的苹果手机安装一个庞大软件，这个软件上安装安卓系统、魅族系统等，每个系统上还要安装各类应用，比较麻烦。</p>
 <p>但两者没有绝对的好坏，主要还是看应用场景，根据不同的需求选择不同的解决方案即可。</p>
 
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
-<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
-<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
-<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
-<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
-        
-        <p class="article-more-link">
-            <a href="/2018/10/03/amd/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
         
     </section>
 </article>
@@ -302,6 +315,52 @@
         
         <p class="article-more-link">
             <a href="/2018/10/03/cache/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/10/03/amd/">CommonJs/AMD/CMD/ES6</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-03T02:10:00.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/es6/">es6</a>, <a class="article-tag-link" href="/tags/js/">js</a>, <a class="article-tag-link" href="/tags/nodeJS/">nodeJS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>知识点1：CommonJs/AMD/CMD是JS模块化开发的标准，目前对应的实现是nodeJs/RequireJs/SeaJs.</p>
+<p>知识点2：CommonJs主要针对 <em>服务端</em>，AMD/CMD主要针对 <em>浏览器端</em>。</p>
+<p>针对服务器端和针对浏览器端有什么本质的区别呢？</p>
+<p>服务器端一般采用<em>同步加载</em>文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。</p>
+<p>而浏览器端要保证效率，需要采用 <em>异步加载</em>，这就需要一个预处理，提前将所需要的模块文件并行加载好。</p>
+        
+        <p class="article-more-link">
+            <a href="/2018/10/03/amd/#more">
                 <span class="vm">阅读更多</span>
                 <i class="icon-arrow-double-right vm"></i>    
             </a>
@@ -584,54 +643,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2017/12/13/crossSite/">跨域</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/categories/front-end/page/4/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2017-12-13T13:21:00.000Z" itemprop="datePublished">2017-12-13</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/http/">http</a>, <a class="article-tag-link" href="/tags/js/">js</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="1-为什么出现跨域"><a href="#1-为什么出现跨域" class="headerlink" title="1.为什么出现跨域"></a>1.为什么出现跨域</h2><p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p>
-<p>假设有两个网站，A网站部署在：<a href="http://localhost:80" target="_blank" rel="noopener">http://localhost:80</a> 即本地ip端口80上；B网站部署在：<a href="http://localhost:81" target="_blank" rel="noopener">http://localhost:81</a> 即本地ip端口81上。现在A网站的页面想去访问B网站的信息</p>
-<p><code>$.get(&quot;http://localhost:81/api/values&quot;,function (result) {</code><br><code>$(&quot;#show&quot;).html(result);</code><br><code>})</code></p>
-        
-        <p class="article-more-link">
-            <a href="/2017/12/13/crossSite/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/categories/front-end/page/3/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><a class="page-number" href="/categories/front-end/page/2/">2</a><a class="page-number" href="/categories/front-end/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/categories/front-end/page/3/">&laquo; Prev</a><a class="page-number" href="/categories/front-end/">1</a><a class="page-number" href="/categories/front-end/page/2/">2</a><a class="page-number" href="/categories/front-end/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/categories/front-end/page/5/">5</a><a class="extend next" rel="next" href="/categories/front-end/page/5/">Next &raquo;</a>
 </nav>
 
 
