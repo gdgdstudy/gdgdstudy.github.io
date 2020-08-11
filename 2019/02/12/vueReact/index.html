@@ -7,7 +7,7 @@
 
     
 
-    <title>Vue-React 区别 | Yan Lian&#39;s Blog</title>
+    <title>Vue-React-Angular 区别 | Yan Lian&#39;s Blog</title>
     <meta name="author" content="Kevin Yan">
     <meta name="keywords" content>
     <meta name="description" content="Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或已有项目结合。Vue的目标是通过尽可能简单的API实现“响应的数据绑定”和组合的视图组件。React是一个采用声明式，高效而且灵活的用来构建用户界面的框架。以redux为状态管理。使用jsx渲染页面。React 和 Vue 有许多相似之处，它们都有：使用 Virtual DOM提供了响应式（Reactive）和组件化（Composable）的视图组件。将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管...">
@@ -142,7 +142,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            Vue-React 区别
+            Vue-React-Angular 区别
         </h1>
         
         <div class="article-meta clearfix">
@@ -173,19 +173,19 @@
 <p>将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。</p>
 <a id="more"></a>
 
-<p><strong>React使用JSX渲染页面</strong></p>
+<p><strong>React、Vue对比</strong><br><strong>1.React使用JSX渲染页面</strong></p>
 <p>在 React 中，HTML &amp; CSS都是 JavaScript 编写的，听起来这十分简单和优雅。然而不幸的事实是，JavaScript 内的 HTML 和 CSS 会产生很多痛点。</p>
 <p>JSX 的渲染功能有下面这些优势：</p>
 <p>你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。</p>
 <p>工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。</p>
-<p><strong>vue使用简单的模板:</strong></p>
+<p><strong>2.vue使用简单的模板:</strong></p>
 <p>在写模板的过程中，样式风格已定并涉及更少的功能实现。</p>
 <p>模板总是会被声明的。</p>
 <p>模板中任何 HTML 语法都是有效的。</p>
 <p>阅读起来更贴合英语（比如，for each item in items）。</p>
 <p>不需要高级版本的 JavaScript 语法，来增加可读性。</p>
 <p>vue运行的速度更快。</p>
-<p>上面提到了响应式和组件化，我也大概的介绍一下这两个，</p>
+<p><strong>3.React 是单项数据流， Vue支持双向数据绑定，React修改数据需要通过setState实现，vue直接this.obj= 进行，React基于数据不可变，vue基于数据可变，react父组件状态的变化会导致所有子组件进行rerender，可以通过shouldComponentUpdate或者useEffect第二个数组参数进行依赖校验是否rerender，vue（如vue2）在初始化的时候，通过object.defineProperty的get属性时，会对data的属性进行依赖收集，当状态变化只会更新依赖的组件，react16以后也称react fiber通过对大任务进行分片，加入优先级概念，防止大量计算导致浏览器失帧的现象，vue3 也采用了proxy和静态节点不进行虚拟dom的diff比对来提升效率；这也是vue模板编译时第二步的一个优化引申（1.模板转换为asts; 2.对asts的静态节点进行标记，渲染优化; 3.asts转换为代码字符串）</strong></p>
 <p><strong>VUE和Angular对比</strong></p>
 <p>在大小方面，虽然 Angular 2 使用 tree-shaking 和离线编译技术使代码体积减小了许多。但包含编译器和全部功能的 Vue2(23kb) 相比 Angular 2</p>
 <p>(50kb) 还是要小的多。但是要注意，用 Angular 2 的 App 的体积缩减是使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着功能引入</p>
