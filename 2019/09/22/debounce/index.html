@@ -135,20 +135,34 @@
         <h2 id="防抖（debounce）"><a href="#防抖（debounce）" class="headerlink" title="防抖（debounce）"></a>防抖（debounce）</h2><p>所谓防抖， 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;    </span><br><span class="line">    var timeout = null;    </span><br><span class="line">    return function() &#123;        </span><br><span class="line">        if(timeout !== null)   clearTimeout(timeout);        </span><br><span class="line">        timeout = setTimeout(fn, wait);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;    </span><br><span class="line">    let timeout = null;    </span><br><span class="line">    return function() &#123;   </span><br><span class="line">        let context = this;</span><br><span class="line">        let arg = arguments;     </span><br><span class="line">        if(timeout !== null)   clearTimeout(timeout);        </span><br><span class="line">        timeout = setTimeout(function()&#123;</span><br><span class="line">            fn.apply(context, arg);</span><br><span class="line">        &#125;, wait);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 <a id="more"></a>
 <h2 id="节流（throttle）"><a href="#节流（throttle）" class="headerlink" title="节流（throttle）"></a>节流（throttle）</h2><p>所谓节流，当持续触发事件时，保证一定时间段内只调用一次事件处理函数。</p>
 <p>函数节流主要有两种实现方法：时间戳和定时器。</p>
 <p>时间戳：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 节流throttle代码（时间戳+定时器）：</span><br><span class="line">var throttle = function(func, delay) &#123;     </span><br><span class="line">    var timer = null;     </span><br><span class="line">    var startTime = Date.now();     </span><br><span class="line">    return function() &#123;             </span><br><span class="line">        var curTime = Date.now();             </span><br><span class="line">        var remaining = delay - (curTime - startTime);             </span><br><span class="line">        var context = this;             </span><br><span class="line">        var args = arguments;             </span><br><span class="line">        clearTimeout(timer);              </span><br><span class="line">        if (remaining &lt;= 0) &#123;                    </span><br><span class="line">            func.apply(context, args);                    </span><br><span class="line">            startTime = Date.now();              </span><br><span class="line">        &#125; else &#123;                    </span><br><span class="line">            timer = setTimeout(func, remaining);              </span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>定时器</strong>： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 节流throttle代码（定时器）：</span><br><span class="line">var throttle = function(func, delay) &#123;            </span><br><span class="line">    var timer = null;            </span><br><span class="line">    return function() &#123;                </span><br><span class="line">        var context = this;               </span><br><span class="line">        var args = arguments;                </span><br><span class="line">        if (!timer) &#123;                    </span><br><span class="line">            timer = setTimeout(function() &#123;                        </span><br><span class="line">                func.apply(context, args);    </span><br><span class="line">                //因为setTimeout(function()&#123;&#125;,time); 而apply是自执行的函数；所以需要外面再套一层function; 而且需要记录this指向 和可能添加的参数  </span><br><span class="line">                timer = null;                    </span><br><span class="line">            &#125;, delay);                </span><br><span class="line">        &#125;            </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<pre><code>// 节流throttle代码（时间戳+定时器）：
+var throttle = function(fn, delay) {     
+    var timer = null;     
+    var startTime = Date.now();     
+    return function() {             
+        var curTime = Date.now();             
+        var remaining = delay - (curTime - startTime);             
+        var context = this;             
+        var args = arguments;             
+        clearTimeout(timer);              
+        if (remaining &lt;= 0) {                    
+            fn.apply(context, args);                    
+        } else {                 
+            timer = setTimeout(function(){
+                fn.apply(context, args);
+            }, remaining);
+            startTime = Date.now();  
+        }      
+    }
+}
+</code></pre>
         
     </section>
 </article>
